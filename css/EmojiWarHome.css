@@ -64,7 +64,7 @@ nav .nav-logo p{
     font-size: 28px;
     font-weight: 800;
 }
-nav .nav-items{width: 40%;}
+nav .nav-items{width: 50%;}
 nav ul li {
     list-style: none;
     display: inline-block;
@@ -147,15 +147,20 @@ nav .nav-login button:active{
     background-color: rgba(0, 0, 0,.85);
 }
 .home .caption{
-    margin: 150px;
+    margin: 120px;
+    margin-left: 80px;
+    margin-right: 40px;
     width: 40%;  
     display: inline-block; 
+    float: left;
 }
 .home .vidDiv {
     text-align: center;
     display: inline-block; 
     margin-top: 150px;
-    width: 40%; 
+    width: 30%; 
+    float: left;
+    margin-top: 30px;
 }
 .home .vidDiv h1{
     margin-bottom: 20px;
