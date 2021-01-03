@@ -31,13 +31,13 @@ nav {
     padding: 20px 10px  ;
     
     /* bounce effect */
-    -webkit-animation: bounce 1s ease-out;
-    -moz-animation: bounce 800ms ease-out;
-    -o-animation: bounce 800ms ease-out;
-    animation: bounce 1s ease-out;
+    opacity: 0;
+    transition: opacity 2s;
 }
 .container{
     font-size: x-large;
+    animation:  1s ease-out;
+
 }
 nav .container{
     width: 80%;
@@ -52,11 +52,18 @@ nav .nav-logo{
     width:30%;
     cursor: pointer;
 }
+
+/* Nav Bar Logo Effect*/
 nav .nav-logo p:hover{
     font-weight: bolder;
     font-size:xx-large;
     transition: font-size 0.2s;    
 }
+nav .nav-logo p:active{
+  font-weight: bolder;
+  color:rgb(251, 230, 170);   
+}
+/**********************/
 
 nav .nav-logo p{
     color:#dbab83;
@@ -64,7 +71,7 @@ nav .nav-logo p{
     font-size: 28px;
     font-weight: 800;
 }
-nav .nav-items{width: 40%;}
+nav .nav-items{width: 50%;}
 nav ul li {
     list-style: none;
     display: inline-block;
@@ -80,7 +87,13 @@ nav ul .active a{
     color: #fff;
     font-weight: bold;
 }
+nav ul .deactive a{
+  color:#dbab83;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
 
+/* Nav Bar Menu items Effect*/
 nav ul  a:hover{
     font-weight: bolder;
     font-size:larger;
@@ -88,15 +101,10 @@ nav ul  a:hover{
 }
 nav ul  a:active{
     font-weight: bolder;
-    color:rgb(255, 0, 0);
-    font-size:x-large;
-    transition: font-size 0.2s;
+    color:rgb(251, 230, 170);
 }
-nav ul .deactive a{
-    color:#dbab83;
-    letter-spacing: 1px;
-    text-decoration: none;
-}
+/****************************/
+
 nav .nav-login{display: inline-block; float:right;}
 nav .nav-login button{
     cursor: pointer;
@@ -111,6 +119,7 @@ nav .nav-login button{
     outline:none;
 }
 
+/* Nav Bar Logoin Button Effect*/
 nav .nav-login button:hover{
     background-color: #8a6343;
     color: #fff;
@@ -133,7 +142,7 @@ nav .nav-login button:active{
 }
 .home{
     height: 100%;
-    background-image: url('../src/bg.jpeg');
+    background-image: url('../src/images/gameImg.png');
     background-position: center center;
     background-size: cover;
     background-attachment: fixed;
@@ -145,6 +154,11 @@ nav .nav-login button:active{
     top: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0,.85);
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+
 }
 .home .caption{
     margin: 150px;
@@ -166,6 +180,7 @@ nav .nav-login button:active{
     width: 600px;
     height: 338px;
     border:5px solid#ac7d51e6;
+    
 }
 .home .caption p:first-of-type{
     font-size: 24px;
@@ -190,7 +205,9 @@ nav .nav-login button:active{
     line-height:30px;
     color:#ccc;
     background-color: rgba(0, 0, 0,.3);
+
 }
+
 .home .caption button{
     cursor: pointer;
     margin: 20px 20px 10px 0;
@@ -205,6 +222,8 @@ nav .nav-login button:active{
     font-weight: bold;
     outline:none;
 }
+
+/* Play and About Buttons Effect */
 .home .caption button:hover{
 
     color:#fffefe;
@@ -217,6 +236,7 @@ nav .nav-login button:active{
     background-color: rgba(129, 89, 48, 0.9);
     border:1px solid#4d3824e6;
 }
+
 /*********** Animations ***********/
 
 /* Webkit, Chrome and Safari */
