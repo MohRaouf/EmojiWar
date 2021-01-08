@@ -19,9 +19,10 @@ const keys = {
 
 //InputHandler class contains the event listener
 export default class InputHandler {
-    constructor(player) {
+    constructor(canvas) {
+        this.canvas=canvas;
         var held_directions = []; // State of which arrow keys we are holding down
-        this.held_directions=held_directions;
+        this.held_directions = held_directions;
         document.addEventListener("keydown", (e) => {
             var dir = keys[e.which];
             let keyIndex = held_directions.indexOf(dir)
@@ -38,6 +39,15 @@ export default class InputHandler {
             if (index > -1) {
                 held_directions.splice(index, 1)
             }
+        });
+
+        //getting mouse position
+        this.mouse= { x: 0, y: 0 };
+        document.addEventListener("mousemove", (e)=>{
+            const bounds = this.canvas.getBoundingClientRect();
+            this.mouse.x = e.pageX - bounds.left - scrollX;
+            this.mouse.y = e.pageY - bounds.top - scrollY;
+            // console.log(`MouseX = ${this.mouse.x}, MouseY = ${this.mouse.y}`)
         });
     }
 }

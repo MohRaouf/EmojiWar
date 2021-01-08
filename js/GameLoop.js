@@ -28,17 +28,18 @@ var playerInfo = {
         return GAME_HEIGHT / 2 - this.size / 2;
     },
     gameWidth:GAME_WIDTH,
-    gameHeight:GAME_HEIGHT
+    gameHeight:GAME_HEIGHT,
+    character:document.getElementById("player")
 };
 
 //Instance of the Player with speed of 5 pixels
 let player = new Player(playerInfo);
 
-//First Draw of the Player
-player.draw(context);
-
 //Instance of InputHander to Handle the Key strokes
-var inputHandler = new InputHandler(player);
+var inputHandler = new InputHandler(canvas);
+
+//First Draw of the Player
+player.draw(context,inputHandler.mouse);
 
 // gameloop 
 let lastTime = 0;
@@ -53,7 +54,7 @@ function gameLoop(timeStamp) {
     player.move(inputHandler.held_directions,deltaTime);
 
     //Then Draw the Player again
-    player.draw(context);
+    player.draw(context,inputHandler.mouse);
 
     //request a new frame with a recursion to this function
     requestAnimationFrame(gameLoop)
