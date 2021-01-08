@@ -1,0 +1,54 @@
+@import url(https://fonts.googleapis.com/css?family=Sigmar+One);
+body{
+    background-color: #000;
+    font-family: 'Sigmar One', cursive;
+    color: #fff;
+}
+
+.container2 {
+    display: none;
+    border: 4px solid #dbab83;
+    border-radius: 12px;
+    text-align: center;
+    margin: auto;
+    width: 70%;
+    height: 400px;
+    margin-top: 130px;
+}
+.conLoos {
+    display: none;
+    text-align: center;
+}
+h1 {
+    font-size: 30px;
+}
+ .action{
+    display: none;
+}
+img{
+    width: 18%;
+    height: 18%;
+}
+figcaption{
+}
+.actions{
+    display: block;
+    padding-top: 250px;
+    text-align: center;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+}
+div input{
+    background-color: transparent;
+    border:1px solid#dbab83;
+    padding: 10px 30px;
+    border-radius: 10px;
+    color:#dbab83;
+    font-weight: bold;
+    transition: all 1s;
+}
+input:hover{
+    background-color: #dbab83;
+    color: #fff;
+}
