@@ -17,12 +17,10 @@ const keys = {
     83: directions.down
 }
 
-
 //InputHandler class contains the event listener
 export default class InputHandler {
-    constructor(canvas) {
-        this.canvas=canvas;
-        this.shooting=false;
+    constructor(canvas, player, shootSound) {
+        this.shooting = false;
         this.held_directions = []; // State of which arrow keys we are holding down
         document.addEventListener("keydown", (e) => {
             var dir = keys[e.which];
@@ -42,34 +40,37 @@ export default class InputHandler {
         });
 
         //getting mouse position
-        this.mouse= { x: 0, y: 0 };
-        document.addEventListener("mousemove", (e)=>{
-            const bounds = this.canvas.getBoundingClientRect();
+        this.mouse = { x: 0, y: 0 };
+        document.addEventListener("mousemove", (e) => {
+            const bounds = canvas.getBoundingClientRect();
             this.mouse.x = e.pageX - bounds.left - scrollX;
             this.mouse.y = e.pageY - bounds.top - scrollY;
             // console.log(`MouseX = ${this.mouse.x}, MouseY = ${this.mouse.y}`)
         });
 
         // click detection on the canvas and play shoot sound
-        canvas.addEventListener("click",(e)=>{
-            if(e.buttons===1) {
+        canvas.addEventListener("click", (e) => {
+            if (e.buttons === 1) {
                 shootSound.play();
-            } 
+            }
         })
-        
+
         //detect the mouse down for continous shooting
-        canvas.addEventListener('mousedown', (e) =>{
-            if(e.buttons===1) {
-                this.shooting=true;
-            } 
+        canvas.addEventListener('mousedown', (e) => {
+            if (e.buttons === 1) {
+                this.shooting = true;
+            }
         })
 
         //detect the mouse up to stop shooting
-        canvas.addEventListener('mouseup', (e) =>{
-            if(e.buttons===0) {
-                this.shooting=false;
-            } 
+        canvas.addEventListener('mouseup', (e) => {
+            if (e.buttons === 0) {
+                this.shooting = false;
+            }
         })
+
+        //on shooting sound ended scale to original size
+        shootSound.onended = function () { player.scale = 1; };
 
     }
 }

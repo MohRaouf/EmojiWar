@@ -24,7 +24,7 @@ const GAME_HEIGHT = canvas.height;
 
 //Object Contains all Player Info
 var playerInfo = {
-    size: 100,
+    size: 120,
     speed: 50,
     posX: function () {
         //Center width
@@ -43,7 +43,7 @@ var playerInfo = {
 let player = new Player(playerInfo);
 
 //Instance of InputHander to Handle the Key strokes
-var inputHandler = new InputHandler(canvas);
+var inputHandler = new InputHandler(canvas,player,shootSound);
 
 //First Draw of the Player
 player.draw(context,inputHandler.mouse);
@@ -56,9 +56,6 @@ function gameLoop(timeStamp) {
     lastTime = timeStamp;
     context.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 
-    //detect if the player is shooting
-    if(inputHandler.shooting){shootSound.play();}
-    
     //Move the player to the held directions[from the inputHandler class] befor redraw 
     //DetaTime to make Sure that the game speed is equal on different computers
     player.move(inputHandler.held_directions,deltaTime);
@@ -68,6 +65,12 @@ function gameLoop(timeStamp) {
 
     //request a new frame with a recursion to this function
     requestAnimationFrame(gameLoop)
+    
+    //detect if the player is shooting
+    if(inputHandler.shooting){
+        shootSound.play();
+        player.scale=1.05; 
+    }
 }
 
 //Run the GameLoop for the first time and it will loop forever
