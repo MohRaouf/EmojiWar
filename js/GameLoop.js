@@ -1,6 +1,8 @@
 import Player from '/js/player.js';
 import InputHandler from '/js/input.js'
 
+onselectstart="return false;"
+
 //Get the GameArea Canvas
 let canvas = document.getElementById("gameScreen");
 
