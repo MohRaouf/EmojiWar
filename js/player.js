@@ -13,8 +13,18 @@ export default class Player {
         this.gameWidth = playerInfo.gameWidth;
         this.gameHeight = playerInfo.gameHeight;
         this.character = playerInfo.character;
+        this.shootingSound=playerInfo.shootingSound;
         this.rotation;
         this.scale=1;
+    }
+    shoot(isShooting){
+        if(isShooting){
+            //shoot effect
+            this.shootingSound.play();
+            this.scale=1.08;
+        }
+        //generation of projectile should be here
+        //VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
     }
 
     //draw method that will be executed in the game loop after move() method to update the position
@@ -30,6 +40,7 @@ export default class Player {
         context.translate(this.position.x, this.position.y)
         //rotate the draw by the calculated angle
         context.rotate(this.rotation);
+        //scale effect on the contect before draw the image
         context.scale(this.scale,this.scale);
         //draw the image over the drawn area to be rotated by the same value
         context.drawImage(this.character, -this.character.style.width - this.size / 2, -this.character.style.height - this.size / 2, this.size, this.size)

@@ -19,8 +19,8 @@ const keys = {
 
 //InputHandler class contains the event listener
 export default class InputHandler {
-    constructor(canvas, player, shootSound) {
-        this.shooting = false;
+    constructor(canvas, player) {
+        this.isShooting = false;
         this.held_directions = []; // State of which arrow keys we are holding down
         document.addEventListener("keydown", (e) => {
             var dir = keys[e.which];
@@ -48,30 +48,22 @@ export default class InputHandler {
             // console.log(`MouseX = ${this.mouse.x}, MouseY = ${this.mouse.y}`)
         });
 
-        // click detection on the canvas and play shoot sound
-        canvas.addEventListener("click", (e) => {
-            if (e.buttons === 1) {
-                shootSound.play();
-            }
-        })
-
-        //detect the mouse down for continous shooting
+        //detect the mouse down for continous isShooting
         canvas.addEventListener('mousedown', (e) => {
             if (e.buttons === 1) {
-                this.shooting = true;
+                this.isShooting = true;
             }
         })
 
-        //detect the mouse up to stop shooting
+        //detect the mouse up to stop isShooting
         canvas.addEventListener('mouseup', (e) => {
             if (e.buttons === 0) {
-                this.shooting = false;
+                this.isShooting = false;
             }
         })
 
-        //on shooting sound ended scale to original size
-        shootSound.onended = function () { player.scale = 1; };
-
+        //on isShooting sound ended scale to original size
+        player.shootingSound.onended = function () { player.scale = 1; };
     }
 }
 
