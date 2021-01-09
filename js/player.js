@@ -29,8 +29,19 @@ export default class Player {
 
     //draw method that will be executed in the game loop after move() method to update the position
     draw(context, mousePosition) {
+
         //getting the angle to the mouse position
-        this.rotation = Math.atan2(mousePosition.x - this.position.x, -(mousePosition.y - this.position.y)) + -1.32;
+        //mirorr the character horizontally when it's flipped 
+        let scaleX=1;
+        if(this.position.x>mousePosition.x){
+            this.rotation = Math.atan2(mousePosition.x - this.position.x, -(mousePosition.y - this.position.y)) +1.4;
+            scaleX=-1;
+        }
+        else{
+            this.rotation = Math.atan2(mousePosition.x - this.position.x, -(mousePosition.y - this.position.y)) - 1.32;
+        }
+
+
         //console.log(`Rotation Angle = ${this.rotation}`)
         //console.log(`Player[x]: ${this.position.x} , Player[y]: ${this.position.y} , Player[size]: ${this.size}, Player[speed]: ${this.speed}`)
         
@@ -40,8 +51,9 @@ export default class Player {
         context.translate(this.position.x, this.position.y)
         //rotate the draw by the calculated angle
         context.rotate(this.rotation);
+
         //scale effect on the contect before draw the image
-        context.scale(this.scale,this.scale);
+        context.scale(scaleX*this.scale,this.scale);
         //draw the image over the drawn area to be rotated by the same value
         context.drawImage(this.character, -this.character.style.width - this.size / 2, -this.character.style.height - this.size / 2, this.size, this.size)
         //restore the other context objects
@@ -96,6 +108,5 @@ export default class Player {
         if (this.position.y - this.size /2< 0) { this.position.y = this.size/2 }
         if (this.position.x > this.gameWidth - this.size/2) { this.position.x = this.gameWidth - this.size/2 }
         if (this.position.y > this.gameHeight - this.size/2) { this.position.y = this.gameHeight - this.size/2 }
-
     }
 }

@@ -24,7 +24,7 @@ const GAME_HEIGHT = canvas.height;
 
 //Object Contains all Player Info
 var playerInfo = {
-    size: 120,
+    size: 130,
     speed: 50,
     posX: function () {
         //Center width
