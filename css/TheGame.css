@@ -5,13 +5,12 @@
     font-family: 'Raleway', sans-serif;
    
     -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-    -khtml-user-select: none; /* Konqueror HTML */
-    -moz-user-select: none; /* Old versions of Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently
-                                    supported by Chrome, Edge, Opera and Firefox */
-      
+    -webkit-user-select: none;   /* Safari */
+    -khtml-user-select: none;    /* Konqueror HTML */
+    -moz-user-select: none;      /* Old versions of Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently
+                                    upported by Chrome, Edge, Opera and Firefox */
 }
 body{
     background-color: #000;
@@ -77,6 +76,7 @@ body{
     height: 85%;
     width:99.6%;
     border: 3px rgb(216, 181, 86) solid;
+    cursor: crosshair
 }
 #player{
     /* top: 50%;

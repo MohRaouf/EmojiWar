@@ -1,10 +1,15 @@
 import Player from '/js/player.js';
 import InputHandler from '/js/input.js'
 
-onselectstart="return false;"
-
 //Get the GameArea Canvas
-let canvas = document.getElementById("gameScreen");
+var canvas = document.getElementById("gameScreen");
+
+//disable contect menu
+canvas.oncontextmenu =new Function("return false;")
+
+//lood shoot sound
+var shootSound=document.getElementById("shoot")
+//var shootSound=$("#shoot") //doesn't work
 
 //Set the Game Area Canvas width and height to match the css info (issue solved)
 canvas.width = canvas.getBoundingClientRect().width;
@@ -51,6 +56,9 @@ function gameLoop(timeStamp) {
     lastTime = timeStamp;
     context.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 
+    //detect if the player is shooting
+    if(inputHandler.shooting){shootSound.play();}
+    
     //Move the player to the held directions[from the inputHandler class] befor redraw 
     //DetaTime to make Sure that the game speed is equal on different computers
     player.move(inputHandler.held_directions,deltaTime);

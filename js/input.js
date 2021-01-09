@@ -17,27 +17,27 @@ const keys = {
     83: directions.down
 }
 
+
 //InputHandler class contains the event listener
 export default class InputHandler {
     constructor(canvas) {
         this.canvas=canvas;
-        var held_directions = []; // State of which arrow keys we are holding down
-        this.held_directions = held_directions;
+        this.shooting=false;
+        this.held_directions = []; // State of which arrow keys we are holding down
         document.addEventListener("keydown", (e) => {
             var dir = keys[e.which];
-            let keyIndex = held_directions.indexOf(dir)
-            if (dir && held_directions.indexOf(dir) === -1) {
-                held_directions.unshift(dir)
-                console.log(held_directions)
+            let keyIndex = this.held_directions.indexOf(dir)
+            if (dir && this.held_directions.indexOf(dir) === -1) {
+                this.held_directions.unshift(dir)
             }
             // console.log(e.key)
         })
 
         document.addEventListener("keyup", (e) => {
             var dir = keys[e.which];
-            var index = held_directions.indexOf(dir);
+            var index = this.held_directions.indexOf(dir);
             if (index > -1) {
-                held_directions.splice(index, 1)
+                this.held_directions.splice(index, 1)
             }
         });
 
@@ -49,6 +49,28 @@ export default class InputHandler {
             this.mouse.y = e.pageY - bounds.top - scrollY;
             // console.log(`MouseX = ${this.mouse.x}, MouseY = ${this.mouse.y}`)
         });
+
+        // click detection on the canvas and play shoot sound
+        canvas.addEventListener("click",(e)=>{
+            if(e.buttons===1) {
+                shootSound.play();
+            } 
+        })
+        
+        //detect the mouse down for continous shooting
+        canvas.addEventListener('mousedown', (e) =>{
+            if(e.buttons===1) {
+                this.shooting=true;
+            } 
+        })
+
+        //detect the mouse up to stop shooting
+        canvas.addEventListener('mouseup', (e) =>{
+            if(e.buttons===0) {
+                this.shooting=false;
+            } 
+        })
+
     }
 }
 
