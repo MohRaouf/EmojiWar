@@ -19,10 +19,10 @@ export default class Enmy{
     update(deltaTime){
         this.position.x+=this.speed.x;
         this.position.y+=this.speed.y;
-        if(this.position.x>this.gameWidth||this.position.x<0){
+        if(this.position.x>this.gameWidth-this.size||this.position.x<0){
             this.speed.x=-this.speed.x;
         }
-        if(this.position.y>this.gameHeight||this.position.y<0){
+        if(this.position.y>this.gameHeight-this.size||this.position.y<0){
             this.speed.y=-this.speed.y;
         }
     }
