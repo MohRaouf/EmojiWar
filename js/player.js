@@ -13,15 +13,22 @@ export default class Player {
         this.gameWidth = playerInfo.gameWidth;
         this.gameHeight = playerInfo.gameHeight;
         this.character = playerInfo.character;
-        this.shootingSound=playerInfo.shootingSound;
+        this.shootingSound = playerInfo.shootingSound;
         this.rotation;
-        this.scale=1;
+        this.scale = 1;
+        this.health = playerInfo.health;
+        this.layout={
+            left:this.position.x-this.size/2,
+            right:this.position.x+this.size/2,
+            top:this.position.y-this.size/2,
+            bottom:this.position.y+this.size/2
+        }
     }
-    shoot(isShooting){
-        if(isShooting){
+    shoot(isShooting) {
+        if (isShooting) {
             //shoot effect
             this.shootingSound.play();
-            this.scale=1.08;
+            this.scale = 1.08;
         }
         //generation of projectile should be here
         //VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
@@ -29,22 +36,19 @@ export default class Player {
 
     //draw method that will be executed in the game loop after move() method to update the position
     draw(context, mousePosition) {
-
         //getting the angle to the mouse position
         //mirorr the character horizontally when it's flipped 
-        let scaleX=1;
-        if(this.position.x>mousePosition.x){
-            this.rotation = Math.atan2(mousePosition.x - this.position.x, -(mousePosition.y - this.position.y)) +1.4;
-            scaleX=-1;
+        let scaleX = 1;
+        if (this.position.x > mousePosition.x) {
+            this.rotation = Math.atan2(mousePosition.x - this.position.x, -(mousePosition.y - this.position.y)) + 1.4;
+            scaleX = -1;
         }
-        else{
+        else {
             this.rotation = Math.atan2(mousePosition.x - this.position.x, -(mousePosition.y - this.position.y)) - 1.32;
         }
-
-
         //console.log(`Rotation Angle = ${this.rotation}`)
         //console.log(`Player[x]: ${this.position.x} , Player[y]: ${this.position.y} , Player[size]: ${this.size}, Player[speed]: ${this.speed}`)
-        
+
         //save other context objects to not be affected by the rotation
         context.save();
         //draw the over context in the x,y position
@@ -53,11 +57,14 @@ export default class Player {
         context.rotate(this.rotation);
 
         //scale effect on the contect before draw the image
-        context.scale(scaleX*this.scale,this.scale);
+        context.scale(scaleX * this.scale, this.scale);
         //draw the image over the drawn area to be rotated by the same value
         context.drawImage(this.character, -this.character.style.width - this.size / 2, -this.character.style.height - this.size / 2, this.size, this.size)
         //restore the other context objects
         context.restore()
+    }
+    isHit(enemies) {
+
     }
 
     //move method that will be executed in the game loop before the draw() method
@@ -104,9 +111,15 @@ export default class Player {
         // if(this.position.y>this.gameHeight-this.size){this.position.y=this.gameHeight-this.size}
 
         //set the illusion of a wall for a translated canvas img
-        if (this.position.x - this.size/2 < 0) { this.position.x = this.size/2 }
-        if (this.position.y - this.size /2< 0) { this.position.y = this.size/2 }
-        if (this.position.x > this.gameWidth - this.size/2) { this.position.x = this.gameWidth - this.size/2 }
-        if (this.position.y > this.gameHeight - this.size/2) { this.position.y = this.gameHeight - this.size/2 }
+        if (this.position.x - this.size / 2 < 0) { this.position.x = this.size / 2 }
+        if (this.position.y - this.size / 2 < 0) { this.position.y = this.size / 2 }
+        if (this.position.x > this.gameWidth - this.size / 2) { this.position.x = this.gameWidth - this.size / 2 }
+        if (this.position.y > this.gameHeight - this.size / 2) { this.position.y = this.gameHeight - this.size / 2 }
+
+        //update player character layout
+        this.layout.left=this.position.x-this.size/2,
+        this.layout.right=this.position.x+this.size/2,
+        this.layout.top=this.position.y-this.size/2,
+        this.layout.bottom=this.position.y+this.size/2
     }
 }

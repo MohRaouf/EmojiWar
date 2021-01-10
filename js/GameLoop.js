@@ -37,7 +37,8 @@ var playerInfo = {
     gameWidth:GAME_WIDTH,
     gameHeight:GAME_HEIGHT,
     character:document.getElementById("player"),
-    shootingSound:shootSound
+    shootingSound:shootSound,
+    health:5
 };
 
 //Instance of the Player with speed of 5 pixels
