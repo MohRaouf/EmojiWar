@@ -1,5 +1,6 @@
 import Player from '/js/player.js';
-import InputHandler from '/js/input.js'
+import InputHandler from '/js/input.js';
+import Enmy from '/js/enmy.js';
 
 //Get the GameArea Canvas
 var canvas = document.getElementById("gameScreen");
@@ -43,6 +44,9 @@ var playerInfo = {
 //Instance of the Player with speed of 5 pixels
 let player = new Player(playerInfo);
 
+let enmy =new Enmy(GAME_WIDTH,GAME_HEIGHT,'enmy1',{x:10,y:10},{x:1,y:1},60),
+    enmy2 =new Enmy(GAME_WIDTH,GAME_HEIGHT,'enmy2',{x:700,y:10},{x:2,y:2},40),
+    enmy3 =new Enmy(GAME_WIDTH,GAME_HEIGHT,'enmy3',{x:300,y:GAME_HEIGHT},{x:2,y:2},70);
 //Instance of InputHander to Handle the Key strokes
 var inputHandler = new InputHandler(canvas,player);
 
@@ -68,7 +72,13 @@ function gameLoop(timeStamp) {
     player.shoot(inputHandler.isShooting);
 
     //request a new frame with a recursion to this function
-    requestAnimationFrame(gameLoop)
+    requestAnimationFrame(gameLoop);
+    enmy.update(deltaTime);
+    enmy.draw(context);
+    enmy2.update(deltaTime);
+    enmy2.draw(context);
+    enmy3.update(deltaTime);
+    enmy3.draw(context);
 }
 
 //Run the GameLoop for the first time and it will loop forever
