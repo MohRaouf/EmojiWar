@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>EMOJI WAR</title>
+    <link rel="icon" href="src/images/icon.png">
+    <link rel="stylesheet" type="text/css" href="css/TheGame.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
+    <script src="js/jquery.js"></script>
+
+</head>
+
+<body>
+    <section class="page">
+
+        <div class="home">
+            <div class="layer">
+                <div class="playerHeader">
+                    <p class="gameInfo" id="playerName">Player name</p>
+
+                    <p class="gameInfo" id="score">Score : </p>
+                    <p class="gameInfo" id="points">0</p>
+                    <p class="gameInfo" id="health">%100</p>
+                </div>
+                <img id="player" src="src/images/character1.png" alt="">
+                <audio id="shoot" src="src/sound/shoot.wav"></audio>
+                <img src="src/images/enmies/enemy1.png" alt="enemy1" id="enemy1">
+                <img src="src/images/enmies/enemy2.png" alt="enemy2" id="enemy2">
+                <img src="src/images/enmies/enemy3.png" alt="enemy3" id="enemy3">
+
+                <canvas id="gameScreen"></canvas>
+
+            </div>
+        </div>
+    </section>
+    <script type="module" src="js/GameLoop.js"></script>
+</body>
+
+</html>
