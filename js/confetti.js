@@ -85,7 +85,7 @@ var confetti = {
 			animationTimer = requestAnimationFrame(runAnimation);
 		}
 	}
-
+	
 	function startConfetti(timeout, min, max) {
 		var width = window.innerWidth;
 		var height = window.innerHeight;
