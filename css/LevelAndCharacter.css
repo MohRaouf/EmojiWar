@@ -1,0 +1,221 @@
+/************************** Basics *****************/
+*{
+    padding: 0;
+    margin: 0;
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+}
+body{
+    background-image: url('../src/images/pureBg.png');
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.parent{
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.6) ;
+}
+/************************** navbar *****************/
+nav {
+    overflow: hidden;
+    background-color: #000;
+    height: 55px;
+}
+nav .container{
+    width: 80%;
+    margin: auto;
+}
+nav .nav-logo, 
+nav .nav-items{
+    display: inline-block;
+    float: left;
+    font-size: 20px;
+    margin: 10px 20px 50px 20px;
+}
+nav .nav-logo{ width:24%}
+nav .nav-logo p{
+    color:#dbab83;
+    letter-spacing:.9px;
+    font-size: 28px;
+    font-weight: 800;
+}
+nav .nav-items{width: 40%;}
+nav ul li {
+    list-style: none;
+    display: inline-block;
+    padding: 3px 20px;
+}  
+nav ul a {
+    color:#dbab83;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+nav ul .active a{
+    color: #fff;
+    font-weight: bold;
+}
+nav .nav-login{
+    display: inline-block;
+    float: right;
+    margin-top: 8px;
+    margin-left: 10%;
+    position: absolute;
+}
+nav .nav-login button{
+    background-color: transparent;
+    border:1px solid#a09d9b;
+    padding: 10px 40px;
+    border-radius: 10px;
+    color:#dbab83;
+    font-weight: 800;
+}
+nav .nav-login button:hover{
+    background-color: #8a6343;
+    color: #fff;
+    padding: 10px 50px;
+    font-size: 15px;
+    
+}
+.home a:hover, .about a:hover, .guide a:hover, .active a:hover{
+    font-size: 22px;
+    font-weight: bolder;
+}
+.welcome_message{
+    width: 56%;
+    height: 13%;
+    background: rgba(0,0,0,0.91) ;
+    margin-left: 22%;
+    margin-top: 3%;
+    margin-bottom: 0px;
+    text-align: center;
+    padding:20px;
+    box-sizing: border-box;
+    position: absolute;
+    font-weight: bolder;
+    letter-spacing: 2px;
+}
+.welcome_message span{
+    text-transform: uppercase;
+    margin-bottom: 1px;
+}
+.welcome_message .text1{
+    font-size: 30px;
+    position: relative;
+    animation: text 3s 1;
+    display: block;
+}
+.welcome_message .text2, .welcome_message .text3, .welcome_message .text4{
+    font-size: 17px;
+    display: inline-block;
+    width: 150px;
+} 
+.welcome_message span label, .playing_options label{
+    color:#dbab83;
+}
+.playing_options{
+    width: 56%;
+    height: 68vh;
+    background: rgba(0,0,0,0.91) ;
+    margin-left: 22%;
+    margin-top: 9.5%;
+    text-align: center;
+    padding:20px;
+    box-sizing: border-box;
+    font-weight: bolder;
+    letter-spacing: 2px;
+}
+form label, form p{
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+form p{
+    font-size: 20px;
+    margin-top: 15px;}
+input[type=text] {
+    border-color:#dbab83;
+    border-radius: 15px;
+    border-width: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 25px;
+    width: 200px;
+    color: #4e2300;
+    font-size: 22px;
+    font-weight: 900;
+    text-align: center;
+}
+.available_Emojis, .levels{
+    width: 99%;
+    height: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    display: block;
+    margin-top: 10px;
+}
+.emo,.lev{
+    display: inline-block;
+    width: 25%;
+    height: 75%;
+    margin: 4% 3%;
+}
+.emo img, .lev img{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+.emo:hover,.lev:hover{
+    width: 29%;
+    height: 98%;
+    border: 0.25px solid #db9b66;
+    box-sizing: border-box;
+    cursor: pointer;
+    background: linear-gradient(45deg,#000,#836231,#000,#836231,#000);
+    margin-top: 2%;
+    margin-bottom: 0%;
+    margin-left: 0%;
+    margin-right: 0%;
+}
+input[type=button],input[type=submit]{
+    display: block;
+    width: 50%;
+    height: 35px;
+    margin-top: 2.5%;
+    margin-bottom: 5%;
+    margin-left: 25%;
+    border-radius: 15px;
+    border-color:#dbab83;
+    border-width: 3px;
+    color: #fff;
+    background-color: black;
+    font-size: 22px;
+    font-weight: 900;
+    text-align: center;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+input[type=button]:hover,input[type=submit]:hover{
+    box-shadow: 0 5px 10px 0 #8a6343 inset,0 5px 10px 0 #8a6343 ,0 5px 10px 0 #8a6343 inset,0 5px 10px 0 #8a6343;
+    text-shadow: 0 0 3px #8a6343 ,0 0 3px #8a6343;
+    width: 52%;
+    margin-left: 24%;
+}
+@keyframes text{
+    0%{
+        color: black;
+        margin-bottom: -40px;
+    }
+    30%{
+        letter-spacing: 18px;
+        margin-bottom: -40%;
+    }
+    95%{
+        letter-spacing: 2px;
+        margin-bottom: -40%;
+    }
+}
