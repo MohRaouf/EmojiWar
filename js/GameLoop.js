@@ -1,6 +1,6 @@
 import Player from '/js/player.js';
 import InputHandler from '/js/input.js';
-import Enmy from '/js/enmy.js';
+import Enemy from '/js/enemy.js';
 
 //Get the GameArea Canvas
 var canvas = document.getElementById("gameScreen");
@@ -40,13 +40,61 @@ var playerInfo = {
     character:document.getElementById("player"),
     shootingSound:shootSound
 };
+const enemies=[];
+//enemy params
+let enemyCharacters=['enmy1','enmy2','enmy3'],
+enemyGenerationLocation=[{x:100,y:0},{x:200,y:0},{x:300,y:0},{x:400,y:0}];
 
+//let enemy1 =new Enemy(GAME_WIDTH,GAME_HEIGHT,'enemy1',{x:10,y:10},{x:1,y:1},60),
+//Default Enemy INFO
+var enemyInfo = {
+    size:100,
+    speed:{x:1,y:1},
+    position:{
+        //random position form a known array
+        x:Math.random()*GAME_WIDTH,
+        y:Math.random()*GAME_HEIGHT
+    },
+    gameWidth:GAME_WIDTH,
+    gameHeight:GAME_HEIGHT,
+    //random health hits
+    //health:getRandomInt(0,3),
+    //choose enemy character upon the random health
+    //character:document.getElementById(enemyCharacters[health])
+};
+function enemyCreation(deltaTime,context){
+    const Size =Math.round(Math.random()*(100-40)+40);
+    let x,y,imgId='enemy1';
+    if(Math.random()<.5){
+        x=Math.random()<.5?0-Size:GAME_WIDTH+Size;
+        y=Math.random()*GAME_HEIGHT;
+    }
+    else{
+        x=Math.random()*GAME_WIDTH;
+        y=Math.random()<.5?0-Size:GAME_HEIGHT+Size;
+    }
+   const angle  = Math.atan2(
+        GAME_HEIGHT/2 -y ,
+        GAME_WIDTH/2 -x
+    ) ;
+    const speed={
+        x:Math.cos(angle),
+        y:Math.sin(angle)
+    }
+    if(enemies.length!=10){
+        enemies.push(new Enemy(GAME_WIDTH,GAME_HEIGHT,
+            imgId,{x:x,y:y},{x:speed.x,y:speed.y},Size)) 
+        
+        }
+    }
 //Instance of the Player with speed of 5 pixels
 let player = new Player(playerInfo);
-
-let enmy =new Enmy(GAME_WIDTH,GAME_HEIGHT,'enmy1',{x:10,y:10},{x:1,y:1},60),
-    enmy2 =new Enmy(GAME_WIDTH,GAME_HEIGHT,'enmy2',{x:700,y:10},{x:2,y:2},40),
-    enmy3 =new Enmy(GAME_WIDTH,GAME_HEIGHT,'enmy3',{x:300,y:GAME_HEIGHT-100},{x:2,y:2},70);
+//console.log(player.position)
+let enemy1 =new Enemy(GAME_WIDTH,GAME_HEIGHT,'enemy1',{x:10,y:10},{x:1,y:1},60),
+    enemy2 =new Enemy(GAME_WIDTH,GAME_HEIGHT,'enemy2',{x:700,y:10},{x:2,y:2},40),
+    enemy3 =new Enemy(GAME_WIDTH,GAME_HEIGHT,'enemy3',{x:300,y:GAME_HEIGHT-100},{x:2,y:2},70);
+   
+console.log(Enemy.counter)
 
 //Instance of InputHander to Handle the Key strokes
 var inputHandler = new InputHandler(canvas,player);
@@ -72,17 +120,31 @@ function gameLoop(timeStamp) {
     //detect if the player is shooting and if so fire a projectile and the effects
     player.shoot(inputHandler.isShooting);
   
-    enmy.update(deltaTime);
-    enmy.draw(context);
-    enmy2.update(deltaTime);
-    enmy2.draw(context);
-    enmy3.update(deltaTime);
-    enmy3.draw(context);
+    enemy1.update(deltaTime);
+    enemy1.draw(context,player.position.x,player.position.y);
+    enemy2.update(deltaTime);
+    enemy2.draw(context,player.position.x,player.position.y);
+    enemy3.update(deltaTime);
+    enemy3.draw(context,player.position.x,player.position.y);
+    // for(let i=0;i<3;i++){
+    //      enemies.push(enemy)
+    //      enemies[i].update(deltaTime);
+    //      enemies[i].draw(context);
+    //   if(Enemy.counter==10)break;
+    // }
    
 
+ 
    //request a new frame with a recursion to this function
    requestAnimationFrame(gameLoop);
+  
+   //enemyCreation(deltaTime,context);
+   
 }
 
 //Run the GameLoop for the first time and it will loop forever
 gameLoop();
+enemyCreation(1,1)
+
+
+console.log(enemies)
