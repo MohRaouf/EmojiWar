@@ -1,29 +1,61 @@
 //import directions from input to check the move direction
 import { directions } from '/js/input.js'
 import {hitDetected} from '/js/methods.js'
+import Enemy from '/js/enemy.js';
+import {getRandomInt} from '/js/methods.js'
+
+export var playerCharacters =[
+    {
+        size: 120,
+        speed: 50,
+        character:document.getElementById("character1"),
+        shootingSound:document.getElementById("shoot1"),
+        hurtSound:document.getElementById("maleHurt"),
+        health:5
+    },
+    {
+        size: 120,
+        speed: 50,
+        character:document.getElementById("character2"),
+        shootingSound:document.getElementById("shoot1"),
+        hurtSound:document.getElementById("femaleHurt"),
+        health:5
+    },
+    {
+        size: 120,
+        speed: 50,
+        character:document.getElementById("character4"),
+        shootingSound:document.getElementById("shoot1"),
+        hurtSound:document.getElementById("maleHurt"),
+        health:5
+    }
+] 
+
 //player class
 export default class Player {
-    constructor(playerInfo) {
-        this.size = playerInfo.size;
-        this.speed = playerInfo.speed;
+    constructor(playerIndex,gameScreen) {
+        var character=playerCharacters[playerIndex]
+        this.size = character.size;
+        this.speed = character.speed;
         this.position = {
-            x: playerInfo.posX(),
-            y: playerInfo.posY()
+            x: gameScreen.width / 2 - this.size / 2,
+            y: gameScreen.height / 2 - this.size / 2
         };
-        this.gameWidth = playerInfo.gameWidth;
-        this.gameHeight = playerInfo.gameHeight;
-        this.character = playerInfo.character;
-        this.shootingSound = playerInfo.shootingSound;
+        this.gameWidth = gameScreen.width;
+        this.gameHeight = gameScreen.height;
+        this.character = character.character;
+        this.shootingSound = character.shootingSound;
         this.rotation;
         this.scale = 1;
-        this.health = playerInfo.health;
+        this.health = character.health;
         this.layout = {
             left: this.position.x - this.size / 2,
             right: this.position.x + this.size / 2,
             top: this.position.y - this.size / 2,
             bottom: this.position.y + this.size / 2
         }
-        this.hurtSound=playerInfo.hurtSound
+        this.hurtSound=character.hurtSound
+        this.wave=1;
     }
     shoot(isShooting) {
         if (isShooting) {
@@ -53,7 +85,6 @@ export default class Player {
         context.translate(this.position.x, this.position.y)
         //rotate the draw by the calculated angle
         context.rotate(this.rotation);
-
         //scale effect on the contect before draw the image
         context.scale(scaleX * this.scale, this.scale);
         //draw the image over the drawn area to be rotated by the same value
@@ -62,11 +93,19 @@ export default class Player {
         context.restore()
     }
     isHit(enemies) {
-        let tolerance =20;
         for (let i = 0; i < enemies.length; i++) {
             //enemy touches the player
             if(hitDetected(enemies[i],this)){
-                this.hurtSound.play();    
+                this.hurtSound.play();
+                enemies.splice(i,1);
+                if(enemies.length==0)
+                {
+                    this.wave++;
+                    for(let i=0;i<this.wave;i++){
+                        enemies.push(new Enemy(getRandomInt(0,3),gameScreen))
+                    }
+                }
+                console.log(enemies)
             }
         }
     }

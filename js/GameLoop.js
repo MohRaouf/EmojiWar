@@ -1,62 +1,19 @@
 import Player from '/js/player.js';
 import InputHandler from '/js/input.js';
-import Enmy from '/js/enemy.js';
-import { characters } from '/js/characterInfo.js'
+import Enemy from '/js/enemy.js';
 import {getRandomInt} from '/js/methods.js'
 
-//Get the GameArea Canvas
-var canvas = document.getElementById("gameScreen");
-
-//disable context menu
-canvas.oncontextmenu =new Function("return false;")
+var canvas = document.getElementById("gameScreen"); //Get the GameArea Canvas
+canvas.oncontextmenu =new Function("return false;") //disable context menu
 
 //Set the Game Area Canvas width and height to match the css info (issue solved)
 canvas.width = canvas.getBoundingClientRect().width;
 canvas.height = canvas.getBoundingClientRect().height;
 
-//Get the Canvas Context of the game area 
-var context = canvas.getContext("2d");
-
-//Get the Game Area boundary
-const GAME_WIDTH = canvas.width;
-const GAME_HEIGHT = canvas.height;
-
-
-
-//Object Contains all Player Info
-var playerInfo = characters[1];
-console.log(playerInfo)
-
-//enemy params
-var enemyCharacters=['enmy1','enmy2','enmy3']
-var enemyGenerationLocation=[{"x":100,"y":0},{"x":200,"y":0},{"x":300,"y":0},{"x":400,"y":0}];
-
-// //Default Enemy INFO
-// var enemyInfo = {
-//     size:100,
-//     speed:50,
-//     position:{
-//         //random position form a known array
-//         x:enemyGenerationLocation[getRandomInt(0,4)].x,
-//         y:enemyGenerationLocation[getRandomInt(0,4)].y,
-//     },
-//     gameWidth:GAME_WIDTH,
-//     gameHeight:GAME_HEIGHT,
-//     //random health hits
-//     health:getRandomInt(0,3),
-//     //choose enemy character upon the random health
-//     character:document.getElementById(enemyCharacters[health])
-// };
-
-//Instance of the Player with speed of 5 pixels
-let player = new Player(playerInfo);
-
-var enmy =new Enmy(GAME_WIDTH,GAME_HEIGHT,'enmy',{x:500,y:400},{x:30,y:30},100);
-var   enmy2 =new Enmy(GAME_WIDTH,GAME_HEIGHT,'enmy3',{x:700,y:10},{x:30,y:30},120);
-var  enmy3 =new Enmy(GAME_WIDTH,GAME_HEIGHT,'enmy2',{x:300,y:100},{x:30,y:30},150);
-
-var enemyArray=[enmy,enmy2,enmy3]
-console.log(enemyArray)
+var context = canvas.getContext("2d"); //Get the Canvas Context of the game area 
+var gameScreen={width:canvas.width,height:canvas.height} //Get the Game Area boundary
+let player = new Player(0,gameScreen); //Create the player with Character index=0 
+var enemyArray=[new Enemy(getRandomInt(0,3),gameScreen)]; // Create array of Enemies 
 
 //Instance of InputHander to Handle the Key strokes
 var inputHandler = new InputHandler(canvas,player);
@@ -70,11 +27,11 @@ function gameLoop(timeStamp) {
     // delta time to 
     let deltaTime = timeStamp - lastTime;
     lastTime = timeStamp;
-    context.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+    context.clearRect(0, 0, gameScreen.width, gameScreen.height);
 
     for(let i =0; i<enemyArray.length ;i++){
-        enemyArray[i].update(deltaTime);
-        enemyArray[i].draw(context);
+        enemyArray[i].update(deltaTime,player.position);
+        enemyArray[i].draw(context,player.position);
     }
 
     player.isHit(enemyArray);

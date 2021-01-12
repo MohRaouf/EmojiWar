@@ -1,30 +1,31 @@
 export  function hitDetected(enemy,player){
-
-    if (enemy.layout.left > player.layout.left &&
-        enemy.layout.left < player.layout.right &&
-        enemy.layout.bottom > player.layout.top &&
-        enemy.layout.bottom < player.layout.bottom) {
+     var tolerance=enemy.size/4;
+    //enemy touches the player from UP_RIGHT
+    if (enemy.layout.left+tolerance > player.layout.left &&
+        enemy.layout.left+tolerance < player.layout.right &&
+        enemy.layout.bottom-tolerance > player.layout.top &&
+        enemy.layout.bottom-tolerance < player.layout.bottom) {
         return true;
     }
     //enemy touches the player from UP_LEFT
-    if (enemy.layout.right > player.layout.left &&
-        enemy.layout.right < player.layout.right &&
-        enemy.layout.bottom > player.layout.top &&
-        enemy.layout.bottom < player.layout.bottom) {
+    if (enemy.layout.right-tolerance > player.layout.left &&
+        enemy.layout.right-tolerance < player.layout.right &&
+        enemy.layout.bottom-tolerance > player.layout.top &&
+        enemy.layout.bottom-tolerance < player.layout.bottom) {
         return true;
     } 
     //enemy touches the player from DOWN_LEFT
-    if (enemy.layout.right > player.layout.left &&
-        enemy.layout.right < player.layout.right &&
-        enemy.layout.top > player.layout.top &&
-        enemy.layout.top < player.layout.bottom) {
+    if (enemy.layout.right-tolerance > player.layout.left &&
+        enemy.layout.right-tolerance < player.layout.right &&
+        enemy.layout.top+tolerance > player.layout.top &&
+        enemy.layout.top+tolerance < player.layout.bottom) {
         return true;
     } 
     //enemy touches the player from DOWN_RIGHT
-    if (enemy.layout.left > player.layout.left &&
-        enemy.layout.left < player.layout.right &&
-        enemy.layout.top > player.layout.top &&
-        enemy.layout.top < player.layout.bottom) {
+    if (enemy.layout.left+tolerance > player.layout.left &&
+        enemy.layout.left+tolerance < player.layout.right &&
+        enemy.layout.top+tolerance > player.layout.top &&
+        enemy.layout.top+tolerance < player.layout.bottom) {
         return true;
     } else { return false;  }
 }
