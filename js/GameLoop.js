@@ -2,7 +2,6 @@ import Player from '/js/player.js';
 import InputHandler from '/js/input.js';
 import Enemy from '/js/enemy.js';
 import {getRandomInt} from '/js/methods.js'
-
 var canvas = document.getElementById("gameScreen"); //Get the GameArea Canvas
 canvas.oncontextmenu =new Function("return false;") //disable context menu
 
@@ -45,8 +44,8 @@ function gameLoop(timeStamp) {
     //detect if the player is shooting and if so fire a projectile and the effects
     player.shoot(inputHandler.isShooting);
 
-   //request a new frame with a recursion to this function
-   requestAnimationFrame(gameLoop);
+    //request a new frame with a recursion to this function
+    requestAnimationFrame(gameLoop)
 }
 
 //Run the GameLoop for the first time and it will loop forever
