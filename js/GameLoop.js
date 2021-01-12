@@ -1,6 +1,7 @@
 import Player from '/js/player.js';
 import InputHandler from '/js/input.js';
 import Enemy from '/js/enemy.js';
+<<<<<<< HEAD
 
 //Get the GameArea Canvas
 var canvas = document.getElementById("gameScreen");
@@ -11,11 +12,17 @@ canvas.oncontextmenu =new Function("return false;")
 //lood shoot sound
 var shootSound=document.getElementById("shoot")
 //var shootSound=$("#shoot") //doesn't work
+=======
+import {getRandomInt} from '/js/methods.js'
+var canvas = document.getElementById("gameScreen"); //Get the GameArea Canvas
+canvas.oncontextmenu =new Function("return false;") //disable context menu
+>>>>>>> f163756ad5fb46daeba8a2619a1e97764f41b235
 
 //Set the Game Area Canvas width and height to match the css info (issue solved)
 canvas.width = canvas.getBoundingClientRect().width;
 canvas.height = canvas.getBoundingClientRect().height;
 
+<<<<<<< HEAD
 //Get the Canvas Context of the game area 
 var context = canvas.getContext("2d");
 
@@ -95,6 +102,12 @@ let enemy1 =new Enemy(GAME_WIDTH,GAME_HEIGHT,'enemy1',{x:10,y:10},{x:1,y:1},60),
     enemy3 =new Enemy(GAME_WIDTH,GAME_HEIGHT,'enemy3',{x:300,y:GAME_HEIGHT-100},{x:2,y:2},70);
    
 console.log(Enemy.counter)
+=======
+var context = canvas.getContext("2d"); //Get the Canvas Context of the game area 
+var gameScreen={width:canvas.width,height:canvas.height} //Get the Game Area boundary
+let player = new Player(0,gameScreen); //Create the player with Character index=0 
+var enemyArray=[new Enemy(getRandomInt(0,3),gameScreen)]; // Create array of Enemies 
+>>>>>>> f163756ad5fb46daeba8a2619a1e97764f41b235
 
 //Instance of InputHander to Handle the Key strokes
 var inputHandler = new InputHandler(canvas,player);
@@ -108,8 +121,14 @@ function gameLoop(timeStamp) {
     // delta time to 
     let deltaTime = timeStamp - lastTime;
     lastTime = timeStamp;
-    context.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+    context.clearRect(0, 0, gameScreen.width, gameScreen.height);
 
+    for(let i =0; i<enemyArray.length ;i++){
+        enemyArray[i].update(deltaTime,player.position);
+        enemyArray[i].draw(context,player.position);
+    }
+
+    player.isHit(enemyArray);
     //Move the player to the held directions [from the inputHandler class] befor redraw 
     //DetaTime to make Sure that the game speed is equal on different computers
     player.move(inputHandler.held_directions,deltaTime);
@@ -119,6 +138,7 @@ function gameLoop(timeStamp) {
     
     //detect if the player is shooting and if so fire a projectile and the effects
     player.shoot(inputHandler.isShooting);
+<<<<<<< HEAD
   
     enemy1.update(deltaTime);
     enemy1.draw(context,player.position.x,player.position.y);
@@ -140,11 +160,20 @@ function gameLoop(timeStamp) {
   
    //enemyCreation(deltaTime,context);
    
+=======
+
+    //request a new frame with a recursion to this function
+    requestAnimationFrame(gameLoop)
+>>>>>>> f163756ad5fb46daeba8a2619a1e97764f41b235
 }
 
 //Run the GameLoop for the first time and it will loop forever
 gameLoop();
+<<<<<<< HEAD
 enemyCreation(1,1)
 
 
 console.log(enemies)
+=======
+
+>>>>>>> f163756ad5fb46daeba8a2619a1e97764f41b235

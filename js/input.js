@@ -45,13 +45,14 @@ export default class InputHandler {
             const bounds = canvas.getBoundingClientRect();
             this.mouse.x = e.pageX - bounds.left - scrollX;
             this.mouse.y = e.pageY - bounds.top - scrollY;
-            // console.log(`MouseX = ${this.mouse.x}, MouseY = ${this.mouse.y}`)
+            //  console.log(`MouseX = ${this.mouse.x}, MouseY = ${this.mouse.y}`)
         });
 
         //detect the mouse down for continous isShooting
         canvas.addEventListener('mousedown', (e) => {
             if (e.buttons === 1) {
                 this.isShooting = true;
+                console.log(`MouseX: ${this.mouse.x}, MouseY: ${this.mouse.y}`)
             }
         })
 
