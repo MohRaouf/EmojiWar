@@ -77,7 +77,7 @@ body{
     width:99.6%;
     border: 3px rgb(216, 181, 86) solid;
     cursor: crosshair;
-    background-image: url("/src/images/level4.png");
+    /* background-image: url("/src/images/mission1.png"); */
     background-size: 100% 100%;
 }
 #player{
