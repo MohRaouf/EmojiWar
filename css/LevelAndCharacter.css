@@ -1,3 +1,6 @@
+@import "includes/navigation.css";  
+@import "includes/scrollbar.css";
+@import "includes/animation.css";
 /************************** Basics *****************/
 *{
     padding: 0;
@@ -16,67 +19,6 @@ body{
     height: 100vh;
     background: rgba(0,0,0,0.6) ;
 }
-/************************** navbar *****************/
-nav {
-    overflow: hidden;
-    background-color: #000;
-    height: 55px;
-}
-nav .container{
-    width: 80%;
-    margin: auto;
-}
-nav .nav-logo, 
-nav .nav-items{
-    display: inline-block;
-    float: left;
-    font-size: 20px;
-    margin: 10px 20px 50px 20px;
-}
-nav .nav-logo{ width:24%}
-nav .nav-logo p{
-    color:#dbab83;
-    letter-spacing:.9px;
-    font-size: 28px;
-    font-weight: 800;
-}
-nav .nav-items{width: 40%;}
-nav ul li {
-    list-style: none;
-    display: inline-block;
-    padding: 3px 20px;
-}  
-nav ul a {
-    color:#dbab83;
-    letter-spacing: 1px;
-    text-decoration: none;
-}
-nav ul .active a{
-    color: #fff;
-    font-weight: bold;
-}
-nav .nav-login{
-    display: inline-block;
-    float: right;
-    margin-top: 8px;
-    margin-left: 10%;
-    position: absolute;
-}
-nav .nav-login button{
-    background-color: transparent;
-    border:1px solid#a09d9b;
-    padding: 10px 40px;
-    border-radius: 10px;
-    color:#dbab83;
-    font-weight: 800;
-}
-nav .nav-login button:hover{
-    background-color: #8a6343;
-    color: #fff;
-    padding: 10px 50px;
-    font-size: 15px;
-    
-}
 .home a:hover, .about a:hover, .guide a:hover, .active a:hover{
     font-size: 22px;
     font-weight: bolder;
@@ -86,7 +28,7 @@ nav .nav-login button:hover{
     height: 13%;
     background: rgba(0,0,0,0.91) ;
     margin-left: 22%;
-    margin-top: 3%;
+    margin-top: 1%;
     margin-bottom: 0px;
     text-align: center;
     padding:20px;
