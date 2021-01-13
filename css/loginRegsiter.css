@@ -1,0 +1,112 @@
+.loginRegister{
+    background-image: url('../src/images/login-layout.jpg');
+    position: fixed;
+    top: 0;  bottom: 0; left: 0; right: 0;
+    font-family: 'Poppins';
+}
+.container{
+    background-image: url('../src/images/container-login.jfif');
+    background-size: 100% 100%;
+    height: 60%;
+    width: 50%;
+    margin: 10% auto 5%;
+    position: relative;
+}
+.loginRegister .container .overlay{
+    position: absolute;
+    top: 0;  bottom: 0; left: 0; right: 0;
+    background-color:rgba(177, 135, 77, 0.75);
+    overflow: hidden;
+}
+.loginRegister .container .character{
+    display: inline-block;
+    width: 40%;
+    float: left;
+    padding: 10% 10px;
+    box-sizing: border-box;
+}
+.loginRegister .container .character img{width: 100%;}
+.loginRegister .container .swap{
+    display: inline-block;
+    width: 60%;
+    float: left;
+    box-sizing: border-box;
+    padding: 20px 7%;
+    padding-bottom: 0;
+}
+.loginRegister .container .swap h2{
+    line-height: 1.2;
+    font-weight: bold;
+    color: #fff;
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+.loginRegister .container .swap p{
+    line-height: 1.8;
+    color: #fff;
+}
+.swap .form-input{
+    border: none;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ebebeb;
+    background: transparent;
+    width: 100%;
+    display: block;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 3px 0;
+    margin: 5%  0 7% 0;
+}
+.swap input:focus{outline: none;}
+.loginRegister .swap .form-input::placeholder{color: #fff; font-weight: 400;}
+.loginRegister .form-group input[type=checkbox]{
+    width: 2em;
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+}  
+.loginRegister .form-group label{
+    font-size: 13px;
+    color: #fff;
+    line-height: 1.8;
+}
+.loginRegister .form-group .btn{
+    text-transform: uppercase;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 25px;
+    border: none;
+    padding: 10px;
+    height:50px;
+    font-weight: bold;
+    width: 80%;
+    margin: 8% auto 0 ;
+    background-color: transparent;
+    color: #fff;
+    border:2px solid #fff
+}
+.loginRegister .form-group .active,
+.loginRegister .form-group .btn:hover{
+    background: #fff;
+    color: #b18757;
+}
+.loginRegister .form-group .active:hover{
+    background-color: #ddd;
+    border:none
+}
+.login-nav{text-decoration: underline; cursor: pointer;}
+/**/
+.hidden{
+    display: none;
+}
+.visible{
+    display: block;
+}
+
+@media(max-width:767px){/*mobile screen*/
+.swap{
+    width: 100%;
+}
+
+}
