@@ -11,7 +11,8 @@ export var playerCharacters =[
         character:document.getElementById("character1"),
         shootingSound:document.getElementById("shoot1"),
         hurtSound:document.getElementById("maleHurt"),
-        health:5
+        health:5,
+        projectileIndex:0
     },
     {
         size: 120,
@@ -19,7 +20,8 @@ export var playerCharacters =[
         character:document.getElementById("character2"),
         shootingSound:document.getElementById("shoot1"),
         hurtSound:document.getElementById("femaleHurt"),
-        health:5
+        health:5,
+        projectileIndex:1
     },
     {
         size: 120,
@@ -27,7 +29,8 @@ export var playerCharacters =[
         character:document.getElementById("character4"),
         shootingSound:document.getElementById("shoot1"),
         hurtSound:document.getElementById("maleHurt"),
-        health:5
+        health:5,
+        projectileIndex:2
     }
 ] 
 
@@ -48,6 +51,7 @@ export default class Player {
         this.rotation;
         this.scale = 1;
         this.health = character.health;
+        this.projectileIndex=character.projectileIndex;
         this.layout = {
             left: this.position.x - this.size / 2,
             right: this.position.x + this.size / 2,

@@ -38,6 +38,7 @@ export default class Enemy {
             x: randomLocation.x * this.gameWidth,
             y: randomLocation.y * this.gameHeight
         };
+        this.health=enemyInfo.health;
         this.speed = {x:enemyInfo.speed,y:enemyInfo.speed}
         this.size = enemyInfo.size;
         this.layout = {
@@ -75,7 +76,6 @@ export default class Enemy {
 
         this.position.x += this.speed.x*xSpeedFactor / deltaTime;
         this.position.y += this.speed.y*-ySpeedFactor / deltaTime;
-
         //set the illusion of a wall for a translated canvas this.character
         if (this.position.x - this.size / 2 < 0) { this.position.x = this.size / 2 }
         if (this.position.y - this.size / 2 < 0) { this.position.y = this.size / 2 }
