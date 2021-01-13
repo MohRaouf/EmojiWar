@@ -1,6 +1,7 @@
 import Player from '/js/player.js';
 import InputHandler from '/js/input.js';
 import Enemy from '/js/enemy.js';
+import projectile from '/js/projectile.js'
 import {getRandomInt,setLevelConfig} from '/js/methods.js'
 
 var canvas = document.getElementById("gameScreen"); //Get the GameArea Canvas
@@ -19,13 +20,16 @@ let character=2; //set these vars from local storage
 setLevelConfig(gameLevel); //set chosen game Level
 let player = new Player(character,gameScreen); //Create the player with Character index=0 
 var enemyArray=[new Enemy(getRandomInt(0,3),gameScreen)]; // Create array of Enemies 
-
+var projectiles=[];
 //Instance of InputHander to Handle the Key strokes
 var inputHandler = new InputHandler(canvas,player);
 
 //First Draw of the Player
 player.draw(context,inputHandler.mouse);
 
+export function generate_projectile(mouseX,mouseY){
+    projectiles.push(new projectile(player.position,{x:mouseX,y:mouseY},player.projectileIndex,gameScreen));
+}
 // gameloop 
 let lastTime = 0;
 function gameLoop(timeStamp) {
@@ -38,7 +42,16 @@ function gameLoop(timeStamp) {
         enemyArray[i].update(deltaTime,player.position);
         enemyArray[i].draw(context,player.position);
     }
-
+    
+    for(let i =0; i<projectiles.length ;i++){
+        if(projectiles[i].isHit(enemyArray,player)){
+            projectiles.splice(i,1);
+            continue;
+        }
+        projectiles[i].draw(context,deltaTime);
+        //console.log(projectiles.length);
+        //console.log(projectiles[0].position);
+    }
     player.isHit(enemyArray);
     //Move the player to the held directions [from the inputHandler class] befor redraw 
     //DetaTime to make Sure that the game speed is equal on different computers
