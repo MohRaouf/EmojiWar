@@ -1,4 +1,4 @@
-import { getRandomInt } from '/js/methods.js'
+import { getRandomInt,resetIfOutOfScreen,updateLayout } from '/js/methods.js'
 //enemy generation Position
 var enemyGenerationLocation = [{ "x": 0.2, "y": 0.05 }, { "x": 0.5, "y": 0.05 }, { "x": 0.8, "y": 0.05 },
 { "x": 0.2, "y": 0.95 }, { "x": 0.5, "y": 0.95 }, { "x": 0.8, "y": 0.95 }, { "x": 0.01, "y": 0.3 },
@@ -9,19 +9,19 @@ var enemyCharacters = [
     {
         size: 80,
         speed: 50,
-        health: 3,
+        health: 2,
         character: document.getElementById("enemy1")
     },
     {
         size: 100,
         speed: 40,
-        health: 6,
+        health: 4,
         character: document.getElementById("enemy2")
     },
     {
         size: 120,
         speed: 30,
-        health: 9,
+        health: 6,
         character: document.getElementById("enemy3")
     }
 ]
@@ -78,16 +78,9 @@ export default class Enemy {
         this.position.x += this.speed.x * xSpeedFactor / deltaTime;
         this.position.y += this.speed.y * -ySpeedFactor / deltaTime;
 
-        //set the illusion of a wall for a translated canvas this.character
-        if (this.position.x - this.size / 2 < 0) { this.position.x = this.size / 2 }
-        if (this.position.y - this.size / 2 < 0) { this.position.y = this.size / 2 }
-        if (this.position.x > this.gameWidth - this.size / 2) { this.position.x = this.gameWidth - this.size / 2 }
-        if (this.position.y > this.gameHeight - this.size / 2) { this.position.y = this.gameHeight - this.size / 2 }
-
+        //set the illusion of a wall for a translated canvas img
+        resetIfOutOfScreen(this)
         //update player character layout
-        this.layout.left = this.position.x - this.size / 2;
-        this.layout.right = this.position.x + this.size / 2;
-        this.layout.top = this.position.y - this.size / 2;
-        this.layout.bottom = this.position.y + this.size / 2;
+        updateLayout(this)
     }
 }
