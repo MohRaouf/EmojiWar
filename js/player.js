@@ -1,10 +1,10 @@
 //import directions from input to check the move direction
 import { directions } from '/js/input.js'
-import {hitDetected} from '/js/methods.js'
+import { hitDetected } from '/js/methods.js'
 import Enemy from '/js/enemy.js';
-import {getRandomInt} from '/js/methods.js'
+import { getRandomInt } from '/js/methods.js'
 
-export var playerCharacters =[
+export var playerCharacters = [
     {
         size: 120,
         speed: 50,
@@ -32,12 +32,12 @@ export var playerCharacters =[
         health:5,
         projectileIndex:2
     }
-] 
+]
 
 //player class
 export default class Player {
-    constructor(playerIndex,gameScreen) {
-        var character=playerCharacters[playerIndex]
+    constructor(playerIndex, gameScreen) {
+        var character = playerCharacters[playerIndex]
         this.size = character.size;
         this.speed = character.speed;
         this.position = {
@@ -58,8 +58,8 @@ export default class Player {
             top: this.position.y - this.size / 2,
             bottom: this.position.y + this.size / 2
         }
-        this.hurtSound=character.hurtSound
-        this.wave=1;
+        this.hurtSound = character.hurtSound
+        this.wave = 1;
     }
     shoot(isShooting) {
         if (isShooting) {
@@ -99,17 +99,16 @@ export default class Player {
     isHit(enemies) {
         for (let i = 0; i < enemies.length; i++) {
             //enemy touches the player
-            if(hitDetected(enemies[i],this)){
+            if (hitDetected(enemies[i], this)) {
                 this.hurtSound.play();
-                enemies.splice(i,1);
-                if(enemies.length==0)
-                {
+                enemies.splice(i, 1);
+                if (enemies.length == 0) {
                     this.wave++;
-                    for(let i=0;i<this.wave;i++){
-                        enemies.push(new Enemy(getRandomInt(0,3),gameScreen))
+                    for (let i = 0; i < this.wave; i++) {
+                        enemies.push(new Enemy(getRandomInt(0, 3), gameScreen))
                     }
                 }
-                console.log(enemies)
+                // console.log(enemies)
             }
         }
     }

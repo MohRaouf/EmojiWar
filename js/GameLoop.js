@@ -1,8 +1,9 @@
 import Player from '/js/player.js';
 import InputHandler from '/js/input.js';
 import Enemy from '/js/enemy.js';
-import {getRandomInt} from '/js/methods.js'
 import projectile from '/js/projectile.js'
+import {getRandomInt,setLevelConfig} from '/js/methods.js'
+
 var canvas = document.getElementById("gameScreen"); //Get the GameArea Canvas
 canvas.oncontextmenu =new Function("return false;") //disable context menu
 
@@ -12,7 +13,12 @@ canvas.height = canvas.getBoundingClientRect().height;
 
 var context = canvas.getContext("2d"); //Get the Canvas Context of the game area 
 var gameScreen={width:canvas.width,height:canvas.height} //Get the Game Area boundary
-let player = new Player(0,gameScreen); //Create the player with Character index=0 
+
+let gameLevel=0; //set these vars from local storage
+let character=2; //set these vars from local storage
+
+setLevelConfig(gameLevel); //set chosen game Level
+let player = new Player(character,gameScreen); //Create the player with Character index=0 
 var enemyArray=[new Enemy(getRandomInt(0,3),gameScreen)]; // Create array of Enemies 
 var projectiles=[];
 //Instance of InputHander to Handle the Key strokes
