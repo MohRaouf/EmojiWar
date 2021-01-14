@@ -122,8 +122,12 @@ body{ background-image: url('../src/images/pattern.png');
   border: 1px solid #8a6343; 
   background-color: #8a6343;
 }
-
-
+.hidden{
+  display: none;
+}
+.visible{
+  display: block;
+}
 
 
 

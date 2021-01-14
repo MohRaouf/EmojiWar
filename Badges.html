@@ -24,7 +24,8 @@
              </div>
              <div class="nav-login" id="nav-login">
                 <button class="btn-login" id="btn-login" onclick="window.location.href='loginRegister.html'">Login</button>
-             </div>
+                <button class="btn-login hidden"  id="btn-logout" >logout</button>
+            </div>
         </div>
      </nav>
      <section class="page">
@@ -33,13 +34,13 @@
                <div class="contaier">
                     <div class="intro">
                         <h2><span><i class="fas fa-trophy color"></i></span><span>Emoji</span>War</h2>
-                        <p>Enter and collect A lot of Badges</p>
+                        <p id="welecome_user">Enter and collect A lot of Badges</p>
                         <img src="src/images/characters/character2.png" id="character" alt="">
                     </div>
                     <div class="badges">
                        <div class="badge-item">
                            <div class="overlay">
-                               <div class="caption">
+                               <div class="caption" id="bronze_badge">
                                     <p> <i class="fas fa-lock"></i> </p>
                                     <h2>we will get it after register</h2>
                                </div>
@@ -49,7 +50,7 @@
                        </div>
                        <div class="badge-item">
                         <div class="overlay">
-                            <div class="caption">
+                            <div class="caption" id="sliver_badge">
                                  <p> <i class="fas fa-lock"></i> </p>
                                  <h2>win level 1 to get</h2>
                             </div>
@@ -59,7 +60,7 @@
                        </div>
                        <div class="badge-item">
                         <div class="overlay">
-                            <div class="caption">
+                            <div class="caption" id="golden_badge">
                                  <p> <i class="fas fa-lock"></i> </p>
                                  <h2>win level 2 to get</h2>
                             </div>
@@ -69,7 +70,7 @@
                        </div>
                        <div class="badge-item">
                         <div class="overlay">
-                            <div class="caption">
+                            <div class="caption" id="platinum_badge">
                                  <p> <i class="fas fa-lock"></i> </p>
                                  <h2>win level 3 to get</h2>
                             </div>

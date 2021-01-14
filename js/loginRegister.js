@@ -9,6 +9,7 @@ let loginsSection   = document.getElementById('login'),
     errorRegister   = document.getElementById('error_register'),
     errorLogin      = document.getElementById('error_login'),
     userData        = {}
+   
 function loginPage(){
     loginsSection.classList.remove('hidden');
     loginsSection.classList.add('visible');

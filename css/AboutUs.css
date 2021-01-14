@@ -103,3 +103,10 @@ body{
     background-color: #dbab83;
     border-color: #dbab83;
 }
+
+.hidden{
+    display: none;
+}
+.visible{
+    display: block;
+}

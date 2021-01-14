@@ -161,3 +161,9 @@ input[type=button]:hover,input[type=submit]:hover{
         margin-bottom: -40%;
     }
 }
+.hidden{
+    display: none;
+}
+.visible{
+    display: block;
+}
