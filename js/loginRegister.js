@@ -6,6 +6,8 @@ let loginsSection   = document.getElementById('login'),
     nameInput       = document.getElementById('register-name'),
     loginBtn        = document.getElementById('login-btn'),
     userloginName   = document.getElementById('userName'),
+    errorRegister   = document.getElementById('error_register'),
+    errorLogin      = document.getElementById('error_login'),
     userData        = {}
 function loginPage(){
     loginsSection.classList.remove('hidden');
@@ -25,31 +27,24 @@ function loginPage(){
 
  function Register(e) {
     if(nameInput.value===''){
-     alert('please insert a vaild name');
+        errorRegister.innerHTML="please Insert vaild name";
         e.preventDefault();
     }
     else{
-        let {userName , badges , level ,score,is_login} = JSON.parse(localStorage.getItem('userData'))
-        if(nameInput.value===userName){
-            alert('this account is already register')
-            e.preventDefault();
+      
+        userData = {
+            userName : nameInput.value,
+            badges   : 1,
+            level    : '',
+            score    : 0,
+            is_login : 1
         }
-        else{
-            userData = {
-                userName : nameInput.value,
-                badges   : 1,
-                level    : '',
-                score    : 0,
-                is_login : 1
-            }
-            localStorage.setItem('userData',JSON.stringify(userData));
-            e.preventDefault();
-            window.location.href='EmojiWarHome.html';
-        }
-        
+        localStorage.setItem('userData',JSON.stringify(userData));
+        e.preventDefault();
+        window.location.href='EmojiWarHome.html';
     }
-
- }  registerBtn.addEventListener('click',Register);
+        
+    } registerBtn.addEventListener('click',Register);
 
  function Login(e){
      let {userName , badges , level ,score,is_login} = JSON.parse(localStorage.getItem('userData'))
@@ -59,7 +54,7 @@ function loginPage(){
        
      }
      else{
-        alert('please register first');
+       errorLogin.innerHTML="please insert vaild Data";
         e.preventDefault();
      }
  }loginBtn.addEventListener('click',Login)

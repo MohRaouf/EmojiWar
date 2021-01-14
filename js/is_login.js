@@ -1,32 +1,25 @@
 let loginBtn  = document.getElementById('btn-login'),
-    loginUser = document.getElementById('nav-login')
+    loginUser = document.getElementById('nav-login'),
+    logoutBtn = document.getElementById('btn-logout');
+
 function is_Login() { 
     let {userName , badges , level ,score,is_login} = JSON.parse(localStorage.getItem('userData'))
     if(is_login==1 ){
-       loginBtn.style.display='none';
-      // loginUser.innerHTML+=`<span>${userName}</span>`;
-       loginUser.innerHTML+='<button class="btn-login" onclick="logout()" id="btn-logout" >logout</button>'
+        logoutBtn.classList.remove('hidden');
+        logoutBtn.classList.add('visible');
+        loginBtn.classList.remove('visible');
+        loginBtn.classList.add('hidden');
       
     }
-    else{
-        console.log(localStorage.getItem('userData'));
-        console.log("non")
-    }
-
  } is_Login();
 
-// function logout() {
-//     console.log("logout")
-//     let {userName , badges , level ,score,is_login} = JSON.parse(localStorage.getItem('userData'))
-//     userData = {
-//         userName : userName,
-//         badges   : badges,
-//         level    : level,
-//         score    : score,
-//         is_login : 0
-//     }
+function logout() {
+    let {userName , badges , level ,score,is_login} = JSON.parse(localStorage.getItem('userData'))
+    is_login = 0;
+    loginBtn.classList.remove('hidden');
+    loginBtn.classList.add('visible');
+    logoutBtn.classList.remove('visible');
+    logoutBtn.classList.add('hidden');
 
-//     loginUser.style.display='none';
-//     loginBtn.style.display='block';
-//     console.log(localStorage.getItem('userData'))
-// }
+}logoutBtn.addEventListener("click",logout);
+

@@ -5,6 +5,7 @@
         <link rel="icon" href="src/images/icon.png">
         <link rel="stylesheet" type="text/css" href="css/EmojiWarHome.css">
         <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="stylesheet" href="css/includes/responsive_navbar.css">
         <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
     </head>
     <body>
@@ -22,8 +23,9 @@
                      </ul>
                  </div>
                  <div class="nav-login" id="nav-login">
-                    <button class="btn-login" id="btn-login" onclick="window.location.href='loginRegister.html'">Login</button>
-                 </div>
+                    <button class="btn-login visible" id="btn-login" onclick="window.location.href='loginRegister.html'">Login</button>
+                    <button class="btn-login hidden"  id="btn-logout" >logout</button>
+                </div>
             </div>
          </nav>
         <section class="page">

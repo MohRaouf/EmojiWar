@@ -119,3 +119,9 @@ body{
     border:1px solid#4d3824e6;
 }
 
+.hidden{
+    display: none;
+}
+.visible{
+    display: block;
+}

@@ -1,4 +1,7 @@
-var characterImg = document.getElementById('character');
+let characterImg  = document.getElementById('character'),
+    badgesOverlay = document.querySelectorAll('.badge-item .overlay')
+    console.log(badgesOverlay)
+
 
 //change character Img every 2 seconds
 function character_one() {
