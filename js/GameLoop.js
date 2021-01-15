@@ -7,15 +7,17 @@ var canvas = document.getElementById("gameScreen");
 
 //disable contect menu
 canvas.oncontextmenu =new Function("return false;")
+import projectile from '/js/projectile.js'
+import { getRandomInt, setLevelConfig } from '/js/methods.js'
 
 //lood shoot sound
 var shootSound=document.getElementById("shoot")
 //var shootSound=$("#shoot") //doesn't work
-
+var canvas = document.getElementById("gameScreen"); //Get the GameArea Canvas
+canvas.oncontextmenu =new Function("return false;") //disable context menu
 //Set the Game Area Canvas width and height to match the css info (issue solved)
 canvas.width = canvas.getBoundingClientRect().width;
 canvas.height = canvas.getBoundingClientRect().height;
-
 //Get the Canvas Context of the game area 
 var context = canvas.getContext("2d");
 
@@ -87,8 +89,6 @@ function enemyCreation(deltaTime,context){
         
         }
     }
-//Instance of the Player with speed of 5 pixels
-let player = new Player(playerInfo);
 //console.log(player.position)
 let enemy1 =new Enemy(GAME_WIDTH,GAME_HEIGHT,'enemy1',{x:10,y:10},{x:1,y:1},60),
     enemy2 =new Enemy(GAME_WIDTH,GAME_HEIGHT,'enemy2',{x:700,y:10},{x:2,y:2},40),
@@ -96,55 +96,55 @@ let enemy1 =new Enemy(GAME_WIDTH,GAME_HEIGHT,'enemy1',{x:10,y:10},{x:1,y:1},60),
    
 console.log(Enemy.counter)
 
+var context = canvas.getContext("2d"); //Get the Canvas Context of the game area 
+var gameScreen = { width: canvas.width, height: canvas.height } //Get the Game Area boundary
+
+let gameLevel = 0; //set these vars from local storage
+let character = 1; //set these vars from local storage
+
+setLevelConfig(gameLevel); //set chosen game Level
+let player = new Player(character, gameScreen); //Create the player with Character index=0 
+var enemyArray = [new Enemy(getRandomInt(0, 3), gameScreen)]; // Create array of Enemies 
+var projectiles = [];
 //Instance of InputHander to Handle the Key strokes
-var inputHandler = new InputHandler(canvas,player);
+var inputHandler = new InputHandler(canvas, player);
 
 //First Draw of the Player
-player.draw(context,inputHandler.mouse);
+player.draw(context, inputHandler.mouse);
 
+export function generate_projectile(mouseX, mouseY) {
+    projectiles.push(new projectile(player, { x: mouseX, y: mouseY }));
+}
 // gameloop 
 let lastTime = 0;
 function gameLoop(timeStamp) {
     // delta time to 
     let deltaTime = timeStamp - lastTime;
     lastTime = timeStamp;
-    context.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+    context.clearRect(0, 0, gameScreen.width, gameScreen.height);
 
-    //Move the player to the held directions [from the inputHandler class] befor redraw 
-    //DetaTime to make Sure that the game speed is equal on different computers
-    player.move(inputHandler.held_directions,deltaTime);
+    for (let i = 0; i < enemyArray.length; i++) {
+        enemyArray[i].update(deltaTime, player.position);
+        enemyArray[i].draw(context, player.position);
+    }
 
-    //Then Draw the Player again
-    player.draw(context,inputHandler.mouse);
-    
+    for (let i = 0; i < projectiles.length; i++) {
+        projectiles[i].draw(context, deltaTime);
+        if (projectiles[i].isHit(enemyArray, player)) {
+            projectiles.splice(i, 1);
+        }
+    }
+    player.isHit(enemyArray); // player damaged   
+    player.move(inputHandler.held_directions, deltaTime); //Move the player to the held directions
+    player.draw(context, inputHandler.mouse);             //Then Draw the Player
+
+
     //detect if the player is shooting and if so fire a projectile and the effects
     player.shoot(inputHandler.isShooting);
-  
-    enemy1.update(deltaTime);
-    enemy1.draw(context,player.position.x,player.position.y);
-    enemy2.update(deltaTime);
-    enemy2.draw(context,player.position.x,player.position.y);
-    enemy3.update(deltaTime);
-    enemy3.draw(context,player.position.x,player.position.y);
-    // for(let i=0;i<3;i++){
-    //      enemies.push(enemy)
-    //      enemies[i].update(deltaTime);
-    //      enemies[i].draw(context);
-    //   if(Enemy.counter==10)break;
-    // }
-   
 
- 
-   //request a new frame with a recursion to this function
-   requestAnimationFrame(gameLoop);
-  
-   //enemyCreation(deltaTime,context);
-   
+    //request a new frame with a recursion to this function
+    requestAnimationFrame(gameLoop);
 }
 
 //Run the GameLoop for the first time and it will loop forever
 gameLoop();
-enemyCreation(1,1)
-
-
-console.log(enemies)

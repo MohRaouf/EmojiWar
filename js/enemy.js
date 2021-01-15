@@ -1,54 +1,86 @@
-import { directions } from '/js/input.js'
-export default class Enemy{
-    static counter=0;
-    //  constructor(gameWidth,gameHeight,imgID,position,speed,size)
-    constructor(gameWidth,gameHeight,ImgId,position,speed,size) {
-       
-        this.gameWidth=gameWidth;
-        this.gameHeight=gameHeight;
-        this.img=document.getElementById(ImgId);
-        this.position={x:position.x,y:position.y};
-        this.speed={x:speed.x,y:speed.y}
-        this.size=size;
-        Enemy.counter++;
-    }
-    draw(context){
-        context.drawImage(this.img,
-            this.position.x,
-            this.position.y,
-            this.size,
-            this.size)
-    }
-    draw(context, playerPosition_x,playerPos_y) {
+import { getRandomInt,resetIfOutOfScreen,updateLayout } from '/js/methods.js'
+//enemy generation Position
+var enemyGenerationLocation = [{ "x": 0.2, "y": 0.05 }, { "x": 0.5, "y": 0.05 }, { "x": 0.8, "y": 0.05 },
+{ "x": 0.2, "y": 0.95 }, { "x": 0.5, "y": 0.95 }, { "x": 0.8, "y": 0.95 }, { "x": 0.01, "y": 0.3 },
+{ "x": 0.01, "y": 0.7 }, { "x": 0.99, "y": 0.3 }, { "x": 0.99, "y": 0.7 }];
 
-        let scaleX=1;
-        if(this.position.x>playerPosition_x){
-            this.rotation = Math.atan2(playerPosition_x - this.position.x, -(playerPos_y - this.position.y)) +1.4;
-            scaleX=-1;
-        }
-        else{
-            this.rotation = Math.atan2(playerPosition_x - this.position.x, -(playerPos_y - this.position.y)) - 1.32;
-        }
+//Enemy characters 
+var enemyCharacters = [
+    {
+        size: 80,
+        speed: 50,
+        health: 2,
+        character: document.getElementById("enemy1")
+    },
+    {
+        size: 100,
+        speed: 40,
+        health: 4,
+        character: document.getElementById("enemy2")
+    },
+    {
+        size: 120,
+        speed: 30,
+        health: 6,
+        character: document.getElementById("enemy3")
+    }
+]
 
+export default class Enemy {
+    static level = 1;
+    constructor(characterIndex, gameScreen) {
+        console.log(Enemy.level)
+        var enemyInfo = enemyCharacters[characterIndex]
+        this.gameWidth = gameScreen.width;
+        this.gameHeight = gameScreen.height;
+        this.character = enemyInfo.character;
+        let randomLocation = enemyGenerationLocation[getRandomInt(0, 10)];
+        this.position = {
+            x: randomLocation.x * this.gameWidth,
+            y: randomLocation.y * this.gameHeight
+        };
+        this.speed = { x: enemyInfo.speed + 5 * Enemy.level, y: enemyInfo.speed + 5 * Enemy.level }
+        this.size = enemyInfo.size;
+        this.layout = {
+            left: this.position.x - this.size / 2,
+            right: this.position.x + this.size / 2,
+            top: this.position.y - this.size / 2,
+            bottom: this.position.y + this.size / 2
+        }
+        this.rotation;
+        this.health = enemyInfo.health + 2 * Enemy.level
+    }
+    draw(context, playerPosition) {
+        this.rotation = Math.atan2(playerPosition.x - this.position.x, -(playerPosition.y - this.position.y)) + 3.14;
         context.save();
+        //draw the over context in the x,y positiondwa
         context.translate(this.position.x, this.position.y)
+        //rotate the draw by the calculated angle
         context.rotate(this.rotation);
-        // context.scale(scaleX*this.scale,this.scale);
-        context.drawImage(this.img,
-             -this.img.style.width - this.size / 2, 
-            -this.img.style.height - this.size / 2,
-             this.size, this.size)
+        //draw the image over the drawn area to be rotated by the same value
+        context.drawImage(this.character, -this.character.style.width - this.size / 2, -this.character.style.height - this.size / 2, this.size, this.size)
+        //restore the other context objects
         context.restore()
     }
+    update(deltaTime, playerPosition) {
+        if (!deltaTime) { return }
 
-    update(deltaTime){
-        this.position.x+=this.speed.x;
-        this.position.y+=this.speed.y;
-        if(this.position.x>this.gameWidth-this.size||this.position.x<0){
-            this.speed.x=-this.speed.x;
-        }
-        if(this.position.y>this.gameHeight-this.size||this.position.y<0){
-            this.speed.y=-this.speed.y;
-        }
+        let deltaX = playerPosition.x - this.position.x;
+        let deltaY = playerPosition.y - this.position.y;
+        //atan2 for angle
+        var radians = Math.atan2(deltaY, deltaX); // Don't use squared delta
+        //radians into degrees
+        var angle = radians * (180 / Math.PI);
+
+        let xSpeedFactor = Math.cos(radians);
+        let ySpeedFactor = -Math.sin(radians);
+
+        this.position.x += this.speed.x * xSpeedFactor / deltaTime;
+        this.position.y += this.speed.y * -ySpeedFactor / deltaTime;
+
+        //set the illusion of a wall for a translated canvas img
+        resetIfOutOfScreen(this)
+        //update player character layout
+        updateLayout(this)
     }
 }

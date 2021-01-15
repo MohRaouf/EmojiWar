@@ -1,0 +1,19 @@
+.col-3{
+    width:33%;
+    display: inline-block;
+}
+.col-4{
+    width:25%;
+    display: inline-block;
+}
+.row{
+    width: 100%;
+}
+@media(max-width:767px){
+    .intro{
+        display: none;
+    }
+    .badges{
+        width: 100%;
+    }
+}

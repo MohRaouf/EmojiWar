@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+    <head>
+        <title>Badges</title>
+        <link rel="icon" href="src/images/icon.png">
+        <link rel="stylesheet"  href="css/Badges.css">
+        <link rel="stylesheet" href="css/all.min.css">
+        <link rel="stylesheet" type="" href="css/includes/responsive.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
+    </head>
+<body>
+    <nav>
+        <div class="container" >
+             <div class="nav-logo" onclick="window.location.href='EmojiWarHome.html'">
+                 <p>Emoji<span>war</span></p>
+             </div>
+             <div class="nav-items">
+                <ul>
+                    <li class="deactive"><a href="EmojiWarHome.html">Home</a></li>
+                    <li class="active"><a href="Badges.html">Badges</a></li>
+                    <li class="deactive"><a href="LevelAndCharacter.html">characters</a></li>
+                    <li class="deactive"><a href="AboutUs.html">About</a></li>
+                </ul>
+             </div>
+             <div class="nav-login" id="nav-login">
+                <button class="btn-login" id="btn-login" onclick="window.location.href='loginRegister.html'">Login</button>
+                <button class="btn-login hidden"  id="btn-logout" >logout</button>
+            </div>
+        </div>
+     </nav>
+     <section class="page">
+         <div class="home">
+             <div class="layer">
+               <div class="contaier">
+                    <div class="intro">
+                        <h2><span><i class="fas fa-trophy color"></i></span><span>Emoji</span>War</h2>
+                        <p id="welecome_user">Enter and collect A lot of Badges</p>
+                        <img src="src/images/characters/character2.png" id="character" alt="">
+                    </div>
+                    <div class="badges">
+                       <div class="badge-item">
+                           <div class="overlay">
+                               <div class="caption" id="bronze_badge">
+                                    <p> <i class="fas fa-lock"></i> </p>
+                                    <h2>we will get it after register</h2>
+                               </div>
+                             </div>
+                           <div class="number">1</div>
+                           <img src="src/images/badges/BRONZE.png">
+                       </div>
+                       <div class="badge-item">
+                        <div class="overlay">
+                            <div class="caption" id="sliver_badge">
+                                 <p> <i class="fas fa-lock"></i> </p>
+                                 <h2>win level 1 to get</h2>
+                            </div>
+                          </div>
+                           <div class="number">2</div>
+                           <img src="src/images/badges/SILVER.png">
+                       </div>
+                       <div class="badge-item">
+                        <div class="overlay">
+                            <div class="caption" id="golden_badge">
+                                 <p> <i class="fas fa-lock"></i> </p>
+                                 <h2>win level 2 to get</h2>
+                            </div>
+                          </div>
+                          <div class="number">3</div>
+                          <img src="src/images/badges/GOLD.png">
+                       </div>
+                       <div class="badge-item">
+                        <div class="overlay">
+                            <div class="caption" id="platinum_badge">
+                                 <p> <i class="fas fa-lock"></i> </p>
+                                 <h2>win level 3 to get</h2>
+                            </div>
+                          </div>
+                           <div class="number">4</div>
+                           <img src="src/images/badges/PLATINUM.png">
+                       </div>
+                    </div>
+                    <div class="clear-both"></div>
+               </div>
+             </div>
+         </div>
+     </section>
+     <script src="js/all.min.js"></script>
+     <script src="js/badges.js"></script>
+     <script src="js/is_login.js"></script>
+</body>
+</html>

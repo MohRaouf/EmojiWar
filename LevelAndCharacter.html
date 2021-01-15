@@ -2,9 +2,77 @@
 <html >
     <head>
         <title></title>
+        <link rel="icon" href="src/images/icon.png">
         <link rel="stylesheet" type="text/css" href="css/LevelAndCharacter.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/all.min.css">
     </head>
     <body>
-        <script src="js/LevelAndCharacter.js"></script>
+        <div class="parent">
+        <!-- **************************navbar************************** -->
+        <nav>
+            <div class="container">
+                 <div class="nav-logo">
+                     <p>Emoji<span>war</span></p>
+                 </div>
+                 <div class="nav-items">
+                    <ul>
+                        <li class="deactive"><a href="EmojiWarHome.html">Home</a></li>
+                        <li class="deactive"><a href="Badges.html">Badges</a></li>
+                        <li class="active"><a href="LevelAndCharacter.html">characters</a></li>
+                        <li class="deactive"><a href="AboutUs.html">About</a></li>
+                    </ul>
+                 </div>
+                 <div class="nav-login" id="nav-login">
+                    <button class="btn-login" id="btn-login" onclick="window.location.href='loginRegister.html'">Login</button>
+                    <button class="btn-login hidden"  id="btn-logout" >logout</button>
+                </div>
+            </div>
+        </nav>
+        <!-- **************************welcome************************** -->
+        <div class="welcome_message">
+            <span class="text1"><label>w</label>elcome <label>t</label>o <label>Emoji</label>War</span>
+            <span class="text2">Fight!</span>
+            <span class="text3">Kill!</span>
+            <span class="text4">Evolve!</span>
+        </div>
+        <div class="playing_options">
+            <form method="POST" action="EmojiWarHome.html">
+                <label>nickname:&nbsp;</label>
+                <input id="nickname" maxlength="17" type="text"><br><br>
+                <p style="display: none;"><label>C</label>hoose <label>E</label>moji <label>t</label>o <label>E</label>nter <label>t</label>he <label>w</label>ar</p>
+                <p><label>S</label>elect <label>a</label>n <label>O</label>pened <label>L</label>evel</p>
+                
+                <div class="available_Emojis">
+                    <div class="emo">
+                        <img src="src/images/laughing_emoji.png">
+                    </div>
+                    <div class="emo">
+                        <img src="src/images/smile_with_hearts.png">
+                    </div>
+                    <div class="emo" >
+                        <img src="src/images/sarcastic_emoji.png">
+                    </div>
+                </div>
+
+                <div class="levels" style="display: none;">
+                    <div class="lev">
+                        <img src="">
+                    </div>
+                    <div class="lev">
+                        <img src="">
+                    </div>
+                    <div class="lev">
+                        <img src="">
+                    </div>
+                </div>
+                <input id="select_level" type="button" value="Select the level">
+                <input id="play" type="submit" value="Enter the War" style="display: none;">
+            </form>
+        </div>
+    </div>
+    <script src="js/LevelAndCharacter.js"></script>
+    <script src="js/is_login.js"></script>
     </body>
 </html>
