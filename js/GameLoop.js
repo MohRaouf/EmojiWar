@@ -13,13 +13,8 @@ import { getRandomInt, setLevelConfig } from '/js/methods.js'
 //lood shoot sound
 var shootSound=document.getElementById("shoot")
 //var shootSound=$("#shoot") //doesn't work
-import {getRandomInt} from '/js/methods.js'
 var canvas = document.getElementById("gameScreen"); //Get the GameArea Canvas
 canvas.oncontextmenu =new Function("return false;") //disable context menu
-import {getRandomInt} from '/js/methods.js'
-var canvas = document.getElementById("gameScreen"); //Get the GameArea Canvas
-canvas.oncontextmenu = new Function("return false;") //disable context menu
-
 //Set the Game Area Canvas width and height to match the css info (issue solved)
 canvas.width = canvas.getBoundingClientRect().width;
 canvas.height = canvas.getBoundingClientRect().height;
@@ -94,8 +89,6 @@ function enemyCreation(deltaTime,context){
         
         }
     }
-//Instance of the Player with speed of 5 pixels
-let player = new Player(playerInfo);
 //console.log(player.position)
 let enemy1 =new Enemy(GAME_WIDTH,GAME_HEIGHT,'enemy1',{x:10,y:10},{x:1,y:1},60),
     enemy2 =new Enemy(GAME_WIDTH,GAME_HEIGHT,'enemy2',{x:700,y:10},{x:2,y:2},40),
