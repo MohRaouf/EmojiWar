@@ -3,7 +3,7 @@ import Enemy from "/js/enemy.js";
 export function hitDetected(enemy, player, removeTolerance) {
     var tolerance = enemy.size / 4;
     if (removeTolerance) { tolerance = 0; }
-    console.log(`tolerance is : ${tolerance}`)
+    // console.log(`tolerance is : ${tolerance}`)
     //enemy touches the player from UP_RIGHT
     if (enemy.layout.left + tolerance > player.layout.left &&
         enemy.layout.left + tolerance < player.layout.right &&

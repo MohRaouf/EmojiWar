@@ -10,18 +10,21 @@ var enemyCharacters = [
         size: 80,
         speed: 50,
         health: 2,
+        killScore:10,
         character: document.getElementById("enemy1")
     },
     {
         size: 100,
         speed: 40,
         health: 4,
+        killScore:20,
         character: document.getElementById("enemy2")
     },
     {
         size: 120,
         speed: 30,
         health: 6,
+        killScore:30,
         character: document.getElementById("enemy3")
     }
 ]
@@ -29,7 +32,7 @@ var enemyCharacters = [
 export default class Enemy {
     static level = 1;
     constructor(characterIndex, gameScreen) {
-        console.log(Enemy.level)
+        // console.log(Enemy.level)
         var enemyInfo = enemyCharacters[characterIndex]
         this.gameWidth = gameScreen.width;
         this.gameHeight = gameScreen.height;
@@ -47,6 +50,7 @@ export default class Enemy {
             top: this.position.y - this.size / 2,
             bottom: this.position.y + this.size / 2
         }
+        this.killScore=enemyInfo.killScore;
         this.rotation;
         this.health = enemyInfo.health + 2 * Enemy.level
     }

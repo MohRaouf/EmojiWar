@@ -7,7 +7,6 @@ export default class projectile {
             x: player.position.x,
             y: player.position.y
         };
-        console.log(this.position)
         this.size = player.characterInfo.projectileInfo.size;
         this.gameWidth = player.gameWidth;
         this.gameHeight = player.gameHeight;
@@ -26,22 +25,25 @@ export default class projectile {
             bottom: this.position.y + this.size / 2
         }
     }
+    static score= $("#points");
     isHit(enemies, player) {
         //collision is boolean becomes true if collision delected
         if (resetIfOutOfScreen(this)) return true;
 
         for (let i = 0; i < enemies.length; i++) {
-            if (hitDetected(this, enemies[i], true)) {
-                //collision detected between enemy and projectile
-                enemies[i].health--;
+            if (hitDetected(this, enemies[i], true)) {  //collision detected between enemy and projectile
+                enemies[i].health--;  //decrease the health of the injured enemy
                 if (enemies[i].health <= 0){
-                    enemies.splice(i, 1);
+                    $("#points").html(parseInt($("#points").html())+ enemies[i].killScore);
+                    enemies.splice(i, 1);   // remove if dead
                 }
-                if (enemies.length == 0) {
+                if (enemies.length == 0) { // if wave eneded start the next wave
                     player.wave++;
+                    $("#waveNo").html(player.wave);
                     for (let j = 0; j < player.wave; j++){
                         enemies.push(new Enemy(getRandomInt(0, 3), gameScreen));
                     }
+                    break;
                 }
                 return true;
             }

@@ -14,7 +14,7 @@ canvas.height = canvas.getBoundingClientRect().height;
 var context = canvas.getContext("2d"); //Get the Canvas Context of the game area 
 var gameScreen = { width: canvas.width, height: canvas.height } //Get the Game Area boundary
 
-let gameLevel = 0; //set these vars from local storage
+let gameLevel = 1; //set these vars from local storage
 let character = 1; //set these vars from local storage
 
 setLevelConfig(gameLevel); //set chosen game Level
