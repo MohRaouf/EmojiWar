@@ -16,18 +16,12 @@ function is_Login() {
     let eluserMwgood;
     for(var i=0;i<players.length ;i++)
     {
-        if(players[i].is_login ==1)
-            {
-                eluserMwgood = true;
-            }
+        players[i].is_login =0;
     }
-    if(eluserMwgood == true){
         logoutBtn.classList.remove('hidden');
         logoutBtn.classList.add('visible');
         loginBtn.classList.remove('visible');
         loginBtn.classList.add('hidden');
-
-    }
  } is_Login();
 
 function logout() {
