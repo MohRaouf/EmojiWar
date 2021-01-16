@@ -8,8 +8,17 @@ let loginsSection   = document.getElementById('login'),
     userloginName   = document.getElementById('userName'),
     errorRegister   = document.getElementById('error_register'),
     errorLogin      = document.getElementById('error_login'),
-    userData        = {}
-   
+     players;
+//get Data from local storage
+    if(localStorage.getItem("userData") == null)
+    {
+        players=[];
+    }
+    else
+    {
+        players= JSON.parse(localStorage.getItem("userData")) ;
+    }
+ //Display login section and Hide Register   
 function loginPage(){
     loginsSection.classList.remove('hidden');
     loginsSection.classList.add('visible');
@@ -18,6 +27,7 @@ function loginPage(){
 
  }  nav_to_login.addEventListener('click',loginPage);
 
+  //show Register section and Hide login   
  function RegisterPage(){
     registerSection.classList.remove('hidden');
     registerSection.classList.add('visible');
@@ -26,21 +36,25 @@ function loginPage(){
 
  }  nav_to_register.addEventListener('click',RegisterPage);
 
+ //register new user and save his Data in loacl Storage
  function Register(e) {
     if(nameInput.value===''){
         errorRegister.innerHTML="please Insert vaild name";
         e.preventDefault();
     }
     else{
-      
-        userData = {
-            userName : nameInput.value,
-            badges   : 1,
-            level    : '',
-            score    : 0,
-            is_login : 1
+        one_player = {
+            userName     : nameInput.value,
+            lastNickname :'',
+            badges       : 1,
+            level        : '',
+            score        : 0,
+            maxCharacter :'',
+            is_login     : 1,
         }
-        localStorage.setItem('userData',JSON.stringify(userData));
+        players.push(one_player);
+        
+        localStorage.setItem("userData" , JSON.stringify(players))
         e.preventDefault();
         window.location.href='EmojiWarHome.html';
     }
@@ -48,16 +62,24 @@ function loginPage(){
     } registerBtn.addEventListener('click',Register);
 
  function Login(e){
-     let {userName , badges , level ,score,is_login} = JSON.parse(localStorage.getItem('userData'))
-     if(userloginName.value ===userName ){
+     let eluserMwgood= false;
+    for(var i=0;i<players.length ;i++)
+    {
+        if(players[i].userName == userloginName.value)
+            {
+                eluserMwgood = true;
+            }
+    }
+    if(eluserMwgood == false)
+        {
+            errorLogin.innerHTML="user doesn't exist";
+        }
+    else
+    {
         e.preventDefault();
         window.location.href='EmojiWarHome.html';
-       
-     }
-     else{
-       errorLogin.innerHTML="please insert vaild Data";
-        e.preventDefault();
-     }
+    }
+    console.log(players[0].userName)
  }loginBtn.addEventListener('click',Login)
 
 

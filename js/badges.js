@@ -3,8 +3,18 @@ let characterImg   = document.getElementById('character'),
     lockBadges     = document.querySelectorAll('.badges p'),
     badgeMessage   = document.querySelectorAll('.badges h2'),
     welecomeParag  = document.getElementById('welecome_user'),
-    buttonsLogin    = document.querySelectorAll('.nav-login button');
-    console.log(buttonsLogin)
+    buttonsLogin    = document.querySelectorAll('.nav-login button'),
+    players;
+    
+    //get Data from local storage
+        if(localStorage.getItem("userData") == null)
+        {
+            players=[];
+        }
+        else
+        {
+            players= JSON.parse(localStorage.getItem("userData")) ;
+        }
 //change character Img every 2 seconds
 function character_one() {
     characterImg.setAttribute('src', "src/images/characters/character2.png");
@@ -25,8 +35,7 @@ function change_character () {
 setInterval(change_character,4000)
 
 function changeBadges(){
-    let {userName , badges , level ,score,is_login} = JSON.parse(localStorage.getItem('userData')),
-        youbadges = badges;
+    
     switch(youbadges){
         case 1:
             takeBronze()
@@ -65,7 +74,6 @@ function takePlatinum(){
     lockBadges[3].innerHTML='<span><i class="fas fa-trophy "></i></span><span>';
     badgeMessage[3].innerHTML="congratulations <br> you got it";
 }
-let {userName , badges , level ,score,is_login} = JSON.parse(localStorage.getItem('userData'))
 if(is_login==1){
     changeBadges()
 }
