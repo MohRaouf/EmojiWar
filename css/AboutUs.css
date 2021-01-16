@@ -1,6 +1,7 @@
 @import "includes/navigation.css";  
 @import "includes/scrollbar.css";
 @import "includes/animation.css";
+@import "includes/about_responsive.css";
 /************************** Basics *****************/
 *{
     padding: 0;
@@ -17,12 +18,13 @@ body{
 .page{
     width:96%;
     left: 2%;
+    right: 2%;
     color: #fff;
     height:85vh;
     position: fixed;
     overflow: auto;
     padding-bottom: 10px;
-    overflow: hidden;
+    overflow: auto;
 }
 /**************************  about us *****************/
 .about{

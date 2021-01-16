@@ -104,3 +104,29 @@ nav {
       background-color: rgba(129, 89, 48, 0.9);
       border:1px solid#4d3824e6;
   }
+/**********************Responsive Navbar********************************/
+.hidden{ display: none;}
+.visible{display: block;}
+  @media(max-width:1150px){
+    .nav-items,.nav-login{
+      display: none !important;
+    } 
+    .nav-logo{width:20%;float:left}
+    .responsive-nav {
+      width: 80%;
+      float: left;
+    }
+    .responsive-nav li{
+      width: 100%;
+      float: left;
+
+    }
+    .responsive-nav a:hover{
+      color: #ddd;
+    }
+  }
+  @media(min-width:1151px){
+    .responsive-nav{
+      display: none;
+    }
+  }

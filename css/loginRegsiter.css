@@ -1,3 +1,4 @@
+@import "includes/responsive_loginRegister.css";
 .loginRegister{
     background-image: url('../src/images/login-layout.jpg');
     position: fixed;
@@ -104,9 +105,3 @@
     display: block;
 }
 
-@media(max-width:767px){/*mobile screen*/
-.swap{
-    width: 100%;
-}
-
-}
