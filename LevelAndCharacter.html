@@ -32,41 +32,44 @@
         <!-- **************************welcome************************** -->
         <div class="welcome_message">
             <span class="text1"><label>w</label>elcome <label>t</label>o <label>Emoji</label>War</span>
-            <span class="text2">Fight!</span>
-            <span class="text3">Kill!</span>
-            <span class="text4">Evolve!</span>
+            <span class="text2"><label>F</label>ight!</span>
+            <span class="text3"><label>K</label>ill!</span>
+            <span class="text4"><label>E</label>volve!</span>
         </div>
         <div class="playing_options">
-            <form method="POST" action="EmojiWarHome.html">
+            <form method="POST" action="TheGame.html">
                 <label>nickname:&nbsp;</label>
                 <input id="nickname" maxlength="17" type="text"><br><br>
-                <p style="display: none;"><label>C</label>hoose <label>E</label>moji <label>t</label>o <label>E</label>nter <label>t</label>he <label>w</label>ar</p>
-                <p><label>S</label>elect <label>a</label>n <label>O</label>pened <label>L</label>evel</p>
+                <p><label>C</label>hoose <label>E</label>moji <label>t</label>o <label>E</label>nter <label>t</label>he <label>w</label>ar</p>
+                <p style="display: none;"><label>S</label>elect <label>a</label>ny <label>M</label>ap</p>
                 
                 <div class="available_Emojis">
                     <div class="emo">
-                        <img src="src/images/laughing_emoji.png">
+                        <img src="src/images/character1.png">
                     </div>
                     <div class="emo">
-                        <img src="src/images/smile_with_hearts.png">
+                        <img src="src/images/character2.png">
                     </div>
-                    <div class="emo" >
-                        <img src="src/images/sarcastic_emoji.png">
+                    <div class="emo">
+                        <img src="src/images/character3.png">
                     </div>
                 </div>
-
                 <div class="levels" style="display: none;">
                     <div class="lev">
-                        <img src="">
+                        <img src="src/images/level1.png">
                     </div>
                     <div class="lev">
-                        <img src="">
+                        <img src="src/images/level2.png">
                     </div>
                     <div class="lev">
-                        <img src="">
+                        <img src="src/images/level3.png">
+                    </div>
+                    <div class="lev">
+                        <img src="src/images/level4.png">
                     </div>
                 </div>
-                <input id="select_level" type="button" value="Select the level">
+                <input id="select_level" type="button" value="Select the Map" style="display: block;">
+                <input id="changeCharacter" type="button" value="change character" style="display: none;">
                 <input id="play" type="submit" value="Enter the War" style="display: none;">
             </form>
         </div>
