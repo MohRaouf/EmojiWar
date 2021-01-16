@@ -166,11 +166,11 @@ input[type=text] {
 }
 .lev{
     display: inline-block;
-    width: 20%;
-    height: 29vh;
-    margin-right: 1%;
-    margin-left: 1%;
-    margin-top: 2vh;
+    width: 25%;
+    height: 26vh;
+    margin-right: 3%;
+    margin-left: 3%;
+    margin-top: 4vh;
 }
 .emo img, .lev img{
     display: inline-block;
@@ -189,13 +189,13 @@ input[type=text] {
     padding: 0;
 }
 .lev:hover{
-    width: 24%;
+    width: 29%;
     height: 31vh;
     border: 0.25px solid #db9b66;
     box-sizing: border-box;
     cursor: pointer;
     background: linear-gradient(45deg,#000,#836231,#000,#836231,#000);
-    margin-top: 1vh;
+    margin-top: 2vh;
     margin-bottom: 1vh;
     padding: 0;
 }

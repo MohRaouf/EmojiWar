@@ -36,9 +36,11 @@ function change_selected_map(index){
     return function(){
         selected_map=index;
         play_btn.disabled = false;
-        for(let i=0;i<4;i++){
+
+        for(let i=0;i<3;i++){
+            mapChoises[i].style.marginTop="2vh";
             if(index==i){
-                mapChoises[i].style.width="24%";
+                mapChoises[i].style.width="30%";
                 mapChoises[i].style.height="31vh";
                 mapChoises[i].style.border="0.25px solid #db9b66";
                 mapChoises[i].style.background="linear-gradient(45deg,#000,#836231,#000,#836231,#000)";
@@ -46,7 +48,7 @@ function change_selected_map(index){
                 emoChoises[i].style.marginLeft=emoChoises[i].style.marginRight= "1%";
             }
             else{
-                mapChoises[i].style.width="20%";
+                mapChoises[i].style.width="25%";
                 mapChoises[i].style.height="75%";
                 mapChoises[i].style.border="0px";
                 mapChoises[i].style.background="transparent";
@@ -119,7 +121,7 @@ play_btn.disabled = true;
 for(let i=0;i<3;i++)
     emoChoises[i].addEventListener("click",change_selected_emoji(i));
 select_map_btn.addEventListener("click", choose_map);
-for(let i=0;i<4;i++)
+for(let i=0;i<3;i++)
     mapChoises[i].addEventListener("click",change_selected_map(i));
 play_btn.addEventListener("click",play);
 change_character.addEventListener("click",choose_character);
