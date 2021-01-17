@@ -8,7 +8,8 @@ let loginsSection   = document.getElementById('login'),
     userloginName   = document.getElementById('userName'),
     errorRegister   = document.getElementById('error_register'),
     errorLogin      = document.getElementById('error_login'),
-     players;
+    players; 
+    
 //get Data from local storage
     if(localStorage.getItem("userData") == null)
     {
@@ -42,7 +43,25 @@ function loginPage(){
         errorRegister.innerHTML="please Insert vaild name";
         e.preventDefault();
     }
-    else{
+    if(players.length==0){
+            one_player = {
+            userName     : nameInput.value,
+            lastNickname :'',
+            badges       : 1,
+            level        : '',
+            score        : 0,
+            maxCharacter :'',
+            is_login     : 1,
+        }
+        players.push(one_player);
+        localStorage.setItem("userData" , JSON.stringify(players))
+        e.preventDefault();
+        window.location.href='EmojiWarHome.html';
+    }
+    else if(players.length <=1){
+        for(var i=0;i<players.length ;i++){
+            players[i].is_login=0;
+        }
         one_player = {
             userName     : nameInput.value,
             lastNickname :'',
@@ -53,33 +72,39 @@ function loginPage(){
             is_login     : 1,
         }
         players.push(one_player);
-        
         localStorage.setItem("userData" , JSON.stringify(players))
         e.preventDefault();
         window.location.href='EmojiWarHome.html';
     }
-        
+    
     } registerBtn.addEventListener('click',Register);
 
- function Login(e){
-     let eluserMwgood= false;
-    for(var i=0;i<players.length ;i++)
+function Login(e){
+    if(localStorage.getItem("userData") == null)
     {
-        if(players[i].userName == userloginName.value)
-            {
-                eluserMwgood = true;
-            }
-    }
-    if(eluserMwgood == false)
-        {
-            errorLogin.innerHTML="user doesn't exist";
-        }
-    else
-    {
+        errorLogin.innerHTML="No Data, please Register";
         e.preventDefault();
-        window.location.href='EmojiWarHome.html';
     }
-    console.log(players[0].userName)
+    else {
+        players= JSON.parse(localStorage.getItem("userData")) ;
+        let eluserMwgood = false;
+        for(var i=0;i<players.length ;i++){
+            if(players[i].userName == userloginName.value){
+                eluserMwgood = true; 
+                players[i].is_login=1;
+                break;
+            }
+        }
+        localStorage.setItem("userData" , JSON.stringify(players))
+        if(eluserMwgood == false){
+            errorLogin.innerHTML="user doesn't exist";
+            e.preventDefault();
+        }
+        else{
+            window.location.href='EmojiWarHome.html';
+            e.preventDefault();
+        }
+    }
  }loginBtn.addEventListener('click',Login)
 
 

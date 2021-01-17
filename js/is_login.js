@@ -1,30 +1,27 @@
 let loginBtn  = document.getElementById('btn-login'),
     loginUser = document.getElementById('nav-login'),
     logoutBtn = document.getElementById('btn-logout'),
-    players;
+    players   = [] ;
 //get Data from local storage
-    if(localStorage.getItem("userData") == null)
-    {
-        players=[];
-    }
-    else
-    {
-        players= JSON.parse(localStorage.getItem("userData")) ;
-    }
-
+    
 function is_Login() { 
     let eluserMwgood;
+    players= JSON.parse(localStorage.getItem("userData")) ;
     for(var i=0;i<players.length ;i++)
     {
-        players[i].is_login =0;
+       if(players[i].is_login ==1) {
+        eluserMwgood=true;
+       }
     }
+    if(eluserMwgood==true){
         logoutBtn.classList.remove('hidden');
         logoutBtn.classList.add('visible');
         loginBtn.classList.remove('visible');
         loginBtn.classList.add('hidden');
+    }
  } is_Login();
-
 function logout() {
+    let players= JSON.parse(localStorage.getItem("userData")) ;
     for(var i=0;i<players.length ;i++)
     {
         players[i].is_login =0;

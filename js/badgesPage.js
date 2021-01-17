@@ -2,8 +2,9 @@ let characterImg   = document.getElementById('character'),
     badgesOverlay  = document.querySelectorAll('.badge-item .overlay'),
     lockBadges     = document.querySelectorAll('.badges p'),
     badgeMessage   = document.querySelectorAll('.badges h2'),
-    welecomeParag  = document.getElementById('welecome_user');
-   
+    welecomeParag  = document.getElementById('welecome_user'),
+    users          = JSON.parse(localStorage.getItem("userData"));
+
 //change character Img every 2 seconds
 function character_one() {
     characterImg.setAttribute('src', "src/images/characters/character2.png");
@@ -20,11 +21,18 @@ function change_character () {
     character_one();
     setTimeout(character_two, 1000);
     setTimeout(character_three, 2000);
-}
-setInterval(change_character,4000)
+
+}setInterval(change_character,4000)
 
 function changeBadges(){
-   
+    let   eluserMwgood  ;
+  for(var i=0;i<users.length ;i++)
+  {
+     if(users[i].is_login ==1) {
+      eluserMwgood=i;
+     }
+  }
+  let youbadges = users[eluserMwgood].badges;
     switch(youbadges){
         case 1:
             takeBronze()
@@ -63,16 +71,10 @@ function takePlatinum(){
     lockBadges[3].innerHTML='<span><i class="fas fa-trophy "></i></span><span>';
     badgeMessage[3].innerHTML="congratulations <br> you got it";
 }
-// if(is_login==1){
-//     changeBadges()
-// }
-// else{
-//     for(let i =0;i<badgeMessage.length;i++){
-//         lockBadges[i].innerHTML='<span><i class="fas fa-lock"></i><span>';
-//         if(i==0){   
-//             badgeMessage[i].innerHTML=`we will get it after register`;
-//         }
-//         badgeMessage[i].innerHTML=`win level ${i} to get`
-//     }
-// }
 
+for(var i=0;i<users.length ;i++)
+{
+   if(users[i].is_login ==1) {
+    changeBadges()
+   }
+}
