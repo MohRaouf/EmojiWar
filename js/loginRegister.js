@@ -58,7 +58,7 @@ function loginPage(){
         e.preventDefault();
         window.location.href='EmojiWarHome.html';
     }
-    else if(players.length <=1){
+    else {
         for(var i=0;i<players.length ;i++){
             players[i].is_login=0;
         }
