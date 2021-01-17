@@ -2,6 +2,7 @@ import Player from '/js/player.js';
 import InputHandler from '/js/input.js';
 import Enemy from '/js/enemy.js';
 
+<<<<<<< HEAD
 //Get the GameArea Canvas
 var canvas = document.getElementById("gameScreen");
 
@@ -13,6 +14,11 @@ import { getRandomInt, setLevelConfig } from '/js/methods.js'
 //lood shoot sound
 var shootSound=document.getElementById("shoot")
 //var shootSound=$("#shoot") //doesn't work
+=======
+import projectile from '/js/projectile.js'
+import { getRandomInt, setLevelConfig } from '/js/methods.js'
+
+>>>>>>> fa321732fc919de12738010ff495f8f4b1324672
 var canvas = document.getElementById("gameScreen"); //Get the GameArea Canvas
 canvas.oncontextmenu =new Function("return false;") //disable context menu
 //Set the Game Area Canvas width and height to match the css info (issue solved)
@@ -99,7 +105,7 @@ console.log(Enemy.counter)
 var context = canvas.getContext("2d"); //Get the Canvas Context of the game area 
 var gameScreen = { width: canvas.width, height: canvas.height } //Get the Game Area boundary
 
-let gameLevel = 0; //set these vars from local storage
+let gameLevel = 1; //set these vars from local storage
 let character = 1; //set these vars from local storage
 
 setLevelConfig(gameLevel); //set chosen game Level
@@ -108,6 +114,7 @@ var enemyArray = [new Enemy(getRandomInt(0, 3), gameScreen)]; // Create array of
 var projectiles = [];
 //Instance of InputHander to Handle the Key strokes
 var inputHandler = new InputHandler(canvas, player);
+var particles = [];
 
 //First Draw of the Player
 player.draw(context, inputHandler.mouse);
@@ -130,7 +137,7 @@ function gameLoop(timeStamp) {
 
     for (let i = 0; i < projectiles.length; i++) {
         projectiles[i].draw(context, deltaTime);
-        if (projectiles[i].isHit(enemyArray, player)) {
+        if (projectiles[i].isHit(enemyArray, player,context,particles)) {
             projectiles.splice(i, 1);
         }
     }
@@ -138,6 +145,17 @@ function gameLoop(timeStamp) {
     player.move(inputHandler.held_directions, deltaTime); //Move the player to the held directions
     player.draw(context, inputHandler.mouse);             //Then Draw the Player
 
+    // particles.forEach((particle, index) => {
+    //     //[7]particles fadeout
+    //     if (particle.alpha <= 0) {
+
+    //         particles.splice(index, 1)
+    //     } else {
+    //         particle.update();
+    //     }
+    // })
+    //[7]explosion of enemy
+ 
 
     //detect if the player is shooting and if so fire a projectile and the effects
     player.shoot(inputHandler.isShooting);
