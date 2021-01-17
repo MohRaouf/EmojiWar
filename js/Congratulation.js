@@ -37,6 +37,6 @@ function containerResult(score) {
         platinum.style.display = 'none';
         nextlevelBtn.style.display = 'none';
         looser.style.display = 'block';
-
+        confetti.stop();
     }
 }
