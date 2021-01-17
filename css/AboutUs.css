@@ -1,3 +1,7 @@
+@import "includes/navigation.css";  
+@import "includes/scrollbar.css";
+@import "includes/animation.css";
+@import "includes/about_responsive.css";
 /************************** Basics *****************/
 *{
     padding: 0;
@@ -6,102 +10,38 @@
     font-family: 'Raleway', sans-serif;
 }
 body{
-    background-color: #000;
+     background-image: url('../src/images/pattern.png');
+    background-repeat: repeat;
+   
 }
-
-/************************** scrollbar *****************/
-::-webkit-scrollbar{width: 10px;}
-::-webkit-scrollbar-track{
-    border:4px solid #dbab83;
-    box-shadow: inset 0 0 2.5px 2px rgba(0, 0, 0, .5);
-}
-::-webkit-scrollbar-thumb{
-    background: linear-gradient(
-        45deg,
-        #dbab83,
-        #ccc
-    );
-    border-radius: 3px;
-}
-/************************** navbar *****************/
-nav {
-    overflow: hidden;
-    padding: 20px 10px  ;
-}
-nav .container{
-    width: 80%;
-    margin: auto;
-}
-nav .nav-logo, 
-nav .nav-items{
-    display: inline-block;
-    float: left;
-}
-nav .nav-logo{ width:30%}
-nav .nav-logo p{
-    color:#dbab83;
-    letter-spacing:.9px;
-    font-size: 28px;
-    font-weight: 800;
-}
-nav .nav-items{width: 40%;}
-nav ul li {
-    list-style: none;
-    display: inline-block;
-    padding: 10px 20px;
-}  
-nav ul a {
-    color:#dbab83;
-    letter-spacing: 1px;
-    text-decoration: none;
-}
-nav ul .active a{
-    color: #fff;
-    font-weight: bold;
-}
-nav .nav-login{display: inline-block; float:right;}
-nav .nav-login button{
-    background-color: transparent;
-    border:1px solid#dbab83;
-    padding: 10px 40px;
-    border-radius: 10px;
-    color:#dbab83;
-    font-weight: bold;
-    transition: all 1s;
-}
-nav .nav-login button:hover{
-    background-color: #dbab83;
-    color: #fff;
-}
-
 /************************** page container box *****************/
 .page{
     width:96%;
     left: 2%;
+    right: 2%;
     color: #fff;
     height:85vh;
     position: fixed;
     overflow: auto;
+    padding-bottom: 10px;
+    overflow: auto;
 }
-
 /**************************  about us *****************/
 .about{
     height: 500px;
     text-align: center;
-    padding: 40px 0;
+    padding: 20px 0 ;
 }
 .about h2{
     color: #dbab83;
     font-size: 35px;
     line-height: 48px;
-    margin: 10px 0;
     text-transform: uppercase;
 }
 .about .styledPar{
     color: #dbab83;
-    font-size: 20px;
+    font-size: 24px;
     line-height: 30px;
-    letter-spacing: 1px;
     font-weight: 700;
     margin-bottom: 10px;
 }
@@ -112,6 +52,7 @@ nav .nav-login button:hover{
 }
 .about .teams{
     overflow: hidden;
+
 }
 .about .teams .item{
     box-sizing: border-box;
@@ -123,22 +64,22 @@ nav .nav-login button:hover{
     position: relative;
     overflow: hidden;
 }
-.about .teams .item img {width: 100%; height: 300px;}
+.about .teams .item img {width: 90%; height: 300px;}
 .about .teams .caption{
    color: #dfdfdf;
    box-sizing: border-box;
    background-color: rgba(71,67,64,.9);
    position: absolute; 
-   top: 72%;
-   left: 3%;
-   width: 97%;
+   top: 73%;
+   left: 8%;
+   right: 4%;
    padding: 10px;
    line-height: 29px;
    text-align: center;
    transition: all 1s;
 }
 .about .teams .item:hover .caption{
-    top:20%;
+    top:22%;
     bottom: 0%;
 }
 .about .teams .caption h1{margin-bottom: 5px;}
@@ -163,4 +104,11 @@ nav .nav-login button:hover{
 .about .teams .caption .social-icon a:hover{
     background-color: #dbab83;
     border-color: #dbab83;
+}
+
+.hidden{
+    display: none;
+}
+.visible{
+    display: block;
 }

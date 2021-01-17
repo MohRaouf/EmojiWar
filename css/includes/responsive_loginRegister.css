@@ -1,0 +1,41 @@
+@media(max-width:500px){
+    .container{
+        width: 90% !important;
+        margin-top: 30% !important;  
+        height: 65% !important;
+    }
+    .loginRegister .container .character {  display: none !important;}
+    .loginRegister .container .swap{
+        width: 90% !important;
+         text-align: center;  
+        }
+}
+@media(min-width:501px) and (max-width:800px){
+    .container{
+        width: 80% !important;
+        margin-top: 10% !important;  
+    }
+    .loginRegister .container .character {  display: none !important;}
+    .loginRegister .container .swap{
+        width: 100% !important;
+         text-align: center;  
+        }
+        .swap .btn{
+            margin: 0% !important;
+        }
+}
+@media(min-width:801px) and (max-width:1200px){
+    .container{
+        width: 80% !important;
+        margin-top: 10% !important;  
+        height: 62% !important;
+    }
+    .loginRegister .container .character {  display: none !important;}
+    .loginRegister .container .swap{
+        width: 100% !important;
+         text-align: center;  
+        }
+        .swap .btn{
+            margin: 0% !important;
+        }
+}
