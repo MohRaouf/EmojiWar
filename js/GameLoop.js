@@ -2,23 +2,9 @@ import Player from '/js/player.js';
 import InputHandler from '/js/input.js';
 import Enemy from '/js/enemy.js';
 
-<<<<<<< HEAD
-//Get the GameArea Canvas
-var canvas = document.getElementById("gameScreen");
-
-//disable contect menu
-canvas.oncontextmenu =new Function("return false;")
 import projectile from '/js/projectile.js'
 import { getRandomInt, setLevelConfig } from '/js/methods.js'
 
-//lood shoot sound
-var shootSound=document.getElementById("shoot")
-//var shootSound=$("#shoot") //doesn't work
-=======
-import projectile from '/js/projectile.js'
-import { getRandomInt, setLevelConfig } from '/js/methods.js'
-
->>>>>>> fa321732fc919de12738010ff495f8f4b1324672
 var canvas = document.getElementById("gameScreen"); //Get the GameArea Canvas
 canvas.oncontextmenu =new Function("return false;") //disable context menu
 //Set the Game Area Canvas width and height to match the css info (issue solved)
