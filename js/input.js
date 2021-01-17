@@ -1,3 +1,4 @@
+import {generate_projectile} from '/js/GameLoop.js'
 /* Direction key state */
 export const directions = {
     up: "up",
@@ -52,7 +53,8 @@ export default class InputHandler {
         canvas.addEventListener('mousedown', (e) => {
             if (e.buttons === 1) {
                 this.isShooting = true;
-                console.log(`MouseX: ${this.mouse.x}, MouseY: ${this.mouse.y}`)
+                // console.log(`MouseX: ${this.mouse.x}, MouseY: ${this.mouse.y}`)
+                generate_projectile(this.mouse.x,this.mouse.y);
             }
         })
 

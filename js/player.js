@@ -1,61 +1,77 @@
 //import directions from input to check the move direction
 import { directions } from '/js/input.js'
-import {hitDetected} from '/js/methods.js'
+import { hitDetected } from '/js/methods.js'
 import Enemy from '/js/enemy.js';
-import {getRandomInt} from '/js/methods.js'
+import { getRandomInt, resetIfOutOfScreen, updateLayout } from '/js/methods.js'
 
-export var playerCharacters =[
+export var playerCharacters = [
     {
         size: 120,
         speed: 50,
-        character:document.getElementById("character1"),
-        shootingSound:document.getElementById("shoot1"),
-        hurtSound:document.getElementById("maleHurt"),
-        health:5
+        character: document.getElementById("character1"),
+        shootingSound: document.getElementById("shoot1"),
+        hurtSound: document.getElementById("maleHurt"),
+        health: 50,
+        projectileInfo: {
+            size: 20,
+            speed: 120,
+            character: document.getElementById("projectile1")
+        }
     },
     {
         size: 120,
-        speed: 50,
-        character:document.getElementById("character2"),
-        shootingSound:document.getElementById("shoot1"),
-        hurtSound:document.getElementById("femaleHurt"),
-        health:5
+        speed: 70,
+        character: document.getElementById("character2"),
+        shootingSound: document.getElementById("shoot1"),
+        hurtSound: document.getElementById("femaleHurt"),
+        health: 80,
+        projectileInfo: {
+            size: 30,
+            speed: 140,
+            character: document.getElementById("projectile2")
+        }
     },
     {
         size: 120,
-        speed: 50,
-        character:document.getElementById("character4"),
-        shootingSound:document.getElementById("shoot1"),
-        hurtSound:document.getElementById("maleHurt"),
-        health:5
+        speed: 80,
+        character: document.getElementById("character3"),
+        shootingSound: document.getElementById("shoot1"),
+        hurtSound: document.getElementById("maleHurt"),
+        health: 120,
+        projectileInfo: {
+            size: 30,
+            speed: 200,
+            character: document.getElementById("projectile3")
+        }
     }
-] 
+]
 
 //player class
 export default class Player {
-    constructor(playerIndex,gameScreen) {
-        var character=playerCharacters[playerIndex]
-        this.size = character.size;
-        this.speed = character.speed;
+    constructor(playerIndex, gameScreen) {
+        this.characterInfo = playerCharacters[playerIndex]
+        this.size = this.characterInfo.size;
+        this.speed = this.characterInfo.speed;
         this.position = {
             x: gameScreen.width / 2 - this.size / 2,
             y: gameScreen.height / 2 - this.size / 2
         };
         this.gameWidth = gameScreen.width;
         this.gameHeight = gameScreen.height;
-        this.character = character.character;
-        this.shootingSound = character.shootingSound;
+        this.character = this.characterInfo.character;
+        this.shootingSound = this.characterInfo.shootingSound;
         this.rotation;
         this.scale = 1;
-        this.health = character.health;
+        this.health = this.characterInfo.health;
+        this.projectileIndex = this.characterInfo.projectileIndex;
         this.layout = {
             left: this.position.x - this.size / 2,
             right: this.position.x + this.size / 2,
             top: this.position.y - this.size / 2,
             bottom: this.position.y + this.size / 2
         }
-        this.hurtSound=character.hurtSound
-        this.wave=1;
+        this.hurtSound = this.characterInfo.hurtSound
+        this.wave = 1;
     }
     shoot(isShooting) {
         if (isShooting) {
@@ -66,7 +82,6 @@ export default class Player {
         //generation of projectile should be here
         //VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
     }
-
     //draw method that will be executed in the game loop after move() method to update the position
     draw(context, mousePosition) {
         let scaleX = 1;
@@ -95,17 +110,17 @@ export default class Player {
     isHit(enemies) {
         for (let i = 0; i < enemies.length; i++) {
             //enemy touches the player
-            if(hitDetected(enemies[i],this)){
+            if (hitDetected(enemies[i], this)) {
+                this.decreaseHealth(enemies[i].health);
                 this.hurtSound.play();
-                enemies.splice(i,1);
-                if(enemies.length==0)
-                {
+                enemies.splice(i, 1);
+                if (enemies.length == 0) {
                     this.wave++;
-                    for(let i=0;i<this.wave;i++){
-                        enemies.push(new Enemy(getRandomInt(0,3),gameScreen))
+                    $("#waveNo").html(this.wave);
+                    for (let i = 0; i < this.wave; i++) {
+                        enemies.push(new Enemy(getRandomInt(0, 3), gameScreen))
                     }
                 }
-                console.log(enemies)
             }
         }
     }
@@ -141,17 +156,20 @@ export default class Player {
             if (heldDirections[0] === directions.down) { this.position.y += this.speed / deltaTime; }
             if (heldDirections[0] === directions.up) { this.position.y -= this.speed / deltaTime; }
         }
-
         //set the illusion of a wall for a translated canvas img
-        if (this.position.x - this.size / 2 < 0) { this.position.x = this.size / 2 }
-        if (this.position.y - this.size / 2 < 0) { this.position.y = this.size / 2 }
-        if (this.position.x > this.gameWidth - this.size / 2) { this.position.x = this.gameWidth - this.size / 2 }
-        if (this.position.y > this.gameHeight - this.size / 2) { this.position.y = this.gameHeight - this.size / 2 }
-
+        resetIfOutOfScreen(this)
         //update player character layout
-        this.layout.left = this.position.x - this.size / 2;
-        this.layout.right = this.position.x + this.size / 2;
-        this.layout.top = this.position.y - this.size / 2;
-        this.layout.bottom = this.position.y + this.size / 2;
+        updateLayout(this)
+    }
+    decreaseHealth(value) {
+
+        this.health -= value;
+        let percentage = Math.round((this.health / this.characterInfo.health) * 100);
+        if (percentage > 0) {
+            $("#health").html("%" + percentage).width(percentage+"%")
+        }
+        else{
+            $("#health").html("%0").width('0')
+        }
     }
 }

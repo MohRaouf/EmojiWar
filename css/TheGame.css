@@ -14,11 +14,13 @@
 }
 body{
     background-color: #000;
-    overflow: hidden;
+    overflow: hidden;    
 }
 
 .page{
-    top: 5%;
+    top: 2%;
+        margin-bottom: 0%;
+
     width:96%;
     left: 2%;
     color: #fff;
@@ -52,46 +54,47 @@ body{
     display: inline-block;
     color: bisque;
     font-size: x-large;
+    font-weight: bolder;
 }
 #playerName{
-    margin:1%;
-    margin-left:2%;
-
+    margin-left:1%;
+    margin-bottom: 1%;
 }
 #score{
-    margin-left:25%;
+    margin-left:17%;
+    color: greenyellow;
 }
 #points{
     margin-left:1%;
+    color: greenyellow;
 }
-#health{
-    width: 20%;
-    margin-left:25%;
+#wave{
+    margin-left:17%;
+    color: #ff2d2d;
+}
+#waveNo{
+    margin-left:1%;
+    color: rgb(255, 57, 57);
+}
+#healthContainer{
+    width: 15%;
+    margin-left:20%;
     margin-right:2%;
-
-    background-color: rgb(184, 131, 33);
+}
+#health{  
+    width: 100%;
+    background-color: rgb(255, 21, 0);
+    color:rgb(255, 255, 255);
 }
 #gameScreen{
-    margin-top: 1%;
-    height: 88%;
+    height: 93%;
     width:99.6%;
-    border: 3px rgb(216, 181, 86) solid;
+    border: 3px rgb(216, 138, 86) solid;
     cursor: crosshair;
-    background-image: url("/src/images/level4.png");
+    /* background-image: url("/src/images/mission1.png"); */
     background-size: 100% 100%;
 }
-#player{
-    /* top: 50%;
-    left: 50%; */
-    position: relative;
-    /* transform: translate(-50%, -50%); */
-    margin: 0;
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background-color: rgb(255, 60, 0);
-    border: 3px rgb(216, 181, 86) solid;
-}
+
 img{
     display: none;
 }
