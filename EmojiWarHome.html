@@ -5,27 +5,40 @@
         <link rel="icon" href="src/images/icon.png">
         <link rel="stylesheet" type="text/css" href="css/EmojiWarHome.css">
         <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="stylesheet" href="css/includes/responsive_navbar.css">
         <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
     </head>
     <body>
         <nav>
-           <div class="container" >
-                <div class="nav-logo" onclick="window.location.href='EmojiWarHome.html'">
-                    <p>Emoji<span>war</span></p>
+            <div class="container" >
+                 <div class="nav-logo" onclick="window.location.href='EmojiWarHome.html'">
+                     <p>Emoji<span>war</span></p>
+                 </div>
+                 <div class="nav-items">
+                     <ul>
+                         <li class="active"><a href="EmojiWarHome.html">Home</a></li>
+                         <li class="deactive"><a href="Badges.html">Badges</a></li>
+                         <li class="deactive"><a href="LevelAndCharacter.html">characters</a></li>
+                         <li class="deactive"><a href="AboutUs.html">About</a></li>
+                     </ul>
+                 </div>
+                 <div class="nav-login" id="nav-login">
+                    <button class="btn-login visible" id="btn-login" onclick="window.location.href='loginRegister.html'">Login</button>
+                    <button class="btn-login hidden"  id="btn-logout" >logout</button>
                 </div>
-                <div class="nav-items">
+           <!-- <div class="responsive-nav " >
                     <ul>
                         <li class="active"><a href="EmojiWarHome.html">Home</a></li>
-                        <li class="deactive"><a href="HowToPlay.html">Guide</a></li>
-                        <li class="deactive"><a href="#">Badges</a></li>
-                        <li class="deactive"><a href="AboutUs.html">About</a></li>
+                         <li class="deactive"><a href="Badges.html">Badges</a></li>
+                         <li class="deactive"><a href="LevelAndCharacter.html">characters</a></li>
+                         <li class="deactive"><a href="AboutUs.html">About</a></li>
+                        <li><button class="btn-login visible" id="btn-login" onclick="window.location.href='loginRegister.html'">Login</button></li>
+                        <li><button class="btn-login hidden"  id="btn-logout" >logout</button></li>
                     </ul>
-                </div>
-                <div class="nav-login">
-                    <button class="btn-login">Login</button>
-                </div>
-           </div>
-        </nav>
+                    
+                </div>-->
+            </div>
+         </nav>
         <section class="page">
             <div class="home">
                 <div class="layer">
@@ -50,5 +63,6 @@
         </section>
         <audio id="homeTrack" src="src/sound/hometrack.mp3" loop="loop"></audio>
         <script src="js/EmojiWarHome.js"></script>
+        <script src="js/is_login.js"></script>
     </body>
 </html>

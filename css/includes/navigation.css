@@ -1,0 +1,132 @@
+/************************** navbar *****************/
+nav {
+    overflow: hidden;
+    padding: 20px 10px  ;
+    
+    /* bounce effect */
+    -webkit-animation: bounce 1s ease-out;
+    -moz-animation: bounce 800ms ease-out;
+    -o-animation: bounce 800ms ease-out;
+    animation: bounce 1s ease-out;
+  }
+  .container{
+    font-size: x-large;
+    animation:  1s ease-out;
+  
+  }
+  nav .container{
+    width: 80%;
+    margin: auto;
+  }
+  nav .nav-logo, 
+  nav .nav-items{
+    display: inline-block;
+    float: left;
+  }
+  nav .nav-logo{ 
+    width:25%;
+    cursor: pointer;
+  }
+  
+  /* Nav Bar Logo Effect*/
+  nav .nav-logo p:hover{
+    font-weight: bolder;
+    font-size:xx-large;
+    transition: font-size 0.2s;    
+  }
+  nav .nav-logo p:active{
+  font-weight: bolder;
+  color:rgb(251, 230, 170);   
+  }
+  /**********************/
+  
+  nav .nav-logo p{
+    color:#dbab83;
+    letter-spacing:.9px;
+    font-size: 28px;
+    font-weight: 800;
+  }
+  nav .nav-items{width: 60%;}
+  nav ul li {
+    list-style: none;
+    display: inline-block;
+    padding: 10px 15px;
+  }  
+  nav ul a {
+    color:#dbab83;
+    letter-spacing: 1px;
+    text-decoration: none;
+  }
+  
+  nav ul .active a{
+    color: #fff;
+    font-weight: bold;
+  }
+  nav ul .deactive a{
+  color:#dbab83;
+  letter-spacing: 1px;
+  text-decoration: none;
+  }
+  
+  /* Nav Bar Menu items Effect*/
+  nav ul  a:hover{
+    font-weight: bolder;
+    font-size:larger;
+    transition: font-size 0.2s;
+  }
+  nav ul  a:active{
+    font-weight: bolder;
+    color:rgb(251, 230, 170);
+  }
+  /****************************/
+  
+  nav .nav-login{display: inline-block; float:right;}
+  nav .nav-login button{
+      cursor: pointer;
+      background-color: transparent;
+      border:1px solid#dbab83;
+      padding: 10px 40px;
+      border-radius: 10px;
+      color:#dbab83;
+      font-weight: bold;
+      font-size:large ;
+      background-color:rgba(77,56,36,.9);
+      outline:none;
+  }
+  /* Nav Bar Logoin Button Effect*/
+  nav .nav-login button:hover{
+      background-color: #8a6343;
+      color: #fff;
+      font-size: x-large;
+      transition: font-size 0.2s;
+  }
+  nav .nav-login button:active{
+      background-color: rgba(129, 89, 48, 0.9);
+      border:1px solid#4d3824e6;
+  }
+/**********************Responsive Navbar********************************/
+.hidden{ display: none;}
+.visible{display: block;}
+  @media(max-width:1150px){
+    .nav-items,.nav-login{
+      display: none !important;
+    } 
+    .nav-logo{width:20%;float:left}
+    .responsive-nav {
+      width: 80%;
+      float: left;
+    }
+    .responsive-nav li{
+      width: 100%;
+      float: left;
+
+    }
+    .responsive-nav a:hover{
+      color: #ddd;
+    }
+  }
+  @media(min-width:1151px){
+    .responsive-nav{
+      display: none;
+    }
+  }

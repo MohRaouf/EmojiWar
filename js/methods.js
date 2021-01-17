@@ -1,7 +1,9 @@
 import Enemy from "/js/enemy.js";
 
-export function hitDetected(enemy, player) {
+export function hitDetected(enemy, player, removeTolerance) {
     var tolerance = enemy.size / 4;
+    if (removeTolerance) { tolerance = 0; }
+    console.log(`tolerance is : ${tolerance}`)
     //enemy touches the player from UP_RIGHT
     if (enemy.layout.left + tolerance > player.layout.left &&
         enemy.layout.left + tolerance < player.layout.right &&
@@ -30,6 +32,31 @@ export function hitDetected(enemy, player) {
         enemy.layout.top + tolerance < player.layout.bottom) {
         return true;
     } else { return false; }
+}
+
+export function resetIfOutOfScreen(character) {
+    //set the illusion of a wall for a translated canvas img
+    if (character.position.x - character.size / 2 <= 0) {
+        character.position.x = character.size / 2;
+        return true;
+    } else if (character.position.y - character.size / 2 <= 0) {
+        character.position.y = character.size / 2;
+        return true;
+    }else if (character.position.x >= character.gameWidth - character.size / 2) {
+        character.position.x = character.gameWidth - character.size / 2;
+        return true;
+    }else if (character.position.y >= character.gameHeight - character.size / 2) {
+        character.position.y = character.gameHeight - character.size / 2;
+        return true;
+    }else return false;
+}
+
+export function updateLayout(character) {
+    //update player character layout
+    character.layout.left = character.position.x - character.size / 2;
+    character.layout.right = character.position.x + character.size / 2;
+    character.layout.top = character.position.y - character.size / 2;
+    character.layout.bottom = character.position.y + character.size / 2;
 }
 
 var levelsInfo = [{

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html >
     <head>
-        <title></title>
+        <title>About Us</title>
+        <link rel="icon" href="src/images/icon.png">
         <link rel="stylesheet" type="text/css" href="css/AboutUs.css">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
@@ -9,30 +10,32 @@
     </head>
     <body>
         <nav>
-           <div class="container">
-                <div class="nav-logo">
-                    <p>Emoji<span>war</span></p>
+            <div class="container" >
+                 <div class="nav-logo" onclick="window.location.href='EmojiWarHome.html'">
+                     <p>Emoji<span>war</span></p>
+                 </div>
+                 <div class="nav-items">
+                     <ul>
+                         <li class="deactive"><a href="EmojiWarHome.html">Home</a></li>
+                         <li class="deactive"><a href="Badges.html">Badges</a></li>
+                         <li class="deactive"><a href="LevelAndCharacter.html">characters</a></li>
+                         <li class="active"><a href="AboutUs.html">About</a></li>
+                     </ul>
+                 </div>
+                 <div class="nav-login" id="nav-login">
+                    <button class="btn-login" id="btn-login" onclick="window.location.href='loginRegister.html'">Login</button>
+                    <button class="btn-login hidden"  id="btn-logout" >logout</button>
                 </div>
-                <div class="nav-items">
-                    <ul>
-                        <li><a href="EmojiWarHome.html">Home</a></li>
-                        <li class="active"><a href="#">About</a></li>
-                        <li><a href="#">Guide</a></li>
-                        <li><a href="#">play</a></li>
-                    </ul>
-                </div>
-                <div class="nav-login">
-                    <button class="btn-login">Login</button>
-                </div>
-           </div>
-        </nav>
+            </div>
+         </nav>
         <section class="page">  
+            
             <div class="about">
                <h2>About</h2>
                <p class="styledPar"><span>We Create</span>Asesome Stuff</p>
                <p class="last-p"> We are a team consisting of four people, our work is organized based on cooperation and dividing tasks between us <br>
                     and we will be doing everything by ourselves without using any framework or libraries 
-                    <br/> make with all love .
+                    <br> make with all love.
                 </p>
                 <div class="teams">
                     <div class="item">
@@ -44,7 +47,7 @@
                             <div class="social-icon">
                                 <a href="https://www.linkedin.com/in/aalaa-habib/" target="_blanck"><i class="fab fa-linkedin-in"></i></a>
                                 <a href="https://www.facebook.com/AalaaHabib.ah"  target="_blanck"> <i class="fab fa-facebook-f"></i></a>
-                                <a href="http://Wa.me/201148103836"> <i class="fab fa-whatsapp"  target="_blanck"></i></a>
+                                <a href="#"> <i class="fab fa-whatsapp"  target="_blanck"></i></a>
                                 <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=aalaahabib.ah@gmail.com"  target="_blanck"> <i class="far fa-envelope"></i></a>
                             </div>
                         </div>
@@ -58,7 +61,7 @@
                             <div class="social-icon">
                                 <a href="https://www.linkedin.com/in/mohamed-abdelraouf-687aa9122/"  target="_blanck"><i class="fab fa-linkedin-in"></i></a>
                                 <a href="#"  target="_blanck"> <i class="fab fa-facebook-f"></i></a>
-                                <a href="http://Wa.me/201286621760"  target="_blanck"> <i class="fab fa-whatsapp"></i></a>
+                                <a href="#"  target="_blanck"> <i class="fab fa-whatsapp"></i></a>
                                 <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=moh.raoufff@gmail.com"  target="_blanck"> <i class="far fa-envelope"></i></a>
                             </div>
                         </div>
@@ -72,7 +75,7 @@
                             <div class="social-icon">
                                 <a href="https://www.linkedin.com/in/may-esmail/" target="_blanck"><i class="fab fa-linkedin-in"></i></a>
                                 <a href="#" target="_blanck"> <i class="fab fa-facebook-f"></i></a>
-                                <a href="http://Wa.me/201205451191" target="_blanck"> <i class="fab fa-whatsapp"></i></a>
+                                <a href="#" target="_blanck"> <i class="fab fa-whatsapp"></i></a>
                                 <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=mayesmail12998@gmail.com" target="_blanck"> <i class="far fa-envelope"></i></a>
                             </div>
                         </div>
@@ -86,7 +89,7 @@
                             <div class="social-icon">
                                 <a href="https://www.linkedin.com/in/ibrahim-moh-salama/" target="_blanck"><i class="fab fa-linkedin-in"></i></a>
                                 <a href="#" target="_blanck"> <i class="fab fa-facebook-f"></i></a>
-                                <a href="http://Wa.me/201062973703" target="_blanck"> <i class="fab fa-whatsapp"></i></a>
+                                <a href="#" target="_blanck"> <i class="fab fa-whatsapp"></i></a>
                                 <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=Ibrah.salama@outlook.com" target="_blanck"> <i class="far fa-envelope"></i></a>
                             </div>
                         </div>
@@ -98,6 +101,6 @@
 
         <script src="js/all.min.js"></script>
         <script src="js/AboutUs.js"></script>
-        
+        <script src="js/is_login.js"></script>
     </body>
 </html>
