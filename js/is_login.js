@@ -2,8 +2,12 @@ let loginBtn  = document.getElementById('btn-login'),
     loginUser = document.getElementById('nav-login'),
     logoutBtn = document.getElementById('btn-logout'),
     players   = [] ;
+<<<<<<< HEAD
+var current_player,selected_character,selected_level;
+=======
 
 var current_player;
+>>>>>>> master
 //get Data from local storage
     
 function is_Login() { 
@@ -30,6 +34,7 @@ function logout() {
     {
         players[i].is_login =0;
         current_player=undefined;
+        window.location.reload();
     }
     localStorage.setItem("userData" , JSON.stringify(players))
     console.log(players)

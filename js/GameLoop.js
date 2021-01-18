@@ -3,7 +3,13 @@ import InputHandler from '/js/input.js';
 import Enemy from '/js/enemy.js';
 import projectile from '/js/projectile.js'
 import { getRandomInt, setLevelConfig } from '/js/methods.js'
+<<<<<<< HEAD
+//lood shoot sound
+var shootSound=document.getElementById("shoot")
+//var shootSound=$("#shoot") //doesn't work
+=======
 
+>>>>>>> master
 var canvas = document.getElementById("gameScreen"); //Get the GameArea Canvas
 canvas.oncontextmenu = new Function("return false;") //disable context menu
 
@@ -17,8 +23,8 @@ var gameScreen = { width: canvas.width, height: canvas.height } //Get the Game A
 let gameLevel = 1; //set these vars from local storage
 let character = 1; //set these vars from local storage
 
-setLevelConfig(gameLevel); //set chosen game Level
-let player = new Player(character, gameScreen); //Create the player with Character index=0 
+setLevelConfig(selected_level); //set chosen game Level
+let player = new Player(selected_character, gameScreen); //Create the player with Character index=0 
 var enemyArray = [new Enemy(getRandomInt(0, 3), gameScreen)]; // Create array of Enemies 
 var projectiles = [];
 //Instance of InputHander to Handle the Key strokes
@@ -31,7 +37,8 @@ player.draw(context, inputHandler.mouse);
 export function generate_projectile(mouseX, mouseY) {
     projectiles.push(new projectile(player, { x: mouseX, y: mouseY }));
 }
-// gameloop 
+
+/**********************************gameloop*********************************** */  
 let lastTime = 0;
 function gameLoop(timeStamp) {
     // delta time to 

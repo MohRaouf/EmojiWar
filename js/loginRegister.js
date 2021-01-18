@@ -58,7 +58,7 @@ function loginPage(){
         current_player=one_player;
         localStorage.setItem("userData" , JSON.stringify(players))
         e.preventDefault();
-        window.location.href='EmojiWarHome.html';
+        window.location.href='index.html';
     }
     else {
         for(var i=0;i<players.length ;i++){
@@ -78,7 +78,7 @@ function loginPage(){
         current_player=one_player;
         localStorage.setItem("userData" , JSON.stringify(players))
         e.preventDefault();
-        window.location.href='EmojiWarHome.html';
+        window.location.href='index.html';
     }
     
     } registerBtn.addEventListener('click',Register);
@@ -107,7 +107,7 @@ function Login(e){
             e.preventDefault();
         }
         else{
-            window.location.href='EmojiWarHome.html';
+            window.location.href='index.html';
             e.preventDefault();
         }
     }

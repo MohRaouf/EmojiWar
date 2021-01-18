@@ -1,3 +1,208 @@
+<<<<<<< HEAD
+@import "includes/navigation.css";
+@import "includes/scrollbar.css";
+*{
+    padding: 0;
+    margin: 0;
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+}
+body{
+    background-image: url('../src/images/pureBg.png');
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.parent{
+    width: 100%;
+    height: 102vh;
+    background: rgba(0,0,0,0.5) ;
+}
+nav{
+    background-color: rgba(0,0,0,0.85);
+}
+.welcome_message{
+    width: 60%;
+    height: 13%;
+    background: rgba(0,0,0,0.8) ;
+    margin-left: 20%;
+    margin-top: 2%;
+    margin-bottom: 0px;
+    text-align: center;
+    padding:20px;
+    box-sizing: border-box;
+    position: absolute;
+    font-weight: bolder;
+    letter-spacing: 2px;
+}
+.welcome_message span{
+    text-transform: uppercase;
+    margin-bottom: 1px;
+}
+.welcome_message .text1{
+    font-size: 30px;
+    position: relative;
+    animation: text 3s 1;
+    display: block;
+}
+.welcome_message .text2, .welcome_message .text3, .welcome_message .text4{
+    font-size: 17px;
+    display: inline-block;
+    width: 150px;
+} 
+.welcome_message span label, .playing_options label{
+    color:#dbab83;
+}
+.playing_options{
+    width: 60%;
+    height: 68%;
+    background: rgba(0,0,0,0.8) ;
+    margin-left: 20%;
+    margin-top: 9%;
+    text-align: center;
+    padding:20px;
+    box-sizing: border-box;
+    font-weight: bolder;
+    letter-spacing: 2px;
+}
+form label, form p{
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+form p{
+    font-size: 20px;
+    margin-top: 15px;}
+input[type=text] {
+    border-color:#dbab83;
+    border-radius: 15px;
+    border-width: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 25px;
+    width: 200px;
+    color: #4e2300;
+    font-size: 22px;
+    font-weight: 900;
+    text-align: center;
+}
+.available_Emojis, .levels{
+    width: 99%;
+    height: 35vh;
+    box-sizing: border-box;
+    display: inline-block;
+    margin-top: 10px;
+    overflow: hidden;
+}
+.available_Emojis{
+    background-image: url('../src/images/pattern3.png');
+    background-size:10% 120%;
+    background-repeat: repeat;
+}
+.levels{
+    background-image: url('../src/images/pattern4.jpg');
+    background-size:50% 120%;
+    background-repeat: repeat;
+
+}
+.emo, .lev{
+    display: inline-block;
+    width: 25%;
+    height: 28vh;
+    margin-right: 3%;
+    margin-left: 3%;
+    margin-top: 4vh;
+}
+.emo .overlay,.lev .overlay{
+    top:0;left:0;right: 0; bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    visibility: visible;
+  }
+.emo .overlay{background-color:rgba(0, 0, 0, 0.5);}
+.lev .overlay{background-color:rgba(0, 0, 0, 0.6);}
+.emo .overlay p, .lev .overlay p{font-size: 60px;}
+.emo .overlay h6, .lev .overlay h6{color: rgb(219, 219, 219);}  
+.emo:hover, .lev:hover{
+    width: 29%;
+    height: 31vh;
+    border: 0.25px solid #db9b66;
+    box-sizing: border-box;
+    cursor: pointer;
+    margin-top: 2vh;
+    padding: 0;
+}
+.fa, .fa-lock{
+    color: rgba(15, 15, 15, 0.9);
+    margin-top: 20%;
+    margin-bottom: 20%;
+}
+input[type=button],input[type=submit]{
+    height: 45px;
+    margin-top: 2.5%;
+    margin-bottom: 5%;
+    border-color:#dbab83;
+    border-width: 3px;
+    color: #fff;
+    background-color: black;
+    font-size: 22px;
+    font-weight: 900;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+input[type=button]:hover,input[type=submit]:hover{
+    box-shadow: 0 5px 10px 0 #8a6343 inset,0 5px 10px 0 #8a6343 ,0 5px 10px 0 #8a6343 inset,0 5px 10px 0 #8a6343;
+    text-shadow: 0 0 3px #8a6343 ,0 0 3px #8a6343;
+}
+#select_level{
+    display: block;
+    width: 60%;
+    margin-left: 20%;
+}
+#select_level:hover{
+    width: 66%;
+    margin-left: 17%;
+    font-size: 24px;
+}
+#changeCharacter{
+    width: 45%;
+    margin-left: 2.5%;
+}
+#changeCharacter:hover{
+    width: 48%;
+    margin-left: 0%;
+    font-size: 23px;
+}
+#play{
+    width: 45%;
+    margin-left: 2.5%;
+}
+#play:hover{
+    width: 48%;
+    font-size: 23px;
+}
+@keyframes text{
+    0%{
+        color: black;
+        margin-bottom: -40px;
+    }
+    30%{
+        letter-spacing: 21px;
+        margin-bottom: -40%;
+    }
+    95%{
+        letter-spacing: 2px;
+        margin-bottom: -40%;
+    }
+}
+=======
 @import "includes/navigation.css";
 @import "includes/scrollbar.css";
 /************************** Basics *****************/
@@ -213,3 +418,4 @@ input[type=button]:hover,input[type=submit]:hover{
         margin-bottom: -40%;
     }
 }
+>>>>>>> master
