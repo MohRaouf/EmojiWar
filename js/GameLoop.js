@@ -13,9 +13,6 @@ canvas.height = canvas.getBoundingClientRect().height;
 var context = canvas.getContext("2d"); //Get the Canvas Context of the game area 
 var gameScreen = { width: canvas.width, height: canvas.height } //Get the Game Area boundary
 
-let gameLevel = 1; //set these vars from local storage
-let character = 1; //set these vars from local storage
-
 setLevelConfig(selected_level); //set chosen game Level
 let player = new Player(selected_character, gameScreen); //Create the player with Character index=0 
 var enemyArray = [new Enemy(getRandomInt(0, 3), gameScreen)]; // Create array of Enemies 
