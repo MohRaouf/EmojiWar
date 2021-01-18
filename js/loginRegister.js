@@ -46,6 +46,7 @@ function loginPage(){
     if(players.length==0){
             one_player = {
             userName     : nameInput.value,
+
             lastNickname : nameInput.value,
             badges       : 1,
             level        : '1',
@@ -65,6 +66,7 @@ function loginPage(){
         }
         one_player = {
             userName     : nameInput.value,
+
             lastNickname : nameInput.value,
             badges       : 1,
             level        : '1',
@@ -92,6 +94,7 @@ function Login(e){
         let eluserMwgood = false;
         for(var i=0;i<players.length ;i++){
             if(players[i].userName == userloginName.value){
+
                 current_player=players[i];
                 eluserMwgood = true; 
                 players[i].is_login=1;
@@ -109,3 +112,4 @@ function Login(e){
         }
     }
  }loginBtn.addEventListener('click',Login)
+

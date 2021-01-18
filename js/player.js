@@ -32,6 +32,7 @@ export var playerCharacters = [
     },
     {
         size: 120,
+
         speed: 80,
         character: document.getElementById("character3"),
         shootingSound: document.getElementById("shoot1"),
@@ -159,6 +160,7 @@ export default class Player {
         resetIfOutOfScreen(this)
         //update player character layout
         updateLayout(this)
+
     }
     decreaseHealth(value) {
 
