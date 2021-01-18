@@ -2,7 +2,7 @@ import Player from '/js/player.js';
 import InputHandler from '/js/input.js';
 import Enemy from '/js/enemy.js';
 import projectile from '/js/projectile.js'
-import { getRandomInt, setLevelConfig } from '/js/methods.js'
+import { getRandomInt, setLevelConfig ,containerResult} from '/js/methods.js'
 
 function getParameterByName(name, url) {
     if (!url)
@@ -32,7 +32,7 @@ var projectiles = [];
 //Instance of InputHander to Handle the Key strokes
 var inputHandler = new InputHandler(canvas, player);
 var particles = [];
-
+player.winFlag=0;
 //First Draw of the Player
 player.draw(context, inputHandler.mouse);
 
@@ -48,9 +48,14 @@ function gameLoop(timeStamp) {
         levelTrack.pause();
         if (ifWin == 1) {
             //win
+            document.getElementById("winTrack").play();
+            containerResult((levelTrack+1));
+
         }
         else {
             //lost
+            document.getElementById("loseTrack").play();
+            containerResult(-1);
         }
     }
     else {

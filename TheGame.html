@@ -28,12 +28,12 @@
                     </div>
                 </div>
 
-                <img id="player" src="src/images/character1.png" alt="">
+                <img class="displayNone" id="player" src="src/images/character1.png" alt="">
                 <audio id="shoot" src="src/sound/shoot.wav"></audio>
 
-                <img id="character1" src="src/images/character1.png" alt="">
-                <img id="character2" src="src/images/character2.png" alt="">
-                <img id="character3" src="src/images/character3.png" alt="">
+                <img class="displayNone" id="character1" src="src/images/character1.png" alt="">
+                <img class="displayNone" id="character2" src="src/images/character2.png" alt="">
+                <img class="displayNone" id="character3" src="src/images/character3.png" alt="">
 
                 <audio id="shoot1" src="src/sound/shoot.wav"></audio>
                 <audio id="shoot2" src="src/sound/shoot.wav"></audio>
@@ -45,29 +45,95 @@
                 <audio id="enemyhit" src="src/sound/enemyhit.mp3"></audio>
                 <audio id="enemydie" src="src/sound/enemydie.mp3"></audio>
 
-                <img src="src/images/enmies/enemy1.png" alt="enemy1" id="enemy1">
-                <img src="src/images/enmies/enemy2.png" alt="enemy2" id="enemy2">
-                <img src="src/images/enmies/enemy3.png" alt="enemy3" id="enemy3">
+                <img class="displayNone" src="src/images/enmies/enemy1.png" alt="enemy1" id="enemy1">
+                <img class="displayNone" src="src/images/enmies/enemy2.png" alt="enemy2" id="enemy2">
+                <img class="displayNone" src="src/images/enmies/enemy3.png" alt="enemy3" id="enemy3">
 
-                
-                <img id="projectile1" src="src/images/projectile1.png" alt="projectile1">
-                <img id="projectile2" src="src/images/projectile2.png" alt="projectile2">
-                <img id="projectile3" src="src/images/projectile3.png" alt="projectile3">
+
+                <img class="displayNone" id="projectile1" src="src/images/projectile1.png" alt="projectile1">
+                <img class="displayNone" id="projectile2" src="src/images/projectile2.png" alt="projectile2">
+                <img class="displayNone" id="projectile3" src="src/images/projectile3.png" alt="projectile3">
 
                 <canvas id="gameScreen"></canvas>
-              
+
                 <audio id="trackLevel1" src="src/sound/mission1.mp3"></audio>
                 <audio id="trackLevel2" src="src/sound/mission2.mp3"></audio>
                 <audio id="trackLevel3" src="src/sound/mission3.mp3"></audio>
 
-                <img id="mapLevel1" src="src/images/level1.png" alt="">
-                <img id="mapLevel2" src="src/images/level2.png" alt="">
-                <img id="mapLevel3" src="src/images/level3.png" alt="">
+                <audio id="winTrack" src="src/sound/Congrat.mp3"></audio>
+                <audio id="loseTrack" src="src/sound/lose.mp3"></audio>
+
+
+                <img class="displayNone" id="mapLevel1" src="src/images/level1.png" alt="">
+                <img class="displayNone" id="mapLevel2" src="src/images/level2.png" alt="">
+                <img class="displayNone" id="mapLevel3" src="src/images/level3.png" alt="">
 
             </div>
         </div>
     </section>
+
+    <!----------------------------------------CONTAINER --------------------------------------->
+    <div class="container">
+        <!----------------------------------------WINNER CAPTION--------------------------------------->
+        <div class="winnerMsg">
+            <br> <br>
+            <p class="caption"><span>C</span>ongratulation <br><span>Y</span>ou <span>W</span>on</p>
+        </div>
+        <br>
+        <!----------------------------------------BRONZE WINNER--------------------------------------->
+        <div class="winner">
+            <figure class="bronze">
+                <img src="src/images/BRONZE.png" alt="">
+                <br><br>
+                <figcaption><span>Y</span>ou <span>G</span>ot <span>B</span>ronze <span>R</span>ank</figcaption>
+            </figure>
+            <!----------------------------------------SILVER WINNER--------------------------------------->
+            <figure class="silver">
+                <img src="src/images/SILVER.png" alt="Rnak Silver">
+                <br><br>
+                <figcaption><span>Y</span>ou <span>G</span>ot <span>S</span>ilver <span>R</span>ank</figcaption>
+            </figure>
+            <!----------------------------------------GOLD WINNER--------------------------------------->
+            <figure class="gold">
+                <img src="src/images/GOLD.png" alt="Rnak Gold">
+                <br><br>
+                <figcaption><span>Y</span>ou <span>G</span>ot <span>G</span>old <span>R</span>ank</figcaption>
+            </figure>
+            <!----------------------------------------PLATINUM WINNER--------------------------------------->
+            <figure class="platinum">
+                <img src="src/images/PLATINUM.png" alt="Rnak Platinum">
+                <br><br>
+                <figcaption><span>Y</span>ou <span>G</span>ot <span>P</span>latinum <span>R</span>ank</figcaption>
+            </figure>
+        </div>
+        <!----------------------------------------DIV LOOSER--------------------------------------->
+        <div class="looser">
+            <!----------------------------------------LOOSER CAPTION--------------------------------------->
+            <div>
+                <p class="loos2"><span>Y</span>ou <span>L</span>oos<br><span>T</span>ry </span>A</span>gain</p>
+            </div>
+            <!----------------------------------------LOOSER TRAY AGAIN BADGE--------------------------------------->
+            <br><br>
+            <div class="loos">
+                <figure>
+                    <img class="tryAgain" src="src/images/play-again.png" alt="">
+                    <br><br>
+                    <figcaption><span>T</span>ry <span>A</span>gain <span>N</span>ever <span>G</span>ive <span>U</span>p
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+        <div>
+            <br><br>
+            <button class="homeBtn" onclick="location.href='index.html'">Home</button>
+            <button class="nextlevelBtn" onclick="location.href='LevelAndCharacter.html'">Next Level</button>
+            <button class="tryagainBtn" onclick="location.href='TheGame.html'">Try Again</button>
+        </div>
+    </div>
+
+    <script src="js/confetti.js"></script>
     <script type="module" src="js/GameLoop.js"></script>
+
 </body>
 
 </html>
