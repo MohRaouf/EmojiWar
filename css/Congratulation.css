@@ -1,0 +1,120 @@
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: black;
+    color: whitesmoke;
+}
+
+/*******************************P ANIMATION*************************************/
+
+@-webkit-keyframes congratulation {
+    0% {
+        letter-spacing: 1em;
+        opacity: 0;
+    }
+    20% {
+        letter-spacing: normal;
+        opacity: 1;
+    }
+    80% {
+        letter-spacing: normal;
+        opacity: 1;
+    }
+    100% {
+        letter-spacing: 1em;
+        opacity: 0;
+    }
+}
+
+div p {
+    font-size: 30px;
+    text-shadow: 1px 1px 3px #dbab83;
+    animation-name: congratulation;
+    animation-duration: 7s;
+    animation-iteration-count: infinite;
+}
+
+span {
+    color: #dbab83;
+}
+
+/******************************* CONTAINER **************************************/
+
+.container {
+    position: absolute;
+    border: 5px solid #dbab83;
+    top: 22%;
+    left: 30%;
+    text-align: center;
+    width: 40%;
+    height: 57%;
+    outline: 3px dashed saddlebrown;
+    border-radius: 10px;
+}
+
+/******************************* IMAGES **************************************/
+
+.container img {
+    position: relative;
+    width: 27%;
+}
+
+/******************************* IMAGES:HOVER **************************************/
+
+img:hover {
+    width: 30%;
+    transition: 0.2s;
+}
+
+/******************************* BUTTONS<HOME,NEXT LEVEL> **************************************/
+
+div button {
+    position: relative;
+    background-color: transparent;
+    border: 1px solid#dbab83;
+    padding: 10px 30px;
+    border-radius: 10px;
+    color: #dbab83;
+    font-weight: bold;
+    transition: all 1s;
+}
+
+/******************************* BUTTONS<HOME,NEXT LEVEL> :HOVER **************************************/
+
+div button:hover {
+    background-color: #8a6343;
+    color: #fff;
+    font-size: medium;
+    transition: font-size 0.2s;
+}
+
+/********************************WINNER DIV ***********************************/
+
+/* WINNER OF FIRST LEVEL */
+
+.winner .bronze {
+    display: block;
+}
+
+/* WINNER OF FIRST LEVEL */
+
+.winner .silver {
+    display: none;
+}
+
+/* WINNER OF SECOND LEVEL */
+
+.winner .gold {
+    display: none;
+}
+
+/* WINNER OF THIRD LEVEL */
+
+.winner .platinum {
+    display: none;
+}
+
+/********************************LOOSER DIV***********************************/
+
+.looser {
+    display: none;
+}
