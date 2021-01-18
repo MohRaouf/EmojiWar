@@ -49,10 +49,10 @@ function loginPage(){
 
             lastNickname : nameInput.value,
             badges       : 1,
-            level        : '1',
+            level        : 1,
             score        : 0,
-            maxCharacter :'1',
-            is_login     : 1,
+            maxCharacter :1,
+            is_login     :1,
         }
         players.push(one_player);
         current_player=one_player;
@@ -69,9 +69,9 @@ function loginPage(){
 
             lastNickname : nameInput.value,
             badges       : 1,
-            level        : '1',
+            level        : 1,
             score        : 0,
-            maxCharacter :'1',
+            maxCharacter : 1,
             is_login     : 1,
         }
         players.push(one_player);

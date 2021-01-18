@@ -12,9 +12,11 @@ function getParameterByName(name, url) {
         results = regex.exec(url);
     if (!results) return 0;
     if (!results[2]) return 0;
-    return parseInt(decodeURIComponent(results[2].replace(/\+/g, ' '))[0]);
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
-
+var player_character=parseInt(getParameterByName("character", window.location)[0])+1,
+    player_level=parseInt(getParameterByName("level", window.location)[0])+1,
+    player_name=getParameterByName("username",window.location);
 var canvas = document.getElementById("gameScreen"); //Get the GameArea Canvas
 canvas.oncontextmenu = new Function("return false;") //disable context menu
 
@@ -25,14 +27,16 @@ canvas.height = canvas.getBoundingClientRect().height;
 var context = canvas.getContext("2d"); //Get the Canvas Context of the game area 
 var gameScreen = { width: canvas.width, height: canvas.height } //Get the Game Area boundary
 
-var levelTrack = setLevelConfig(getParameterByName("level", window.location)); //set chosen game Level
-let player = new Player(getParameterByName("character", window.location), gameScreen); //Create the player with Character index=0 
+var levelTrack = setLevelConfig(player_level); //set chosen game Level
+let player = new Player(player_character, gameScreen); //Create the player with Character index=0 
 var enemyArray = [new Enemy(getRandomInt(0, 3), gameScreen)]; // Create array of Enemies 
 var projectiles = [];
 //Instance of InputHander to Handle the Key strokes
 var inputHandler = new InputHandler(canvas, player);
 var particles = [];
-
+var players_array=JSON.parse(localStorage.getItem("userData"));
+console.log(players_array);
+console.log(localStorage.getItem("userData"));
 //First Draw of the Player
 player.draw(context, inputHandler.mouse);
 
@@ -45,14 +49,41 @@ let lastTime = 0;
 function gameLoop(timeStamp) {
     let ifWin = player.winFlag;
     if (ifWin == 1 || ifWin == 0) {
-        levelTrack.pause();
+        //levelTrack.pause();
         if (ifWin == 1) {
             //win
+            /************************Update Local Storage**********************/
+            for(let i=0;i<players_array.length;i++){
+                if(players_array[i].userName==player_name){
+                    let cur_level=players_array[i].level
+                        ,cur_character=players_array[i].maxCharacter
+                        ,cur_badges=players_array[i].badges;
+                    if(cur_level<3)
+                        cur_level++;
+                    else{
+                        if(cur_character<3){
+                            cur_character++;
+                            cur_level=1;
+                        }
+                    }
+                    if(cur_badges<4)
+                        cur_badges++;
+                    players_array[i].level=cur_level;
+                    players_array[i].maxCharacter=cur_character;
+                    players_array[i].badges=cur_badges;
+                    break;                    
+                }    
+            }
+            localStorage.setItem("userData" , JSON.stringify(players_array));
+            console.log(players_array);
+            console.log(localStorage.getItem("userData"));
+
         }
         else {
             //lost
         }
     }
+
     else {
         // delta time to 
         let deltaTime = timeStamp - lastTime;
