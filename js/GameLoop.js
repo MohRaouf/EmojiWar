@@ -2,7 +2,7 @@ import Player from '/js/player.js';
 import InputHandler from '/js/input.js';
 import Enemy from '/js/enemy.js';
 import projectile from '/js/projectile.js'
-import { getRandomInt, setLevelConfig } from '/js/methods.js'
+import { getRandomInt, setLevelConfig ,containerResult} from '/js/methods.js'
 
 function getParameterByName(name, url) {
     if (!url)
@@ -34,9 +34,8 @@ var projectiles = [];
 //Instance of InputHander to Handle the Key strokes
 var inputHandler = new InputHandler(canvas, player);
 var particles = [];
+
 var players_array=JSON.parse(localStorage.getItem("userData"));
-console.log(players_array);
-console.log(localStorage.getItem("userData"));
 //First Draw of the Player
 player.draw(context, inputHandler.mouse);
 
@@ -52,6 +51,9 @@ function gameLoop(timeStamp) {
         //levelTrack.pause();
         if (ifWin == 1) {
             //win
+            document.getElementById("winTrack").play();
+            containerResult((levelTrack+1));
+            confetti.start();
             /************************Update Local Storage**********************/
             for(let i=0;i<players_array.length;i++){
                 if(players_array[i].userName==player_name){
@@ -75,12 +77,11 @@ function gameLoop(timeStamp) {
                 }    
             }
             localStorage.setItem("userData" , JSON.stringify(players_array));
-            console.log(players_array);
-            console.log(localStorage.getItem("userData"));
-
         }
         else {
             //lost
+            document.getElementById("loseTrack").play();
+            containerResult(-1);
         }
     }
 
