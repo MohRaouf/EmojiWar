@@ -17,9 +17,9 @@ var maxlevel;
 function change_selected_emoji(index){
     selected_emoji=index;
     return function(){
-        if(index+1<parseInt(current_player.maxCharacter))
+        if(index+1<current_player.maxCharacter)
             maxlevel=3;
-        else maxlevel=parseInt(current_player.level);
+        else maxlevel=current_player.level;
         for(let i=0;i<3;i++){
             if(i<maxlevel){
                 overlays[i+3].style.visibility="hidden";
@@ -116,7 +116,6 @@ function choose_character(){
     msg[0].innerHTML='<label>C</label>hoose <label>E</label>moji <label>t</label>o <label>E</label>nter <label>t</label>he <label>w</label>ar';
 }
 function play(e){
-    console.log(selected_emoji+" -- "+selected_map);
     if(nick_name.value==""||selected_map==-1)
         e.preventDefault();
     else{
@@ -127,8 +126,9 @@ function play(e){
             }
         }
         localStorage.setItem("userData" , JSON.stringify(players));
-        document.getElementsByName("character")[0].value=""+selected_emoji;
-        document.getElementsByName("level")[0].value=""+selected_map;
+        document.getElementsByName("character")[0].value=+selected_emoji;
+        document.getElementsByName("level")[0].value=selected_map;
+        document.getElementsByName("username")[0].value=current_player.userName;
     }
 }
 
@@ -138,7 +138,7 @@ if(typeof current_player === "object"){
     select_map_btn.disabled = true;
     play_btn.disabled = true;
     console.log(current_player.maxCharacter);
-    for(let i=0;i<parseInt(current_player.maxCharacter);i++){
+    for(let i=0;i<current_player.maxCharacter;i++){
         emoChoises[i].addEventListener("click",change_selected_emoji(i));
         overlays[i].style.visibility="hidden";
     }
