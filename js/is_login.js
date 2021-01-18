@@ -2,8 +2,8 @@ let loginBtn  = document.getElementById('btn-login'),
     loginUser = document.getElementById('nav-login'),
     logoutBtn = document.getElementById('btn-logout'),
     players   = [] ;
-var current_player;
 
+var current_player;
 //get Data from local storage
     
 function is_Login() { 
@@ -14,6 +14,7 @@ function is_Login() {
        if(players[i].is_login ==1) {
             eluserMwgood=true;
             current_player=players[i];
+
        }
     }
     if(eluserMwgood==true){
@@ -38,3 +39,4 @@ function logout() {
     logoutBtn.classList.remove('visible');
     logoutBtn.classList.add('hidden');
 }logoutBtn.addEventListener("click",logout);
+
