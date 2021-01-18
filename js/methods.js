@@ -105,25 +105,21 @@ export function containerResult(score) {
         gold.style.display = 'none';
         platinum.style.display = 'none';
         bronze.style.display = 'block';
-        confetti.start();
     } else if (score == 1) {
         bronze.style.display = 'none';
         gold.style.display = 'none';
         platinum.style.display = 'none';
         silver.style.display = 'block';
-        confetti.start();
     } else if (score == 2) {
         bronze.style.display = 'none';
         silver.style.display = 'none';
         platinum.style.display = 'none';
         gold.style.display = 'block';
-        confetti.start();
     } else if (score == 3) {
         bronze.style.display = 'none';
         silver.style.display = 'none';
         gold.style.display = 'none';
         platinum.style.display = 'block';
-        confetti.start();
     } else if (score == -1) {
         winnerMsg.style.display = 'none';
         bronze.style.display = 'none';

@@ -32,7 +32,9 @@ var projectiles = [];
 //Instance of InputHander to Handle the Key strokes
 var inputHandler = new InputHandler(canvas, player);
 var particles = [];
-player.winFlag=0;
+
+// player.winFlag=1;
+
 //First Draw of the Player
 player.draw(context, inputHandler.mouse);
 
@@ -50,7 +52,7 @@ function gameLoop(timeStamp) {
             //win
             document.getElementById("winTrack").play();
             containerResult((levelTrack+1));
-
+            confetti.start();
         }
         else {
             //lost

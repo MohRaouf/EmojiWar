@@ -47,9 +47,11 @@ export default class projectile {
                             //Win Msg & set the winFlag to Pause the Game
                             player.winFlag=1;
                         }
-                        $("#waveNo").html(player.wave);
-                        for (let j = 0; j < player.wave; j++) {
-                            enemies.push(new Enemy(getRandomInt(0, 3), gameScreen));
+                        else{
+                            $("#waveNo").html(player.wave);
+                            for (let j = 0; j < player.wave; j++) {
+                                enemies.push(new Enemy(getRandomInt(0, 3), gameScreen));
+                            }
                         }
                         break;
                     }

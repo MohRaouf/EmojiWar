@@ -78,7 +78,7 @@ body{
 }
 #healthContainer{
     width: 15%;
-    margin-left:20%;
+    margin-left:15%;
     margin-right:2%;
 }
 #health{  
@@ -87,8 +87,8 @@ body{
     color:rgb(255, 255, 255);
 }
 #gameScreen{
-    height: 93%;
-    width:99.6%;
+    height: 92%;
+    width:99%;
     border: 3px rgb(216, 138, 86) solid;
     cursor: crosshair;
     /* background-image: url("/src/images/mission1.png"); */
