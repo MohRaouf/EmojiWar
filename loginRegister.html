@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="" href="css/loginRegsiter.css">
+</head>
+<body>
+    <section class="loginRegister">
+        <div class="container">
+            <div class="overlay">
+                <div class="character">
+                    <img src="src/images/character2.png" alt="" id="character">
+                </div>
+                <div class="swap">
+                    <div id="register" class="hidden">
+                        <h2>Rigster</h2>
+                        <p>to save your information every time</p>
+                        <form action="">
+                            <div class="form-group">
+                                <input type="text" name="name" id="register-name" placeholder="your name" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label for="agree" id="error_register" style="color:brown;font-weight: bold; font-size: 20px;"></label>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" id="register-btn" name="submit" value="Sing up"class="btn active">
+                            </div>
+                            <p>Already Have an account ? <span class="login-nav" id="login-nav">Login</span></p> 
+                        </form>
+                    </div>
+                    <div id="login" class="visible">
+                        <h2>Login</h2>
+                        <p>we miss you,Welecome back again </p>
+                        <form action="">
+                            <div class="form-group">
+                                <input type="text" name="name" id="userName" placeholder="your name" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label for="agree" id="error_login" style="color:brown;font-weight: bold; font-size: 20px;"></label>
+                            </div>
+                            <div class="form-group">
+                                <input type="button" name="login" id=login-btn value="sing in" class="btn active">
+                            </div>
+                            <p>Don't have an account? <span class="login-nav" id="register-nav">register</span></p> 
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <script src="js/loginRegister.js"></script>
+</body>
+</html>
