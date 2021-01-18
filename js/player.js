@@ -15,7 +15,7 @@ export var playerCharacters = [
             size: 20,
             speed: 120,
             character: document.getElementById("projectile1")
-        }
+        },
     },
     {
         size: 120,
@@ -50,6 +50,7 @@ export var playerCharacters = [
 export default class Player {
     constructor(playerIndex, gameScreen) {
         this.characterInfo = playerCharacters[playerIndex];
+        this.winFlag = -1;
         this.size = this.characterInfo.size;
         this.speed = this.characterInfo.speed;
         this.position = {
@@ -111,14 +112,25 @@ export default class Player {
         for (let i = 0; i < enemies.length; i++) {
             //enemy touches the player
             if (hitDetected(enemies[i], this)) {
-                this.decreaseHealth(enemies[i].health);
-                this.hurtSound.play();
-                enemies.splice(i, 1);
-                if (enemies.length == 0) {
-                    this.wave++;
-                    $("#waveNo").html(this.wave);
-                    for (let i = 0; i < this.wave; i++) {
-                        enemies.push(new Enemy(getRandomInt(0, 3), gameScreen))
+                if (this.isPlayerDead(enemies[i].health)) { // decrease player health check if dead
+                    //Lost Msg & set the winFlag to Pause the Game
+                    this.winFlag = 0; //you've lost
+                }
+                else {
+                    this.hurtSound.play();
+                    enemies.splice(i, 1);
+                    if (enemies.length == 0) {
+                        this.wave++;
+                        if (this.wave > 10) {
+                            //Win Msg & set the winFlag to Pause the Game
+                            this.winFlag = 1;   
+                        }
+                        else {
+                            $("#waveNo").html(this.wave);
+                            for (let i = 0; i < this.wave; i++) {
+                                enemies.push(new Enemy(getRandomInt(0, 3), gameScreen))
+                            }
+                        }
                     }
                 }
             }
@@ -162,15 +174,17 @@ export default class Player {
         updateLayout(this)
 
     }
-    decreaseHealth(value) {
+    isPlayerDead(value) {
 
         this.health -= value;
         let percentage = Math.round((this.health / this.characterInfo.health) * 100);
         if (percentage > 0) {
-            $("#health").html("%" + percentage).width(percentage+"%")
+            $("#health").html("%" + percentage).width(percentage + "%")
+            return false;
         }
-        else{
+        else {
             $("#health").html("%0").width('0')
+            return true;
         }
     }
 }

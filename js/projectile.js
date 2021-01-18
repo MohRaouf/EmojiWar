@@ -2,7 +2,6 @@ import Enemy from '/js/enemy.js';
 import { hitDetected, getRandomInt, updateLayout, resetIfOutOfScreen } from '/js/methods.js'
 
 export default class projectile {
-
     constructor(player, destination) {
         this.position = {
             x: player.position.x,
@@ -44,6 +43,10 @@ export default class projectile {
                     enemies.splice(i, 1);   // remove if dead
                     if (enemies.length == 0) { // if wave eneded start the next wave
                         player.wave++;
+                        if(player.wave>10){
+                            //Win Msg & set the winFlag to Pause the Game
+                            player.winFlag=1;
+                        }
                         $("#waveNo").html(player.wave);
                         for (let j = 0; j < player.wave; j++) {
                             enemies.push(new Enemy(getRandomInt(0, 3), gameScreen));

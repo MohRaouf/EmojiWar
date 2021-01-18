@@ -5,9 +5,9 @@ import projectile from '/js/projectile.js'
 import { getRandomInt, setLevelConfig } from '/js/methods.js'
 
 function getParameterByName(name, url) {
-    if (!url) 
-        url=window.location.href;
-    name=name.replace(/[\[\]]/g, '\\$&');
+    if (!url)
+        url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
     var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
         results = regex.exec(url);
     if (!results) return 0;
@@ -25,8 +25,8 @@ canvas.height = canvas.getBoundingClientRect().height;
 var context = canvas.getContext("2d"); //Get the Canvas Context of the game area 
 var gameScreen = { width: canvas.width, height: canvas.height } //Get the Game Area boundary
 
-setLevelConfig(getParameterByName("level",window.location)); //set chosen game Level
-let player = new Player(getParameterByName("character",window.location), gameScreen); //Create the player with Character index=0 
+var levelTrack = setLevelConfig(getParameterByName("level", window.location)); //set chosen game Level
+let player = new Player(getParameterByName("character", window.location), gameScreen); //Create the player with Character index=0 
 var enemyArray = [new Enemy(getRandomInt(0, 3), gameScreen)]; // Create array of Enemies 
 var projectiles = [];
 //Instance of InputHander to Handle the Key strokes
@@ -40,46 +40,45 @@ export function generate_projectile(mouseX, mouseY) {
     projectiles.push(new projectile(player, { x: mouseX, y: mouseY }));
 }
 
-/**********************************gameloop*********************************** */  
+/**********************************gameloop*********************************** */
 let lastTime = 0;
 function gameLoop(timeStamp) {
-    // delta time to 
-    let deltaTime = timeStamp - lastTime;
-    lastTime = timeStamp;
-    context.clearRect(0, 0, gameScreen.width, gameScreen.height);
-
-    for (let i = 0; i < enemyArray.length; i++) {
-        enemyArray[i].update(deltaTime, player.position);
-        enemyArray[i].draw(context, player.position);
-    }
-
-    for (let i = 0; i < projectiles.length; i++) {
-        projectiles[i].draw(context, deltaTime);
-        if (projectiles[i].isHit(enemyArray, player,context,particles)) {
-            projectiles.splice(i, 1);
+    let ifWin = player.winFlag;
+    if (ifWin == 1 || ifWin == 0) {
+        levelTrack.pause();
+        if (ifWin == 1) {
+            //win
+        }
+        else {
+            //lost
         }
     }
-    player.isHit(enemyArray); // player damaged   
-    player.move(inputHandler.held_directions, deltaTime); //Move the player to the held directions
-    player.draw(context, inputHandler.mouse);             //Then Draw the Player
+    else {
+        // delta time to 
+        let deltaTime = timeStamp - lastTime;
+        lastTime = timeStamp;
+        context.clearRect(0, 0, gameScreen.width, gameScreen.height);
 
-    // particles.forEach((particle, index) => {
-    //     //[7]particles fadeout
-    //     if (particle.alpha <= 0) {
+        for (let i = 0; i < enemyArray.length; i++) {
+            enemyArray[i].update(deltaTime, player.position);
+            enemyArray[i].draw(context, player.position);
+        }
 
-    //         particles.splice(index, 1)
-    //     } else {
-    //         particle.update();
-    //     }
-    // })
-    //[7]explosion of enemy
- 
+        for (let i = 0; i < projectiles.length; i++) {
+            projectiles[i].draw(context, deltaTime);
+            if (projectiles[i].isHit(enemyArray, player, context, particles)) {
+                projectiles.splice(i, 1);
+            }
+        }
+        player.isHit(enemyArray); // player damaged   
+        player.move(inputHandler.held_directions, deltaTime); //Move the player to the held directions
+        player.draw(context, inputHandler.mouse);             //Then Draw the Player
 
-    //detect if the player is shooting and if so fire a projectile and the effects
-    player.shoot(inputHandler.isShooting);
-
-    //request a new frame with a recursion to this function
-    requestAnimationFrame(gameLoop);
+        //detect if the player is shooting and if so fire a projectile and the effects
+        player.shoot(inputHandler.isShooting);
+        //request a new frame with a recursion to this function
+        requestAnimationFrame(gameLoop);
+    }
 }
 
 //Run the GameLoop for the first time and it will loop forever
