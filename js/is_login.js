@@ -2,8 +2,7 @@ let loginBtn  = document.getElementById('btn-login'),
     loginUser = document.getElementById('nav-login'),
     logoutBtn = document.getElementById('btn-logout'),
     players   = [] ;
-var current_player;
-
+var current_player,selected_character,selected_level;
 //get Data from local storage
     
 function is_Login() { 

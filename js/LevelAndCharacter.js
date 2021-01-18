@@ -127,6 +127,8 @@ function play(e){
             }
         }
         localStorage.setItem("userData" , JSON.stringify(players))
+        selected_character=selected_emoji;
+        selected_level=selected_map;
     }
 }
 

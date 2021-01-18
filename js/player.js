@@ -3,7 +3,6 @@ import { directions } from '/js/input.js'
 import { hitDetected } from '/js/methods.js'
 import Enemy from '/js/enemy.js';
 import { getRandomInt, resetIfOutOfScreen, updateLayout } from '/js/methods.js'
-
 export var playerCharacters = [
     {
         size: 120,
@@ -49,7 +48,7 @@ export var playerCharacters = [
 //player class
 export default class Player {
     constructor(playerIndex, gameScreen) {
-        this.characterInfo = playerCharacters[playerIndex]
+        this.characterInfo = playerCharacters[playerIndex];
         this.size = this.characterInfo.size;
         this.speed = this.characterInfo.speed;
         this.position = {
