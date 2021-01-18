@@ -126,9 +126,9 @@ function play(e){
                 players[i].lastNickname=nick_name.value;
             }
         }
-        localStorage.setItem("userData" , JSON.stringify(players))
-        selected_character=selected_emoji;
-        selected_level=selected_map;
+        localStorage.setItem("userData" , JSON.stringify(players));
+        document.getElementsByName("character")[0].value=""+selected_emoji;
+        document.getElementsByName("level")[0].value=""+selected_map;
     }
 }
 

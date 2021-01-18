@@ -3,6 +3,18 @@ import InputHandler from '/js/input.js';
 import Enemy from '/js/enemy.js';
 import projectile from '/js/projectile.js'
 import { getRandomInt, setLevelConfig } from '/js/methods.js'
+
+function getParameterByName(name, url) {
+    if (!url) 
+        url=window.location.href;
+    name=name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return 0;
+    if (!results[2]) return 0;
+    return parseInt(decodeURIComponent(results[2].replace(/\+/g, ' '))[0]);
+}
+
 var canvas = document.getElementById("gameScreen"); //Get the GameArea Canvas
 canvas.oncontextmenu = new Function("return false;") //disable context menu
 
@@ -13,8 +25,8 @@ canvas.height = canvas.getBoundingClientRect().height;
 var context = canvas.getContext("2d"); //Get the Canvas Context of the game area 
 var gameScreen = { width: canvas.width, height: canvas.height } //Get the Game Area boundary
 
-setLevelConfig(selected_level); //set chosen game Level
-let player = new Player(selected_character, gameScreen); //Create the player with Character index=0 
+setLevelConfig(getParameterByName("level",window.location)); //set chosen game Level
+let player = new Player(getParameterByName("character",window.location), gameScreen); //Create the player with Character index=0 
 var enemyArray = [new Enemy(getRandomInt(0, 3), gameScreen)]; // Create array of Enemies 
 var projectiles = [];
 //Instance of InputHander to Handle the Key strokes

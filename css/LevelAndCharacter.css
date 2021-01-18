@@ -156,6 +156,7 @@ input[type=button],input[type=submit]{
     cursor: pointer;
     border-radius: 20px;
 }
+
 input[type=button]:hover,input[type=submit]:hover{
     box-shadow: 0 5px 10px 0 #8a6343 inset,0 5px 10px 0 #8a6343 ,0 5px 10px 0 #8a6343 inset,0 5px 10px 0 #8a6343;
     text-shadow: 0 0 3px #8a6343 ,0 0 3px #8a6343;
