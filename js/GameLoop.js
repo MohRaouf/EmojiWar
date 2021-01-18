@@ -3,13 +3,6 @@ import InputHandler from '/js/input.js';
 import Enemy from '/js/enemy.js';
 import projectile from '/js/projectile.js'
 import { getRandomInt, setLevelConfig } from '/js/methods.js'
-<<<<<<< HEAD
-//lood shoot sound
-var shootSound=document.getElementById("shoot")
-//var shootSound=$("#shoot") //doesn't work
-=======
-
->>>>>>> master
 var canvas = document.getElementById("gameScreen"); //Get the GameArea Canvas
 canvas.oncontextmenu = new Function("return false;") //disable context menu
 
