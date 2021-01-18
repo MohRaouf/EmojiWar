@@ -2,6 +2,8 @@ let loginBtn  = document.getElementById('btn-login'),
     loginUser = document.getElementById('nav-login'),
     logoutBtn = document.getElementById('btn-logout'),
     players   = [] ;
+
+var current_player;
 //get Data from local storage
     
 function is_Login() { 
@@ -10,7 +12,9 @@ function is_Login() {
     for(var i=0;i<players.length ;i++)
     {
        if(players[i].is_login ==1) {
-        eluserMwgood=true;
+            eluserMwgood=true;
+            current_player=players[i];
+
        }
     }
     if(eluserMwgood==true){
@@ -25,6 +29,7 @@ function logout() {
     for(var i=0;i<players.length ;i++)
     {
         players[i].is_login =0;
+        current_player=undefined;
     }
     localStorage.setItem("userData" , JSON.stringify(players))
     console.log(players)
@@ -33,6 +38,5 @@ function logout() {
     loginBtn.classList.add('visible');
     logoutBtn.classList.remove('visible');
     logoutBtn.classList.add('hidden');
-
 }logoutBtn.addEventListener("click",logout);
 

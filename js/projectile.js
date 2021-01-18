@@ -2,12 +2,12 @@ import Enemy from '/js/enemy.js';
 import { hitDetected, getRandomInt, updateLayout, resetIfOutOfScreen } from '/js/methods.js'
 
 export default class projectile {
-    constructor(player, destination ) {
+
+    constructor(player, destination) {
         this.position = {
             x: player.position.x,
             y: player.position.y
         };
-        console.log(this.position)
         this.size = player.characterInfo.projectileInfo.size;
         this.gameWidth = player.gameWidth;
         this.gameHeight = player.gameHeight;
@@ -18,7 +18,8 @@ export default class projectile {
         this.radians = Math.atan2(this.deltaY, this.deltaX);
         this.xSpeedFactor = Math.cos(this.radians);
         this.ySpeedFactor = Math.sin(this.radians);
-        this.speed = { x:  player.characterInfo.projectileInfo.speed * this.xSpeedFactor, y:  player.characterInfo.projectileInfo.speed * this.ySpeedFactor };
+
+        this.speed = { x: player.characterInfo.projectileInfo.speed * this.xSpeedFactor, y: player.characterInfo.projectileInfo.speed * this.ySpeedFactor };
         this.layout = {
             left: this.position.x - this.size / 2,
             right: this.position.x + this.size / 2,
@@ -26,23 +27,31 @@ export default class projectile {
             bottom: this.position.y + this.size / 2
         }
     }
-    isHit(enemies, player) {
+    static score = $("#points");
+    isHit(enemies, player, context) {
         //collision is boolean becomes true if collision delected
         if (resetIfOutOfScreen(this)) return true;
 
         for (let i = 0; i < enemies.length; i++) {
-            if (hitDetected(this, enemies[i], true)) {
-                //collision detected between enemy and projectile
-                enemies[i].health--;
-                if (enemies[i].health <= 0){
-                    enemies.splice(i, 1);
-                }
-                if (enemies.length == 0) {
-                    player.wave++;
-                    for (let j = 0; j < player.wave; j++){
-                        enemies.push(new Enemy(getRandomInt(0, 3), gameScreen));
+
+            if (hitDetected(this, enemies[i], true)) {  //collision detected between enemy and projectile
+                enemies[i].health--;  //decrease the health of the injured enemy
+                $("#enemyhit")[0].play()
+
+                if (enemies[i].health <= 0) {
+                    $("#points").html(parseInt($("#points").html()) + enemies[i].killScore);
+                    $("#enemydie")[0].play()
+                    enemies.splice(i, 1);   // remove if dead
+                    if (enemies.length == 0) { // if wave eneded start the next wave
+                        player.wave++;
+                        $("#waveNo").html(player.wave);
+                        for (let j = 0; j < player.wave; j++) {
+                            enemies.push(new Enemy(getRandomInt(0, 3), gameScreen));
+                        }
+                        break;
                     }
                 }
+
                 return true;
             }
         }

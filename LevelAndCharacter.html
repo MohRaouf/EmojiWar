@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html >
+<html>
     <head>
         <title></title>
         <link rel="icon" href="src/images/icon.png">
+        <link rel="stylesheet" href="css/all.min.css">
         <link rel="stylesheet" type="text/css" href="css/LevelAndCharacter.css">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="css/all.min.css">
-    </head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    </head>
     <body>
         <div class="parent">
         <!-- **************************navbar************************** -->
         <nav>
-            <div class="container">
-                 <div class="nav-logo">
+            <div class="container" >
+                 <div class="nav-logo" onclick="window.location.href='EmojiWarHome.html'">
                      <p>Emoji<span>war</span></p>
                  </div>
                  <div class="nav-items">
@@ -29,7 +29,8 @@
                     <button class="btn-login hidden"  id="btn-logout" >logout</button>
                 </div>
             </div>
-        </nav>
+         </nav>
+    
         <!-- **************************welcome************************** -->
         <div class="welcome_message">
             <span class="text1"><label>w</label>elcome <label>t</label>o <label>Emoji</label>War</span>
@@ -45,25 +46,55 @@
                 <p class="msg" style="display: none;"><label>S</label>elect <label>T</label>he <label>M</label>ap <label>O</label>F <label>T</label>he <label>W</label>ar</p>
                 
                 <div class="available_Emojis">
-                    <div class="emo">
-                        <img src="src/images/character3.png">
+                    <div class="emo" style="background-image: url(src/images/character3.png); background-size: 100% 100%;">
+                        <div class="overlay">
+                            <div>
+                                 <p> <i class="fa fa-lock"></i> </p>
+                                 <h6>finish all levels of previous character to unlock</h6>
+                            </div>
+                        </div>
                     </div>
-                    <div class="emo">
-                        <img src="src/images/character2.png">
+                    <div class="emo" style="background-image: url(src/images/character2.png); background-size: 100% 100%;">
+                        <div class="overlay">
+                            <div>
+                                 <p> <i class="fa fa-lock"></i> </p>
+                                 <h6>finish all levels of previous character to unlock</h6>
+                            </div>
+                        </div>
                     </div>
-                    <div class="emo">
-                        <img src="src/images/character11.png">
+                    <div class="emo" style="background-image: url(src/images/character4.png); background-size: 100% 100%;">
+                        <div class="overlay">
+                            <div>
+                                 <p> <i class="fa fa-lock"></i> </p>
+                                 <h6>finish all levels of previous character to unlock</h6>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="levels" style="display: none;">
-                    <div class="lev">
-                        <img src="src/images/mission1.png">
+                    <div class="lev" style="background-image: url(src/images/mission1.png); background-size: 100% 100%;">
+                        <div class="overlay">
+                            <div>
+                                 <p> <i class="fa fa-lock"></i> </p>
+                                 <h6>finish the previous level to unlock</h6>
+                            </div>
+                        </div>
                     </div>
-                    <div class="lev">
-                        <img src="src/images/mission2.png">
+                    <div class="lev" style="background-image: url(src/images/mission2.png); background-size: 100% 100%;">
+                        <div class="overlay">
+                            <div>
+                                 <p> <i class="fa fa-lock"></i> </p>
+                                 <h6>finish the previous level to unlock</h6>
+                            </div>
+                        </div>
                     </div>
-                    <div class="lev">
-                        <img src="src/images/mission33.png">
+                    <div class="lev" style="background-image: url(src/images/mission33.png); background-size: 100% 100%;">
+                        <div class="overlay">
+                            <div>
+                                 <p> <i class="fa fa-lock"></i> </p>
+                                 <h6>finish the previous level to unlock</h6>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <input id="select_level" type="button" value="Select the Map" style="display: block;">
@@ -73,7 +104,7 @@
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
-    <script src="js/LevelAndCharacter.js"></script>
     <script src="js/is_login.js"></script>
+    <script src="js/LevelAndCharacter.js"></script>
     </body>
 </html>

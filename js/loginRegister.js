@@ -46,14 +46,16 @@ function loginPage(){
     if(players.length==0){
             one_player = {
             userName     : nameInput.value,
-            lastNickname :'',
+
+            lastNickname : nameInput.value,
             badges       : 1,
-            level        : '',
+            level        : '1',
             score        : 0,
-            maxCharacter :'',
+            maxCharacter :'1',
             is_login     : 1,
         }
         players.push(one_player);
+        current_player=one_player;
         localStorage.setItem("userData" , JSON.stringify(players))
         e.preventDefault();
         window.location.href='EmojiWarHome.html';
@@ -64,14 +66,16 @@ function loginPage(){
         }
         one_player = {
             userName     : nameInput.value,
-            lastNickname :'',
+
+            lastNickname : nameInput.value,
             badges       : 1,
-            level        : '',
+            level        : '1',
             score        : 0,
-            maxCharacter :'',
+            maxCharacter :'1',
             is_login     : 1,
         }
         players.push(one_player);
+        current_player=one_player;
         localStorage.setItem("userData" , JSON.stringify(players))
         e.preventDefault();
         window.location.href='EmojiWarHome.html';
@@ -90,6 +94,8 @@ function Login(e){
         let eluserMwgood = false;
         for(var i=0;i<players.length ;i++){
             if(players[i].userName == userloginName.value){
+
+                current_player=players[i];
                 eluserMwgood = true; 
                 players[i].is_login=1;
                 break;
@@ -107,5 +113,3 @@ function Login(e){
     }
  }loginBtn.addEventListener('click',Login)
 
-
- 

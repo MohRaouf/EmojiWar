@@ -11,7 +11,7 @@ export var playerCharacters = [
         character: document.getElementById("character1"),
         shootingSound: document.getElementById("shoot1"),
         hurtSound: document.getElementById("maleHurt"),
-        health: 10,
+        health: 50,
         projectileInfo: {
             size: 20,
             speed: 120,
@@ -20,11 +20,11 @@ export var playerCharacters = [
     },
     {
         size: 120,
-        speed: 50,
+        speed: 70,
         character: document.getElementById("character2"),
         shootingSound: document.getElementById("shoot1"),
         hurtSound: document.getElementById("femaleHurt"),
-        health: 15,
+        health: 80,
         projectileInfo: {
             size: 30,
             speed: 140,
@@ -33,11 +33,12 @@ export var playerCharacters = [
     },
     {
         size: 120,
-        speed: 50,
+
+        speed: 80,
         character: document.getElementById("character3"),
         shootingSound: document.getElementById("shoot1"),
         hurtSound: document.getElementById("maleHurt"),
-        health: 20,
+        health: 120,
         projectileInfo: {
             size: 30,
             speed: 200,
@@ -82,7 +83,6 @@ export default class Player {
         //generation of projectile should be here
         //VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
     }
-
     //draw method that will be executed in the game loop after move() method to update the position
     draw(context, mousePosition) {
         let scaleX = 1;
@@ -112,15 +112,16 @@ export default class Player {
         for (let i = 0; i < enemies.length; i++) {
             //enemy touches the player
             if (hitDetected(enemies[i], this)) {
+                this.decreaseHealth(enemies[i].health);
                 this.hurtSound.play();
                 enemies.splice(i, 1);
                 if (enemies.length == 0) {
                     this.wave++;
+                    $("#waveNo").html(this.wave);
                     for (let i = 0; i < this.wave; i++) {
                         enemies.push(new Enemy(getRandomInt(0, 3), gameScreen))
                     }
                 }
-                // console.log(enemies)
             }
         }
     }
@@ -160,5 +161,17 @@ export default class Player {
         resetIfOutOfScreen(this)
         //update player character layout
         updateLayout(this)
+
+    }
+    decreaseHealth(value) {
+
+        this.health -= value;
+        let percentage = Math.round((this.health / this.characterInfo.health) * 100);
+        if (percentage > 0) {
+            $("#health").html("%" + percentage).width(percentage+"%")
+        }
+        else{
+            $("#health").html("%0").width('0')
+        }
     }
 }
