@@ -13,6 +13,7 @@ function is_Login() {
        if(players[i].is_login ==1) {
             eluserMwgood=true;
             current_player=players[i];
+
        }
     }
     if(eluserMwgood==true){
@@ -38,3 +39,4 @@ function logout() {
     logoutBtn.classList.remove('visible');
     logoutBtn.classList.add('hidden');
 }logoutBtn.addEventListener("click",logout);
+

@@ -2,6 +2,7 @@ import Enemy from '/js/enemy.js';
 import { hitDetected, getRandomInt, updateLayout, resetIfOutOfScreen } from '/js/methods.js'
 
 export default class projectile {
+
     constructor(player, destination) {
         this.position = {
             x: player.position.x,
@@ -17,6 +18,7 @@ export default class projectile {
         this.radians = Math.atan2(this.deltaY, this.deltaX);
         this.xSpeedFactor = Math.cos(this.radians);
         this.ySpeedFactor = Math.sin(this.radians);
+
         this.speed = { x: player.characterInfo.projectileInfo.speed * this.xSpeedFactor, y: player.characterInfo.projectileInfo.speed * this.ySpeedFactor };
         this.layout = {
             left: this.position.x - this.size / 2,
@@ -31,6 +33,7 @@ export default class projectile {
         if (resetIfOutOfScreen(this)) return true;
 
         for (let i = 0; i < enemies.length; i++) {
+
             if (hitDetected(this, enemies[i], true)) {  //collision detected between enemy and projectile
                 enemies[i].health--;  //decrease the health of the injured enemy
                 $("#enemyhit")[0].play()
