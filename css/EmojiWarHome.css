@@ -34,7 +34,7 @@ body{
     height: 100%;
     top: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0,.85);
+    background-color: rgba(0, 0, 0,.72);
     animation: fadein 2s;
     -moz-animation: fadein 2s; /* Firefox */
     -webkit-animation: fadein 2s; /* Safari and Chrome */

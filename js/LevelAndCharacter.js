@@ -49,7 +49,7 @@ function change_selected_emoji(index){
 }
 function change_selected_map(index){
     return function(){
-            selected_map=index;
+            (index>=maxlevel)?selected_map=-1:selected_map=index;
             play_btn.disabled = false; 
         for(let i=0;i<maxlevel;i++){
             if(index==i){

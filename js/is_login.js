@@ -29,6 +29,7 @@ function logout() {
     {
         players[i].is_login =0;
         current_player=undefined;
+        window.location.reload();
     }
     localStorage.setItem("userData" , JSON.stringify(players))
     console.log(players)
