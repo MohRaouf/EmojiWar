@@ -28,3 +28,15 @@
         margin-bottom: 20px;
     }
 }
+
+@media(min-width:1201px ) and (max-width:1600px){
+    .about {height: 90vh !important;}
+    .about .teams .item img{
+        height: 350px !important;
+    }
+    .about .teams .caption{
+        top: 76% !important;
+        left: 3% !important;
+    }
+    
+}
