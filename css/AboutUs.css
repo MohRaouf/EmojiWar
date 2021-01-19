@@ -28,7 +28,7 @@ body{
 }
 /**************************  about us *****************/
 .about{
-    height: 100vh;
+    height: 80vh;
     text-align: center;
     padding: 20px 0 ;
 }
@@ -66,15 +66,15 @@ body{
     overflow: hidden;
 }
 
-.about .teams .item img {width:100%; height: 350px;}
+.about .teams .item img {width:100%; height: 500px;}
 
 .about .teams .caption{
    color: #dfdfdf;
    box-sizing: border-box;
    background-color: rgba(71,67,64,.9);
    position: absolute; 
-   top: 73%;
-   left: 3%;
+   top: 83%;
+   left: 2%;
    right: 0%;
    padding: 10px;
    line-height: 29px;
@@ -82,12 +82,13 @@ body{
    transition: all 1s;
 }
 .about .teams .item:hover .caption{
-    top:22%;
+    top:50%;
     bottom: 0%;
 }
-.about .teams .caption h1{margin-bottom: 5px;}
+.about .teams .caption h1{margin-bottom: 7px;}
 .caption p {
     padding: 7px;
+    font-size: 18px;
 }
 .about .teams .caption .social-icon a{
     margin: 10px;
