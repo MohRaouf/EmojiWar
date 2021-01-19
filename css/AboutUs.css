@@ -65,15 +65,17 @@ body{
     position: relative;
     overflow: hidden;
 }
-.about .teams .item img {width: 90%; height: 350px;}
+
+.about .teams .item img {width:100%; height: 350px;}
+
 .about .teams .caption{
    color: #dfdfdf;
    box-sizing: border-box;
    background-color: rgba(71,67,64,.9);
    position: absolute; 
    top: 73%;
-   left: 8%;
-   right: 4%;
+   left: 3%;
+   right: 0%;
    padding: 10px;
    line-height: 29px;
    text-align: center;
