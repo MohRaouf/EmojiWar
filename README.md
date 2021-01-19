@@ -1,4 +1,4 @@
-# Emoji War game
+# Emoji War
 
 <p align="center">
             
@@ -19,6 +19,9 @@ Once upon a time, there was a devil soul who tried to spread frustration and sad
 * Mohamed Ahmed AbdelRaouf
             
 ### Help Our Worriers from <a href="https://fervent-fermi-89025a.netlify.app/">here</a>
+
+<img src="src/images/game.png">
+
 
 ## Game Screens
 
@@ -77,8 +80,6 @@ but if you are not logged-in you can only see information about every badge and 
 9- Enemy Dead Sound Effect<br/>
 
 Remember Player Fighter : "This is a war to end all wars, so do your best"
-
-<img src="src/images/game.png">
 
 # Project files tree.
 <img src="src/images/all_tree.jfif">
