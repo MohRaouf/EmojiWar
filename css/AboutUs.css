@@ -65,7 +65,9 @@ body{
     position: relative;
     overflow: hidden;
 }
+
 .about .teams .item img {width:100%; height: 350px;}
+
 .about .teams .caption{
    color: #dfdfdf;
    box-sizing: border-box;
