@@ -10,11 +10,15 @@
 
 ## Team Members
 
-### Aalaa Mohamed Habib
-### Ibrahim Muhammad Abd-el-Kader
-### May Esmail Muhammad
-### Mohamed Ahmed AbdelRaouf
+<ul>
             
+### <li>Aalaa Mohamed Habib</li>
+### <li>Ibrahim Muhammad Abd-el-Kader</li>
+### <li>May Esmail Muhammad</li>
+### <li>Mohamed Ahmed AbdelRaouf</li>
+            
+</ul>
+
 #
 
 # Play our game here:
