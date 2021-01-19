@@ -120,6 +120,7 @@ body{
 
 div p.caption {
     font-size: 30px;
+    font-weight: bold;
     text-shadow: 1px 1px 3px #dbab83;
     animation-name: congratulation;
     animation-duration: 7s;
@@ -127,6 +128,7 @@ div p.caption {
 }
 div p.loos2 {
     font-size: 30px;
+    font-weight: bold;
     text-shadow: 1px 1px 3px #dbab83;
     animation-name: congratulation;
     animation-duration: 7s;
@@ -136,7 +138,6 @@ div p.loos2 {
 span {
     color: #dbab83;
 }
-
 /******************************* CONTAINER **************************************/
 
 .container {
@@ -177,6 +178,7 @@ div button {
     border-radius: 10px;
     color: #dbab83;
     font-weight: bold;
+    font-size: 20px;
     transition: all 1s;
 }
 
@@ -219,4 +221,8 @@ div button:hover {
 
 .looser {
     display: none;
+}
+.caption_fig{
+    font-size: 20px;
+    font-weight: 500;
 }
