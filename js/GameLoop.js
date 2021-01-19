@@ -18,7 +18,7 @@ var player_character = parseInt(getParameterByName("character", window.location)
 var player_level = parseInt(getParameterByName("level", window.location)[0])+1;
 var player_name = getParameterByName("username", window.location);
 var players_array = JSON.parse(localStorage.getItem("userData"));
-
+console.log(player_level);
 var canvas = document.getElementById("gameScreen"); //Get the GameArea Canvas
 canvas.oncontextmenu = new Function("return false;") //disable context menu
 
@@ -50,6 +50,7 @@ export function generate_projectile(mouseX, mouseY) {
 let lastTime = 0;
 function gameLoop(timeStamp) {
     let ifWin = player.winFlag;
+    //ifWin=1;
     if (ifWin == 1 || ifWin == 0) {
         //levelTrack.pause();
         if (ifWin == 1) {
@@ -60,24 +61,13 @@ function gameLoop(timeStamp) {
             /************************Update Local Storage**********************/
             for (let i = 0; i < players_array.length; i++) {
                 if (players_array[i].userName == player_name) {
-                    let cur_level = players_array[i].level
-                        , cur_character = players_array[i].maxCharacter
-                        , cur_badges = players_array[i].badges;
-
-                        if( cur_level<player_level+1){  
-                            if (cur_level < 3){
-                                cur_level=player_level+1;
-                                if (cur_character < cur_level) {
-                                    cur_character=cur_level;
-                                }
-                            }
-                        }
-                    
-                    if (cur_badges < 4)
-                        cur_badges++;
-                    players_array[i].level = cur_level;
-                    players_array[i].maxCharacter = cur_character;
-                    players_array[i].badges = cur_badges;
+                    if(player_level==players_array[i].level&&players_array[i].level<3){
+                        console.log("yaay");
+                        players_array[i].level++;
+                        players_array[i].maxCharacter++;
+                    }
+                    if (players_array[i].badges < 4)
+                        players_array[i].badges++;
                     break;
                 }
             }

@@ -11,24 +11,10 @@ var nick_name = document.getElementById("nickname");
 var overlays = document.getElementsByClassName("overlay");
 var selected_emoji = -1;
 var selected_map = -1;
-var maxlevel;
 /**************************functions****************************/
 function change_selected_emoji(index) {
-    selected_emoji = index;
     return function () {
-        if (index + 1 < current_player.maxCharacter)
-            maxlevel = 3;
-        else maxlevel = current_player.level;
-        for (let i = 0; i < 3; i++) {
-            if (i < maxlevel) {
-                overlays[i + 3].style.visibility = "hidden";
-                mapChoises[i].addEventListener("click", change_selected_map(i));
-            }
-            else {
-                overlays[i + 3].style.visibility = "visible";
-                mapChoises[i].removeEventListener("click", change_selected_map(i));
-            }
-        }
+        selected_emoji = index;
         select_map_btn.disabled = false;
         for (let i = 0; i < 3; i++) {
             if (index == i) {
@@ -48,9 +34,9 @@ function change_selected_emoji(index) {
 }
 function change_selected_map(index) {
     return function () {
-        (index >= maxlevel) ? selected_map = -1 : selected_map = index;
+        selected_map = index;
         play_btn.disabled = false;
-        for (let i = 0; i < maxlevel; i++) {
+        for (let i = 0; i < current_player.level; i++) {
             if (index == i) {
                 mapChoises[i].style.width = "30%";
                 mapChoises[i].style.height = "31vh";
@@ -103,6 +89,7 @@ function choose_character() {
         mapChoises[i].style.marginRight = mapChoises[i].style.marginLeft = "3%";
         mapChoises[i].style.marginTop = "4vh";
     }
+    play_btn.disabled=true;
     msg[0].innerHTML = msg[0].textContent.replace(/\S/g, "<span class='letter'>$&</span>");
     anime.timeline({ loop: false }).add({
         targets: msg[0],
@@ -136,14 +123,17 @@ if (typeof current_player === "object") {
     nick_name.value = current_player.lastNickname;
     select_map_btn.disabled = true;
     play_btn.disabled = true;
-    console.log(current_player.maxCharacter);
     for (let i = 0; i < current_player.maxCharacter; i++) {
         emoChoises[i].addEventListener("click", change_selected_emoji(i));
         overlays[i].style.visibility = "hidden";
     }
     select_map_btn.addEventListener("click", choose_map);
-    play_btn.addEventListener("click", play);
+    for(let i=0;i<current_player.level;i++){
+        mapChoises[i].addEventListener("click",change_selected_map(i));
+        overlays[i+3].style.visibility="hidden";
+    }
     change_character.addEventListener("click", choose_character);
+    play_btn.addEventListener("click", play);
 }
 else {
     nick_name.value = "Login to Play!";
