@@ -34,7 +34,7 @@ Saving information will be in the same browser using local storage.
 ## Login Page.
 By this page we can select the character and the level of the game and start the game.
 
-<img src="src/images/Login.jfif"/>
+<img src="src/images/login.jfif"/>
 
 #
 
