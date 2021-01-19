@@ -2,7 +2,7 @@ import Player from '/js/player.js';
 import InputHandler from '/js/input.js';
 import Enemy from '/js/enemy.js';
 import projectile from '/js/projectile.js'
-import { getRandomInt, setLevelConfig ,containerResult} from '/js/methods.js'
+import { getRandomInt, setLevelConfig, containerResult } from '/js/methods.js'
 
 function getParameterByName(name, url) {
     if (!url)
@@ -14,9 +14,11 @@ function getParameterByName(name, url) {
     if (!results[2]) return 0;
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
-var player_character=parseInt(getParameterByName("character", window.location)[0])+1,
-    player_level=parseInt(getParameterByName("level", window.location)[0])+1,
-    player_name=getParameterByName("username",window.location);
+var player_character = parseInt(getParameterByName("character", window.location)[0])+1;
+var player_level = parseInt(getParameterByName("level", window.location)[0])+1;
+var player_name = getParameterByName("username", window.location);
+var players_array = JSON.parse(localStorage.getItem("userData"));
+
 var canvas = document.getElementById("gameScreen"); //Get the GameArea Canvas
 canvas.oncontextmenu = new Function("return false;") //disable context menu
 
@@ -27,15 +29,16 @@ canvas.height = canvas.getBoundingClientRect().height;
 var context = canvas.getContext("2d"); //Get the Canvas Context of the game area 
 var gameScreen = { width: canvas.width, height: canvas.height } //Get the Game Area boundary
 
-var levelTrack = setLevelConfig(player_level); //set chosen game Level
-let player = new Player(player_character, gameScreen); //Create the player with Character index=0 
+var levelTrack = setLevelConfig(player_level-1); //set chosen game Level
+let player = new Player(player_character-1, gameScreen); //Create the player with Character index=0 
 var enemyArray = [new Enemy(getRandomInt(0, 3), gameScreen)]; // Create array of Enemies 
 var projectiles = [];
 //Instance of InputHander to Handle the Key strokes
 var inputHandler = new InputHandler(canvas, player);
 var particles = [];
 
-var players_array=JSON.parse(localStorage.getItem("userData"));
+// player.winFlag=1
+
 //First Draw of the Player
 player.draw(context, inputHandler.mouse);
 
@@ -52,31 +55,33 @@ function gameLoop(timeStamp) {
         if (ifWin == 1) {
             //win
             document.getElementById("winTrack").play();
-            containerResult((levelTrack+1));
+            containerResult((levelTrack + 1));
             confetti.start();
             /************************Update Local Storage**********************/
-            for(let i=0;i<players_array.length;i++){
-                if(players_array[i].userName==player_name){
-                    let cur_level=players_array[i].level
-                        ,cur_character=players_array[i].maxCharacter
-                        ,cur_badges=players_array[i].badges;
-                    if(cur_level<3)
-                        cur_level++;
-                    else{
-                        if(cur_character<3){
-                            cur_character++;
-                            cur_level=1;
+            for (let i = 0; i < players_array.length; i++) {
+                if (players_array[i].userName == player_name) {
+                    let cur_level = players_array[i].level
+                        , cur_character = players_array[i].maxCharacter
+                        , cur_badges = players_array[i].badges;
+
+                        if( cur_level<player_level+1){  
+                            if (cur_level < 3){
+                                cur_level=player_level+1;
+                                if (cur_character < cur_level) {
+                                    cur_character=cur_level;
+                                }
+                            }
                         }
-                    }
-                    if(cur_badges<4)
+                    
+                    if (cur_badges < 4)
                         cur_badges++;
-                    players_array[i].level=cur_level;
-                    players_array[i].maxCharacter=cur_character;
-                    players_array[i].badges=cur_badges;
-                    break;                    
-                }    
+                    players_array[i].level = cur_level;
+                    players_array[i].maxCharacter = cur_character;
+                    players_array[i].badges = cur_badges;
+                    break;
+                }
             }
-            localStorage.setItem("userData" , JSON.stringify(players_array));
+            localStorage.setItem("userData", JSON.stringify(players_array));
         }
         else {
             //lost
