@@ -21,9 +21,8 @@
 
 #
 
-# Play our game here:
+# Play our game <a href="https://fervent-fermi-89025a.netlify.app/">here</a>.
 
-https://fervent-fermi-89025a.netlify.app/
 
 #
 
