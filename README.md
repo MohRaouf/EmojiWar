@@ -23,50 +23,50 @@ Once upon a time, there was a devil soul who tried to spread frustration and sad
 ## Game Screens
 
 ### Registeration
-To enter the game you must be registered first to save your information and achievements e.g. (Last Level, Last Character, Badges & Awards, etc). 
+* To enter the game you must be registered first to save your information and achievements e.g. (Last Level, Last Character, Badges & Awards, etc). 
 Saving information will be in the same browser using local storage, "make the devil feel the danger".
 
 <img src="src/images/register.png"/>
 
 ### Login
-As soon as you logged in, you will be ready to gear up and choose your worrier, and explore the Emoji War
+* As soon as you logged in, you will be ready to gear up and choose your worrier, and explore the Emoji War
 
 <img src="src/images/login.jfif"/>
 
 ### Home Page
-Now in the Home page arena it's time to know about the war e.g. (your acheivements,  more info about the War), after that just click play to gear up and start the War.
+* Now in the Home page arena it's time to know about the war e.g. (your acheivements,  more info about the War), after that just click play to gear up and start the War.
 
 <img src="src/images/home.jfif"/>
 
 ### Select Character.
-At first you have to prove your skills, so you will start the war with the first Worrier and after you win your first mission you will be able to choose a more powerful worrier
+* At first you have to prove your skills, so you will start the war with the first Worrier and after you win your first mission you will be able to choose a more powerful worrier
 
 <img src="src/images/select_character.JPG"/>
 
 ### Select level's map
-Now it's time to enter the war, you have to win your first war to prove your skill to enter more intense war with more evil and power full enemies, so you can choose any unlocked character and choose any of the unlocked War level you want to play, when you're done click Enter the War to play.
+* Now it's time to enter the war, you have to win your first war to prove your skill to enter more intense war with more evil and power full enemies, so you can choose any unlocked character and choose any of the unlocked War level you want to play, when you're done click Enter the War to play.
 <img src="src/images/select_map.JPG"/>
 
 
 ## Victory Page.
-When you win any of the war missions you will get the mission badge and a Victory celebration message shows up.
+* When you win any of the war missions you will get the mission badge and a Victory celebration message shows up.
 
 <img src="src/images/win.jfif"/>
 
 ## Badges Page.
-If you're a logged-in Worrier you can see your achivements and the badges you've won, you will win the first badge after register.
+* If you're a logged-in Worrier you can see your achivements and the badges you've won, you will win the first badge after register.
 but if you are not logged-in you can only see information about every badge and when you can get it.
 
 <img src="src/images/mybadges.JPG"/>
 
 ## Defeat Page.
-Defeat consolation message shows up when the worrier lose the game, maybe its time to train harder.
+* Defeat consolation message shows up when the worrier lose the game, maybe its time to train harder.
 
 <img src="src/images/lose.jfif"/>
 
 
 # Game Sound Effects.
- There are a various sound tracks and effects in the game for :<br/>
+* There are a various sound tracks and effects in the game for :<br/>
 1- Home Page<br/>
 2- Each Level <br/>
 4- Win Message<br/>
@@ -78,7 +78,7 @@ Defeat consolation message shows up when the worrier lose the game, maybe its ti
 
 Remember Player Fighter : "This is a war to end all wars, so do your best"
 
-<img src="src/images/game.jfif">
+<img src="src/images/game.png">
 
 # Project files tree.
 <img src="src/images/all_tree.jfif">
