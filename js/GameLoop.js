@@ -37,7 +37,7 @@ var projectiles = [];
 var inputHandler = new InputHandler(canvas, player);
 var particles = [];
 
-// player.winFlag=1
+//  player.winFlag=1
 
 //First Draw of the Player
 player.draw(context, inputHandler.mouse);
@@ -55,7 +55,7 @@ function gameLoop(timeStamp) {
         if (ifWin == 1) {
             //win
             document.getElementById("winTrack").play();
-            containerResult((levelTrack + 1));
+            containerResult(player_level);
             confetti.start();
             /************************Update Local Storage**********************/
             for (let i = 0; i < players_array.length; i++) {
