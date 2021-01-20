@@ -27,7 +27,7 @@ export default class projectile {
         }
     }
     static score = $("#points");
-    isHit(enemies, player, context) {
+    isHit(enemies, player, context,TreasurePosition) {
         //collision is boolean becomes true if collision delected
         if (resetIfOutOfScreen(this)) return true;
 
@@ -40,6 +40,9 @@ export default class projectile {
                 if (enemies[i].health <= 0) {
                     $("#points").html(parseInt($("#points").html()) + enemies[i].killScore);
                     $("#enemydie")[0].play()
+                    TreasurePosition.valid=true;
+                    TreasurePosition.x=enemies[i].position.x;
+                    TreasurePosition.y=enemies[i].position.y;
                     enemies.splice(i, 1);   // remove if dead
                     if (enemies.length == 0) { // if wave eneded start the next wave
                         player.wave++;

@@ -64,6 +64,7 @@ export default class Player {
         this.rotation;
         this.scale = 1;
         this.health = this.characterInfo.health;
+        this.maxHealth=this.characterInfo.health;
         this.projectileIndex = this.characterInfo.projectileIndex;
         this.layout = {
             left: this.position.x - this.size / 2,

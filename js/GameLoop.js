@@ -1,8 +1,9 @@
 import Player from '/js/player.js';
 import InputHandler from '/js/input.js';
 import Enemy from '/js/enemy.js';
-import projectile from '/js/projectile.js'
-import { getRandomInt, setLevelConfig, containerResult } from '/js/methods.js'
+import projectile from '/js/projectile.js';
+import Gift from '/js/gift.js';
+import { getRandomInt, setLevelConfig, containerResult, hitDetected } from '/js/methods.js'
 
 function getParameterByName(name, url) {
     if (!url)
@@ -14,11 +15,16 @@ function getParameterByName(name, url) {
     if (!results[2]) return 0;
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
-var player_character = parseInt(getParameterByName("character", window.location)[0])+1;
-var player_level = parseInt(getParameterByName("level", window.location)[0])+1;
+var player_character = parseInt(getParameterByName("character", window.location)[0]) + 1;
+var player_level = parseInt(getParameterByName("level", window.location)[0]) + 1;
 var player_name = getParameterByName("username", window.location);
 var players_array = JSON.parse(localStorage.getItem("userData"));
-console.log(player_level);
+var nickname;
+for(let i=0;i<players_array.length;i++){
+    if(players_array[i].userName == player_name)
+        nickname=players_array[i].lastNickname;
+}
+document.getElementById("playerName").textContent=nickname;
 var canvas = document.getElementById("gameScreen"); //Get the GameArea Canvas
 canvas.oncontextmenu = new Function("return false;") //disable context menu
 
@@ -29,14 +35,14 @@ canvas.height = canvas.getBoundingClientRect().height;
 var context = canvas.getContext("2d"); //Get the Canvas Context of the game area 
 var gameScreen = { width: canvas.width, height: canvas.height } //Get the Game Area boundary
 
-var levelTrack = setLevelConfig(player_level-1); //set chosen game Level
-let player = new Player(player_character-1, gameScreen); //Create the player with Character index=0 
+var levelTrack = setLevelConfig(player_level - 1); //set chosen game Level
+let player = new Player(player_character - 1, gameScreen); //Create the player with Character index=0 
 var enemyArray = [new Enemy(getRandomInt(0, 3), gameScreen)]; // Create array of Enemies 
 var projectiles = [];
+var gifts = [];
 //Instance of InputHander to Handle the Key strokes
 var inputHandler = new InputHandler(canvas, player);
 var particles = [];
-
 //  player.winFlag=1
 
 //First Draw of the Player
@@ -47,7 +53,12 @@ export function generate_projectile(mouseX, mouseY) {
 }
 
 /**********************************gameloop*********************************** */
-let lastTime = 0;
+let lastTime = 0, loop_counter = 0, heals = 0, 
+    TreasurePosition={
+        valid:false,
+        x:-1,
+        y:-1
+    };
 function gameLoop(timeStamp) {
     let ifWin = player.winFlag;
     //ifWin=1;
@@ -61,8 +72,7 @@ function gameLoop(timeStamp) {
             /************************Update Local Storage**********************/
             for (let i = 0; i < players_array.length; i++) {
                 if (players_array[i].userName == player_name) {
-                    if(player_level==players_array[i].level&&players_array[i].level<3){
-                        console.log("yaay");
+                    if (player_level == players_array[i].level && players_array[i].level < 3) {
                         players_array[i].level++;
                         players_array[i].maxCharacter++;
                     }
@@ -84,7 +94,18 @@ function gameLoop(timeStamp) {
         // delta time to 
         let deltaTime = timeStamp - lastTime;
         lastTime = timeStamp;
+        loop_counter++;
         context.clearRect(0, 0, gameScreen.width, gameScreen.height);
+
+        if (loop_counter == 300) {
+            loop_counter = 0;
+            if (gifts.length == 15)
+                gifts.splice(getRandomInt(0, 14), 1);
+            let isHeal = (getRandomInt(1, 10));
+            gifts.push(new Gift((isHeal < 5) && (heals < 3) ? 1 : 0, gameScreen, false));
+            if (gifts[gifts.length - 1].type == 2)
+                heals++;
+        }
 
         for (let i = 0; i < enemyArray.length; i++) {
             enemyArray[i].update(deltaTime, player.position);
@@ -93,10 +114,38 @@ function gameLoop(timeStamp) {
 
         for (let i = 0; i < projectiles.length; i++) {
             projectiles[i].draw(context, deltaTime);
-            if (projectiles[i].isHit(enemyArray, player, context, particles)) {
+            if (projectiles[i].isHit(enemyArray, player, context, TreasurePosition)) {
                 projectiles.splice(i, 1);
+                if(TreasurePosition.valid==true){
+                    let pos={
+                        x: TreasurePosition.x,
+                        y: TreasurePosition.y
+                    }
+                    gifts.push(new Gift(2,gameScreen,pos));
+                }
+                TreasurePosition.valid=false;
             }
         }
+
+        for (let i = 0; i < gifts.length; i++) {
+            gifts[i].draw(context, deltaTime);
+            if (hitDetected(gifts[i], player)) {
+                if (gifts[i].type == 1) {
+                    $("#points").html(parseInt($("#points").html()) + getRandomInt(10, 15));
+                }
+                else if (gifts[i].type == 2) {
+                    let sum = player.health + getRandomInt(10, 15);
+                    (sum > player.maxHealth) ? player.health = player.maxHealth : player.health = sum;
+                    let percentage = Math.round((player.health / player.maxHealth) * 100);
+                    $("#health").html("%" + percentage).width(percentage + "%")
+                }
+                else if (gifts[i].type == 3){
+                    $("#points").html(parseInt($("#points").html()) + getRandomInt(30, 40));                    
+                }
+                gifts.splice(i, 1);
+            }
+        }
+
         player.isHit(enemyArray); // player damaged   
         player.move(inputHandler.held_directions, deltaTime); //Move the player to the held directions
         player.draw(context, inputHandler.mouse);             //Then Draw the Player
