@@ -1,4 +1,5 @@
-import {generate_projectile} from '/js/GameLoop.js'
+import projectile from '/js/projectile.js';
+
 /* Direction key state */
 export const directions = {
     up: "up",
@@ -20,7 +21,7 @@ const keys = {
 
 //InputHandler class contains the event listener
 export default class InputHandler {
-    constructor(canvas, player) {
+    constructor(canvas, player,projectiles) {
         this.isShooting = false;
         this.held_directions = []; // State of which arrow keys we are holding down
         document.addEventListener("keydown", (e) => {
@@ -54,7 +55,7 @@ export default class InputHandler {
             if (e.buttons === 1) {
                 this.isShooting = true;
                 // console.log(`MouseX: ${this.mouse.x}, MouseY: ${this.mouse.y}`)
-                generate_projectile(this.mouse.x,this.mouse.y);
+                projectiles.push(new projectile(player, { x: this.mouse.x, y: this.mouse.y }));
             }
         })
 

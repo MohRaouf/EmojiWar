@@ -1,20 +1,10 @@
 import Player from '/js/player.js';
 import InputHandler from '/js/input.js';
 import Enemy from '/js/enemy.js';
-import projectile from '/js/projectile.js';
 import Gift from '/js/gift.js';
-import { getRandomInt, setLevelConfig, containerResult, hitDetected } from '/js/methods.js'
+import { getRandomInt, setLevelConfig, containerResult, hitDetected ,getParameterByName} from '/js/methods.js'
 
-function getParameterByName(name, url) {
-    if (!url)
-        url = window.location.href;
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(url);
-    if (!results) return 0;
-    if (!results[2]) return 0;
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
+//retreive from local storage
 var player_character = parseInt(getParameterByName("character", window.location)[0]) + 1;
 var player_level = parseInt(getParameterByName("level", window.location)[0]) + 1;
 var player_name = getParameterByName("username", window.location);
@@ -24,8 +14,9 @@ for(let i=0;i<players_array.length;i++){
     if(players_array[i].userName == player_name)
         nickname=players_array[i].lastNickname;
 }
-document.getElementById("playerName").textContent=nickname;
-var canvas = document.getElementById("gameScreen"); //Get the GameArea Canvas
+
+document.getElementById("playerName").textContent=nickname; // set player name in the game page
+var canvas = document.getElementById("gameScreen"); //get the GameArea Canvas
 canvas.oncontextmenu = new Function("return false;") //disable context menu
 
 //Set the Game Area Canvas width and height to match the css info (issue solved)
@@ -40,17 +31,13 @@ let player = new Player(player_character - 1, gameScreen); //Create the player w
 var enemyArray = [new Enemy(getRandomInt(0, 3), gameScreen)]; // Create array of Enemies 
 var projectiles = [];
 var gifts = [];
+
 //Instance of InputHander to Handle the Key strokes
-var inputHandler = new InputHandler(canvas, player);
-var particles = [];
+var inputHandler = new InputHandler(canvas, player,projectiles);
 //  player.winFlag=1
 
 //First Draw of the Player
 player.draw(context, inputHandler.mouse);
-
-export function generate_projectile(mouseX, mouseY) {
-    projectiles.push(new projectile(player, { x: mouseX, y: mouseY }));
-}
 
 /**********************************gameloop*********************************** */
 let lastTime = 0, loop_counter = 0, heals = 0, 
@@ -63,9 +50,9 @@ function gameLoop(timeStamp) {
     let ifWin = player.winFlag;
     //ifWin=1;
     if (ifWin == 1 || ifWin == 0) {
-        //levelTrack.pause();
+        levelTrack.pause();
         if (ifWin == 1) {
-            //win
+            //won
             document.getElementById("winTrack").play();
             containerResult(player_level);
             confetti.start();
@@ -97,7 +84,7 @@ function gameLoop(timeStamp) {
         loop_counter++;
         context.clearRect(0, 0, gameScreen.width, gameScreen.height);
 
-        if (loop_counter == 300) {
+        if (loop_counter == 500) {
             loop_counter = 0;
             if (gifts.length == 15)
                 gifts.splice(getRandomInt(0, 14), 1);
